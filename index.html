@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria Pulcinella | Forno a Legna a Patù (LE)</title>
+    <meta name="description" content="Pizzeria artigianale a forno a legno nel Salento. Ingredienti 100% italiani, pizze classiche, speciali e al metro.">
+    
+    <!-- SEO & Verifica -->
+    
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Local Tailwind CSS -->
+    <link rel="stylesheet" href="output.css?v=2">
+    
+    <style>
+        body {
+            background-color: #FAFAF5;
+            color: #333333;
+        }
+        /* Bordo Tricolore */
+        .tricolore-border {
+            height: 6px;
+            width: 100%;
+            background: linear-gradient(to right, #1A6B2A 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC1515 66.66%);
+        }
+        /* Scroll Reveal Animazioni */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <link rel="stylesheet" href="home-language-flags.css">
+    <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="integration.css">
+    <link rel="stylesheet" href="componi/language-picker.css">
+    <link rel="stylesheet" href="site-header.css">
+    <script src="site-header-copy.js" defer></script>
+    <script src="site-header.js" defer></script>
+    <script src="home-configurator.js" defer></script>
+    <script src="home-configurator-preload.js" defer></script>
+    <script src="componi/language-picker.js" defer></script>
+  <link rel="canonical" href="https://www.pulcinellapatu.it/">
+  <meta name="google-site-verification" content="L7HaUHMQe9ul26TClJr646AF2CKg_dHqX5SeZgqAgRU">
+</head>
+<body class="font-body antialiased flex flex-col min-h-screen">
+
+    <!-- Bordo Tricolore Top -->
+    <div class="site-tricolore" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="site-header" aria-label="Navigazione principale" data-home-path="./" data-config-path="componi/">
+        <div class="site-header-inner">
+            <div class="site-header-row">
+                <div class="site-header-brand-wrap">
+                    <a href="#" class="site-header-brand">
+                        <img src="logo.svg" alt="Logo Pizzeria Pulcinella" class="site-header-logo">
+                    </a>
+                </div>
+                
+                <div class="site-header-actions">
+                    <!-- Nav Links -->
+                    <div class="site-header-links">
+                        <a href="#chi-siamo" data-i18n="nav_about" data-site-nav="nav_about" data-site-section="#chi-siamo" class="site-header-link">Chi Siamo</a>
+                        <a href="#menu" data-i18n="nav_menu" data-site-nav="nav_menu" data-site-section="#menu" class="site-header-link">Il Menu</a>
+                        <a href="componi/" data-config-copy="0" data-site-nav="config" class="site-header-config">Componi la tua pizza</a>
+                        <a href="#contatti" data-i18n="nav_contact" data-site-nav="nav_contact" data-site-section="#contatti" class="site-header-link">Contatti</a>
+                        <a href="tel:+393398390660" class="home-order-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span data-i18n="nav_order" data-site-nav="nav_order">Ordina Ora</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Language Switcher -->
+                    <div class="home-language-switch"><span id="home-language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
+                    <select id="lang-selector" onchange="switchLanguage(this.value)" aria-label="Seleziona la lingua" class="bg-transparent text-brand-black border border-gray-300 text-xl rounded-md focus:ring-brand-green focus:border-brand-green block p-1.5 cursor-pointer outline-none shadow-sm">
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="fr">🇫🇷 Français</option>
+                                                <option value="de">🇩🇪 Deutsch</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="pt">🇵🇹 Português</option>
+                                                <option value="zh">🇨🇳 中文</option>
+                        <option value="sv">🇸🇪 Svenska</option>
+                        <option value="nl">🇳🇱 Nederlands</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                    </select></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-[85vh] mt-[26px] flex items-center justify-center text-center px-4 overflow-hidden bg-brand-black">
+        <picture class="absolute inset-0 w-full h-full object-cover opacity-60 z-0 pointer-events-none">
+            <source srcset="pizza-bg-mobile.webp" media="(max-width: 768px)" type="image/webp">
+            <source srcset="pizza-bg-mobile.jpg" media="(max-width: 768px)" type="image/jpeg">
+            <source srcset="pizza-bg.webp" type="image/webp">
+            <img src="pizza-bg.png" alt="Pizza Sfondo" class="w-full h-full object-cover">
+        </picture>
+        <div class="max-w-4xl mx-auto text-brand-light relative z-10 reveal active">
+            <h1 class="font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight">
+                <span class="text-brand-light">Pizzeria Pulcinella</span>
+            </h1>
+            <p data-i18n="hero_desc" class="text-lg md:text-2xl mb-10 max-w-2xl mx-auto font-body opacity-95">
+                Da vent'anni, il sapore di qualcosa di vero.
+            </p>
+            <div class="hero-configurator-actions flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="tel:+393398390660" class="bg-brand-green text-brand-light hover:bg-green-800 px-8 py-3 rounded-full font-bold text-lg transition-colors border-2 border-brand-green flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <span data-i18n="btn_call">Chiama</span>
+                </a>
+                <a href="#menu" data-i18n="btn_menu" class="bg-brand-light text-brand-black hover:bg-gray-100 px-8 py-3 rounded-full font-bold text-lg transition-colors border-2 border-brand-light">
+                    Scopri il menù
+                </a>
+                <a href="componi/" data-config-copy="0" class="configurator-link" id="hero-configurator">Componi la tua pizza</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Chi Siamo / Valori -->
+    <section id="chi-siamo" class="py-20 bg-brand-light">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <span data-i18n="phil_label" class="text-brand-green font-bold tracking-widest uppercase text-sm mb-2 block">La nostra filosofia</span>
+            <h2 data-i18n="phil_title" class="font-heading text-4xl md:text-5xl text-brand-black mb-8">Impasto, fiamma e cuore.</h2>
+            <p data-i18n="phil_desc" class="text-xl text-brand-gray mb-16 leading-relaxed max-w-3xl mx-auto">
+                Tutto ha inizio nel 2006, da una semplice ma ambiziosa idea di Franco: portare nel Capo di Leuca l'asporto di qualità. Da allora, il nostro obiettivo è rimasto uno solo: offrirvi una pizza tradizionale unica e inconfondibile. Ecco come lo facciamo: 
+            </p>
+
+            <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+                <div class="flex flex-col items-center">
+                    <div class="value-icon w-16 h-16 bg-brand-green/10 flex items-center justify-center mb-6 text-brand-green">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 16.53 19.62 L 15.96 21.27 L 16.20 21.92 L 15.87 23.00 L 14.68 22.21 L 13.89 21.98 L 11.71 20.92 L 11.93 19.84 L 13.75 20.03 L 15.34 19.81 L 16.53 19.62 Z M 6.70 13.38 L 7.63 14.87 L 7.41 17.64 L 6.70 17.51 L 6.07 18.21 L 5.48 17.65 L 5.42 15.12 L 5.06 13.92 L 5.92 14.03 L 6.70 13.38 Z M 11.63 1.73 L 13.86 2.27 L 13.69 3.30 L 14.06 4.20 L 12.82 3.89 L 11.55 4.63 L 11.64 5.67 L 11.45 6.27 L 11.96 7.34 L 13.42 8.39 L 14.20 10.13 L 15.94 11.82 L 17.16 11.80 L 17.54 12.27 L 17.10 12.68 L 18.50 13.44 L 19.64 14.08 L 20.98 15.17 L 21.14 15.56 L 20.85 16.31 L 19.98 15.33 L 18.63 14.99 L 17.97 16.34 L 19.10 17.12 L 18.91 18.21 L 18.26 18.34 L 17.43 20.14 L 16.78 20.30 L 16.79 19.66 L 17.10 18.53 L 17.44 18.09 L 16.83 16.87 L 16.36 15.81 L 15.71 15.55 L 15.25 14.65 L 14.25 14.27 L 13.58 13.42 L 12.43 13.29 L 11.21 12.34 L 9.78 10.98 L 8.72 9.77 L 8.24 7.70 L 7.46 7.45 L 6.20 6.76 L 5.48 7.05 L 4.58 8.02 L 3.93 8.17 L 4.11 7.26 L 3.26 7.00 L 2.86 5.37 L 3.40 4.74 L 2.95 3.95 L 3.01 3.36 L 3.68 3.81 L 4.43 3.71 L 5.30 3.00 L 5.57 3.33 L 6.32 3.26 L 6.65 2.42 L 7.81 2.68 L 8.49 2.32 L 8.62 1.47 L 9.56 1.76 L 9.74 1.36 L 11.28 1.00 L 11.63 1.73 Z"></path>
+</svg>
+                    </div>
+                    <h3 data-i18n="card1_title" class="font-heading text-2xl text-brand-black mb-3">100% Italiani</h3>
+                    <p data-i18n="card1_desc" class="text-brand-gray text-base"> Selezioniamo solo materie prime autentiche, fresche e rigorosamente italiane.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="value-icon w-16 h-16 bg-brand-red/10 flex items-center justify-center mb-6 text-brand-red">
+                        <svg class="value-icon-detail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                    </div>
+                    <h3 data-i18n="card2_title" class="font-heading text-2xl text-brand-black mb-3">Cotta a Legna d'Ulivo</h3>
+                    <p data-i18n="card2_desc" class="text-brand-gray text-base">L'artigianalità al primo posto. Il nostro forno arde con profumato legno di ulivo, regalando alla pizza quel sapore inconfondibile.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="value-icon w-16 h-16 bg-gray-200 flex items-center justify-center mb-6 text-brand-black">
+                        <svg class="value-icon-detail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                    </div>
+                    <h3 data-i18n="card3_title" class="font-heading text-2xl text-brand-black mb-3">48h di Lievitazione</h3>
+                    <p data-i18n="card3_desc" class="text-brand-gray text-base">Una ricetta segreta che custodiamo gelosamente: un blend di 4 farine diverse e una lenta lievitazione di 48 ore per la massima digeribilità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 data-i18n="menu_title" class="font-heading text-4xl md:text-5xl text-brand-green mb-4">Il Nostro Menu</h2>
+            </div>
+
+            <!-- Griglia Principale: Classiche e Speciali -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
+                
+                <!-- PIZZE CLASSICHE -->
+                <div class="reveal">
+                        <div class="flex items-center gap-4 mb-8">
+                        <div class="h-px bg-brand-green flex-1"></div>
+                        <h3 data-i18n="menu_classic" class="font-heading text-3xl text-brand-black uppercase tracking-wider text-brand-red">Pizze Classiche</h3>
+                        <div class="h-px bg-brand-green flex-1"></div>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">01</span><span class="font-bold text-brand-black notranslate" translate="no">MARINARA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 4,50</span>
+                            </div>
+                            <p data-i18n="p_01" class="text-xs text-brand-gray ml-6 mt-0.5">pomodoro, origano, aglio</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">02</span><span class="font-bold text-brand-black notranslate" translate="no">MARGHERITA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 5,50</span>
+                            </div>
+                            <p data-i18n="p_02" class="text-xs text-brand-gray ml-6 mt-0.5">pomodoro, fior di latte, basilico, olive</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">03</span><span class="font-bold text-brand-black notranslate" translate="no">FUNGHI FRESCHI</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,00</span>
+                            </div>
+                            <p data-i18n="p_03" class="text-xs text-brand-gray ml-6 mt-0.5">funghi freschi, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">04</span><span class="font-bold text-brand-black notranslate" translate="no">WÜRSTEL</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,00</span>
+                            </div>
+                            <p data-i18n="p_04" class="text-xs text-brand-gray ml-6 mt-0.5">würstel, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">05</span><span class="font-bold text-brand-black notranslate" translate="no">PRIMAVERA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_05" class="text-xs text-brand-gray ml-6 mt-0.5">pomodorini freschi, rucola, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">06</span><span class="font-bold text-brand-black notranslate" translate="no">BUFALONA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_06" class="text-xs text-brand-gray ml-6 mt-0.5">mozzarella di bufala, olive, pomodoro</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">07</span><span class="font-bold text-brand-black notranslate" translate="no">CHIPS</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_07" class="text-xs text-brand-gray ml-6 mt-0.5">patate fritte, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">08</span><span class="font-bold text-brand-black notranslate" translate="no">SALSICCIA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_08" class="text-xs text-brand-gray ml-6 mt-0.5">salsiccia fresca, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">09</span><span class="font-bold text-brand-black notranslate" translate="no">NAPOLI</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_09" class="text-xs text-brand-gray ml-6 mt-0.5">acciughe, origano, capperi, olive nere, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">10</span><span class="font-bold text-brand-black notranslate" translate="no">DIAVOLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_10" class="text-xs text-brand-gray ml-6 mt-0.5">salamino piccante, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">11</span><span class="font-bold text-brand-black notranslate" translate="no">PROSCIUTELLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="p_11" class="text-xs text-brand-gray ml-6 mt-0.5">prosciutto cotto, olive, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">12</span><span class="font-bold text-brand-black notranslate" translate="no">VERDURE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_12" class="text-xs text-brand-gray ml-6 mt-0.5">peperoni, melanzane e zucchine grigliate, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">13</span><span class="font-bold text-brand-black notranslate" translate="no">PROSCIUTTO E FUNGHI</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_13" class="text-xs text-brand-gray ml-6 mt-0.5">prosciutto cotto, funghi freschi, olive, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">14</span><span class="font-bold text-brand-black notranslate" translate="no">TONNO E CIPOLLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_14" class="text-xs text-brand-gray ml-6 mt-0.5">tonno, cipolla di Tropea, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">15</span><span class="font-bold text-brand-black notranslate" translate="no">CONTADINA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_15" class="text-xs text-brand-gray ml-6 mt-0.5">salamino piccante, funghi, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">16</span><span class="font-bold text-brand-black notranslate" translate="no">QUATTRO FORMAGGI</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_16" class="text-xs text-brand-gray ml-6 mt-0.5">fior di latte, fontina, provola, gorgonzola, pomodoro</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">17</span><span class="font-bold text-brand-black notranslate" translate="no">AMERICA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_17" class="text-xs text-brand-gray ml-6 mt-0.5">würstel, patate fritte, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">18</span><span class="font-bold text-brand-black notranslate" translate="no">QUATTRO STAGIONI</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_18" class="text-xs text-brand-gray ml-6 mt-0.5">prosciutto cotto, funghi, carciofini, olive, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">19</span><span class="font-bold text-brand-black notranslate" translate="no">PRELIBATEZZA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,50</span>
+                            </div>
+                            <p data-i18n="p_19" class="text-xs text-brand-gray ml-6 mt-0.5">prosciutto crudo, grana, rucola, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">20</span><span class="font-bold text-brand-black notranslate" translate="no">CAPRICCIOSA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,50</span>
+                            </div>
+                            <p data-i18n="p_20" class="text-xs text-brand-gray ml-6 mt-0.5">carciofini, peperoni, salamino piccante, capperi, olive, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">21</span><span class="font-bold text-brand-black notranslate" translate="no">CAPRESE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_21" class="text-xs text-brand-gray ml-6 mt-0.5">pomodorini freschi, prosciutto crudo, grana, rucola, fior di latte</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PIZZE SPECIALI -->
+                <div class="reveal">
+                        <div class="flex items-center gap-4 mb-8">
+                        <div class="h-px bg-brand-red flex-1"></div>
+                        <h3 data-i18n="menu_special" class="font-heading text-3xl text-brand-black uppercase tracking-wider text-brand-red">Pizze Speciali</h3>
+                        <div class="h-px bg-brand-red flex-1"></div>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">22</span><span class="font-bold text-brand-black notranslate" translate="no">ANIMA E CORE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,00</span>
+                            </div>
+                            <p data-i18n="p_22" class="text-xs text-brand-gray ml-6 mt-0.5">mozzarella di bufala, pomodorini freschi</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">23</span><span class="font-bold text-brand-black notranslate" translate="no">CALABRESE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,00</span>
+                            </div>
+                            <p data-i18n="p_23" class="text-xs text-brand-gray ml-6 mt-0.5">nduja calabrese, cipolla di Tropea, origano, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">24</span><span class="font-bold text-brand-black notranslate" translate="no">DOLCEPICCANTE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_24" class="text-xs text-brand-gray ml-6 mt-0.5">nduja calabrese, ricotta fresca, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">25</span><span class="font-bold text-brand-black notranslate" translate="no">GUANCIA A GUANCIA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_25" class="text-xs text-brand-gray ml-6 mt-0.5">guanciale di maiale, provola, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">26</span><span class="font-bold text-brand-black notranslate" translate="no">BOMBA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_26" class="text-xs text-brand-gray ml-6 mt-0.5">salamino piccante, gorgonzola, peperoncino, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">27</span><span class="font-bold text-brand-black notranslate" translate="no">TIROLESE</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="p_27" class="text-xs text-brand-gray ml-6 mt-0.5">speck, scamorza affumicata, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">28</span><span class="font-bold text-brand-black notranslate" translate="no">CAMPAGNOLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_28" class="text-xs text-brand-gray ml-6 mt-0.5">salsiccia fresca, funghi, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">29</span><span class="font-bold text-brand-black notranslate" translate="no">PULCINELLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_29" class="text-xs text-brand-gray ml-6 mt-0.5">ricotta fresca, grana, rucola, pomodorini freschi, noci, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">30</span><span class="font-bold text-brand-black notranslate" translate="no">PEPPER DRY</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_30" class="text-xs text-brand-gray ml-6 mt-0.5">peperoni grigliati, salsiccia fresca, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">31</span><span class="font-bold text-brand-black notranslate" translate="no">GHIOTTONA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_31" class="text-xs text-brand-gray ml-6 mt-0.5">salsiccia fresca, patate fritte, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">32</span><span class="font-bold text-brand-black notranslate" translate="no">FUME'</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_32" class="text-xs text-brand-gray ml-6 mt-0.5">provola affumicata, pancetta fumè, rucola, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">33</span><span class="font-bold text-brand-black notranslate" translate="no">GOLOSA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_33" class="text-xs text-brand-gray ml-6 mt-0.5">salamino piccante, patate fritte, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">34</span><span class="font-bold text-brand-black notranslate" translate="no">FUOCO</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,00</span>
+                            </div>
+                            <p data-i18n="p_34" class="text-xs text-brand-gray ml-6 mt-0.5">nduja calabrese, peperoni, salamino piccante, peperoncino, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">35</span><span class="font-bold text-brand-black notranslate" translate="no">BROOKLYN</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 9,50</span>
+                            </div>
+                            <p data-i18n="p_35" class="text-xs text-brand-gray ml-6 mt-0.5">bacon, cipolla, patate fritte, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">36</span><span class="font-bold text-brand-black notranslate" translate="no">FRIARELLI <span data-i18n="p_36_note" class="font-normal text-xs">(Rape Saltate piccantine)</span></span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_36" class="text-xs text-brand-gray ml-6 mt-0.5">rape saltate, salsiccia fresca, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">37</span><span class="font-bold text-brand-black notranslate" translate="no">SOTTOBOSCO</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_37" class="text-xs text-brand-gray ml-6 mt-0.5">funghi porcini, salsiccia fresca, grana, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">38</span><span class="font-bold text-brand-black notranslate" translate="no">BRESAOLA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_38" class="text-xs text-brand-gray ml-6 mt-0.5">bresaola, rucola, grana, pomodoro, fior di latte</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">39</span><span class="font-bold text-brand-black notranslate" translate="no">CONSIGLIATA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_39" class="text-xs text-brand-gray ml-6 mt-0.5">speck, mozzarella di bufala, grana, rucola, pomodorini freschi</p>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold text-sm w-4">40</span><span class="font-bold text-brand-black notranslate" translate="no">PORCINA</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 10,00</span>
+                            </div>
+                            <p data-i18n="p_40" class="text-xs text-brand-gray ml-6 mt-0.5">funghi porcini, gorgonzola, provola, fior di latte</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sezione Al Metro e Focacce (Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-8">
+                
+                <!-- Pizze al Metro -->
+                <div class="reveal border-2 border-brand-red p-8 rounded-lg relative overflow-hidden bg-brand-light">
+                    <h3 data-i18n="menu_metro" class="font-heading text-3xl text-brand-red mb-6 text-center uppercase tracking-widest">Pizze al Metro</h3>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex justify-between items-baseline gap-2">
+                            <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">41</span><span data-i18n="metro_m_half" class="font-bold text-brand-black uppercase">1/2 Metro Margherita</span></div>
+                            <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                            <span class="text-brand-green font-bold">€ 13,00</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-2">
+                            <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">42</span><span data-i18n="metro_m_full" class="font-bold text-brand-black uppercase">1 Metro Margherita</span></div>
+                            <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                            <span class="text-brand-green font-bold">€ 25,00</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-2">
+                            <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">43</span><span data-i18n="metro_mix_half" class="font-bold text-brand-black uppercase">1/2 Metro Mista</span></div>
+                            <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                            <div class="text-right">
+                                <span data-i18n="metro_2_flavors" class="text-xs text-brand-gray block leading-none">due gusti</span>
+                                <span class="text-brand-green font-bold">€ 17,00</span>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-2">
+                            <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">44</span><span data-i18n="metro_mix_full" class="font-bold text-brand-black uppercase">1 Metro Mista</span></div>
+                            <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                            <div class="text-right">
+                                <span data-i18n="metro_3_flavors" class="text-xs text-brand-gray block leading-none">tre gusti</span>
+                                <span class="text-brand-green font-bold">€ 32,00</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-sm text-brand-red text-center italic bg-white p-3 rounded shadow-sm border border-brand-red/20">
+                        <span data-i18n="metro_supp" class="font-bold block mb-1">Supplemento di € 2,00 per 1/2 metro e € 4,00 per 1 metro con i seguenti ingredienti:</span>
+                        <span data-i18n="metro_supp_ing">Funghi Porcini • Friarelli • Mozzarella di Bufala • Salsiccia fresca • Bresaola • doppia Mozzarella</span>
+                    </div>
+                </div>
+
+                <!-- Focacce -->
+                <div class="reveal p-8">
+                    <h3 data-i18n="focacce_title" class="font-heading text-3xl text-brand-red mb-6 text-center uppercase tracking-widest">Focacce</h3>
+                    <ul class="space-y-5">
+                        <li>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">45</span><span class="font-bold text-brand-black uppercase">Classica</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="focacce_1_desc" class="text-xs text-brand-gray ml-7 mt-0.5">prosciutto crudo, grana, rucola, maionese, pomodorini freschi, fior di latte</p>
+                        </li>
+                        <li>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">46</span><span class="font-bold text-brand-black uppercase">Moderna</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="focacce_2_desc" class="text-xs text-brand-gray ml-7 mt-0.5">tonno, pomodorini freschi, rucola, maionese, insalata, fior di latte</p>
+                        </li>
+                        <li>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">47</span><span class="font-bold text-brand-black uppercase notranslate" translate="no">Salentina</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 7,50</span>
+                            </div>
+                            <p data-i18n="focacce_3_desc" class="text-xs text-brand-gray ml-7 mt-0.5">salamino piccante, insalata, maionese, pomodorini freschi, fior di latte</p>
+                        </li>
+                        <li>
+                            <div class="flex justify-between items-baseline gap-2">
+                                <div class="flex items-baseline gap-2 notranslate" translate="no"><span class="text-brand-red font-bold w-5">48</span><span class="font-bold text-brand-black uppercase notranslate" translate="no">Puccia Kebab</span></div>
+                                <div class="flex-1 border-b border-dashed border-gray-300 relative -top-1"></div>
+                                <span class="text-brand-green font-bold">€ 8,50</span>
+                            </div>
+                            <p data-i18n="focacce_4_desc" class="text-xs text-brand-gray ml-7 mt-0.5">patate fritte, cipolla, kebab, insalata, rucola, maionese, ketchup</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Extra, Sfizi e Rosticceria -->
+            <div class="bg-brand-light border border-gray-200 rounded-lg p-6 lg:p-10 shadow-sm mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-lg">
+                            <span data-i18n="extra_half" class="font-bold text-brand-black">Mezza Pizza</span>
+                            <span class="font-bold text-brand-green">€ 2,50</span>
+                        </div>
+                        <div class="flex justify-between items-center text-lg">
+                            <span data-i18n="extra_calzone" class="font-bold text-brand-black">Calzone Medio</span>
+                            <span class="font-bold text-brand-green">€ 2,50</span>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-center text-lg">
+                            <span data-i18n="extra_pittule" class="font-bold text-brand-black mr-2">Pittule Naturali</span>
+                            <div>
+                                <span class="font-bold text-brand-green mr-2">€ 4,00</span>
+                                <span data-i18n="extra_nutella" class="text-sm font-bold text-brand-black">con Nutella</span>
+                                <span class="font-bold text-brand-green ml-1">€ 5,00</span>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <span data-i18n="extra_fries" class="font-bold text-brand-black block mb-1 text-center md:text-left text-lg">Patatine Fritte</span>
+                            <div class="flex flex-wrap gap-4 font-bold justify-center md:justify-start">
+                                <span><span data-i18n="fries_small" class="text-brand-black">Porzione: Piccola</span> <span class="text-brand-green">€ 4,00</span></span>
+                                <span class="hidden sm:inline text-brand-gray">-</span>
+                                <span><span data-i18n="fries_med" class="text-brand-black">Media</span> <span class="text-brand-green">€ 5,00</span></span>
+                                <span class="hidden sm:inline text-brand-gray">-</span>
+                                <span><span data-i18n="fries_large" class="text-brand-black">Grande</span> <span class="text-brand-green">€ 6,00</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-red text-white p-6 rounded-lg text-center h-full flex flex-col justify-center">
+                        <h4 data-i18n="rosticceria_title" class="font-heading text-2xl font-bold mb-2">Rosticceria</h4>
+                        <p data-i18n="rosticceria_price" class="font-bold mb-4">€ 5,00 Porzione - € 17,00 Kg.</p>
+                        <p data-i18n="rosticceria_items" class="text-sm">
+                            • Calzoncini • Chele di Granchio<br>
+                            • Crocchette di patate • Olive ascolane • Arancini di Riso
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Configuratore: aggiunta della copia di prova -->
+    <section id="componi" class="configurator-promo" aria-labelledby="configurator-promo-title">
+        <div class="configurator-promo-inner">
+            <img src="assets/pizza-dorata-v02.webp" width="1254" height="1254" loading="lazy" decoding="async" class="configurator-promo-image" alt="Pizza Pulcinella con mozzarella fusa e cornicione dorato">
+            <div class="configurator-promo-copy">
+                <h2 id="configurator-promo-title" data-config-copy="1">La tua pizza, come piace a te.</h2>
+                <p data-config-copy="2">Scegli una pizza del menu o crea la tua combinazione di ingredienti.</p>
+                <a href="componi/" data-config-copy="0" class="configurator-link" id="promo-configurator">Componi la tua pizza</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Inclusività -->
+    <section class="py-12 bg-white text-brand-black text-center px-4 border-t border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <h3 data-i18n="incl_title" class="font-heading text-3xl mb-4">La pizza è per tutti.</h3>
+            <p data-i18n="incl_desc" class="text-lg text-brand-gray mb-6">Deve essere buona per tutti. Prepariamo su richiesta opzioni dedicate, basta dircelo al momento dell'ordine.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-8">
+                <div class="flex items-center gap-2 justify-center">
+                    <span class="font-bold"><span data-i18n="incl_gf">Senza Glutine</span> (+<span class="text-brand-green">€4,50</span>)</span>
+                </div>
+                <div class="flex items-center gap-2 justify-center">
+                    <span class="font-bold"><span data-i18n="incl_lf">Mozzarella Senza Lattosio</span> (+<span class="text-brand-green">€1,50</span>)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contatti -->
+    <footer id="contatti" class="bg-brand-light text-brand-black pt-20 pb-10 border-t-8 border-brand-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left">
+                
+                <!-- Info Brand -->
+                <div>
+                    <a href="#" class="inline-block mb-6">
+                        <img src="logo.svg" alt="Logo Pizzeria Pulcinella" class="h-16 w-auto object-contain">
+                    </a>
+                    <p data-i18n="footer_desc" class="text-brand-gray mb-6 font-body text-sm leading-relaxed">
+                        Pizzeria artigianale a forno a legna.
+                    </p>
+                </div>
+
+                <!-- Indirizzo e Orari -->
+                <div>
+                    <h4 data-i18n="footer_find_us" class="font-heading text-xl mb-6 text-brand-green">Vieni a trovarci</h4>
+                    <ul class="space-y-4 text-brand-gray text-sm">
+                        <li class="flex items-start gap-3 justify-center md:justify-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red flex-shrink-0 mt-0.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <div class="text-left w-full">
+                                <span>Via Giuseppe Garibaldi, 24<br>73053 Patù (LE)</span>
+                                <div class="home-map">
+                                    <iframe id="home-map-embed" src="https://maps.google.com/maps?q=Via+Giuseppe+Garibaldi,+24,+73053+Pat%C3%B9+LE&amp;z=16&amp;output=embed" width="100%" height="160" title="Google Maps · Pizzeria Pulcinella" loading="lazy" referrerpolicy="no-referrer" tabindex="-1" aria-hidden="true"></iframe>
+                                    <a class="home-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Via+Giuseppe+Garibaldi+24+Pat%C3%B9" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-map-link aria-label="Apri Google Maps"><span class="home-map-label" data-map-label>Apri Google Maps</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 justify-center md:justify-start mt-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <div class="text-left">
+                                <span data-i18n="footer_open" class="block">Aperto dalle 18 alle 22:30</span>
+                                <span data-i18n="footer_closed" class="block font-bold text-brand-black mt-1">Chiusi il lunedì</span>
+                                <span data-i18n="footer_summer" class="block text-xs italic">(durante il periodo estivo siamo aperti 7 su 7)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contatti -->
+                <div>
+                    <h4 data-i18n="footer_order" class="font-heading text-xl mb-6 text-brand-green">Ordina da Asporto</h4>
+                    <p data-i18n="footer_order_desc" class="text-brand-gray text-sm mb-4">Chiamaci per ordinare la tua pizza e ritirarla calda e fumante nel nostro locale.</p>
+                    <a href="tel:+393398390660" class="inline-flex items-center gap-2 text-2xl font-bold text-brand-black hover:text-brand-green transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        339 8390660
+                    </a>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-gray-300 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-gray text-center md:text-left">
+                <p>&copy; 2026 Pizzeria Pulcinella &bull; P.IVA 03990050753 <br class="md:hidden mt-1"> <span data-i18n="footer_rights">Tutti i diritti riservati.</span></p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="privacy.html" class="hover:text-brand-green transition-colors">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Translations & Switcher Logic -->
+    <script>
+        const translations = {
+            it: {
+                nav_about: "Chi Siamo",
+                nav_menu: "Il Menu",
+                nav_contact: "Contatti",
+                nav_order: "Ordina Ora",
+                hero_sub: "Forno a Legna · Patù",
+                hero_desc: "Da vent'anni, il sapore di qualcosa di vero.",
+                btn_menu: "Scopri il menù",
+                btn_call: "Chiama",
+                phil_label: "La nostra filosofia",
+                phil_title: "Impasto, fiamma e cuore.",
+                phil_desc: "Tutto ha inizio nel 2006, da una semplice ma ambiziosa idea di Franco: portare nel Capo di Leuca l'asporto di qualità. Da allora, il nostro obiettivo è rimasto uno solo: offrirvi una pizza tradizionale unica e inconfondibile. Ecco come lo facciamo:",
+                card1_title: "100% Italiani",
+                card1_desc: "Selezioniamo solo materie prime autentiche, fresche e rigorosamente italiane.",
+                card2_title: "Cotta a Legna d'Ulivo",
+                card2_desc: "L'artigianalità al primo posto. Il nostro forno arde con profumato legno di ulivo, regalando alla pizza quel sapore inconfondibile.",
+                card3_title: "48h di Lievitazione",
+                card3_desc: "Una ricetta segreta che custodiamo gelosamente: un blend di 4 farine diverse e una lenta lievitazione di 48 ore per la massima digeribilità.",
+                menu_title: "Il Nostro Menu",
+                menu_classic: "Pizze Classiche",
+                menu_special: "Pizze Speciali",
+                menu_metro: "Pizze al Metro",
+                metro_m_half: "1/2 Metro Margherita",
+                metro_m_full: "1 Metro Margherita",
+                metro_mix_half: "1/2 Metro Mista",
+                metro_mix_full: "1 Metro Mista",
+                metro_2_flavors: "due gusti",
+                metro_3_flavors: "tre gusti",
+                metro_supp: "Supplemento di € 2,00 per 1/2 metro e € 4,00 per 1 metro con i seguenti ingredienti:",
+                metro_supp_ing: "Funghi Porcini • Friarelli • Mozzarella di Bufala • Salsiccia fresca • Bresaola • doppia Mozzarella",
+                focacce_title: "Focacce",
+                focacce_1_name: "Classica",
+                focacce_1_desc: "prosciutto crudo, grana, rucola, maionese, pomodorini freschi, fior di latte",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "tonno, pomodorini freschi, rucola, maionese, insalata, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "salamino piccante, insalata, maionese, pomodorini freschi, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "patate fritte, cipolla, kebab, insalata, rucola, maionese, ketchup",
+                extra_half: "Mezza Pizza",
+                extra_calzone: "Calzone Medio",
+                extra_pittule: "Pittule Naturali",
+                extra_nutella: "con Nutella",
+                extra_fries: "Patatine Fritte",
+                fries_small: "Porzione: Piccola",
+                fries_med: "Media",
+                fries_large: "Grande",
+                rosticceria_title: "Rosticceria",
+                rosticceria_price: "€ 5,00 Porzione - € 17,00 Kg.",
+                rosticceria_items: "• Calzoncini • Chele di Granchio<br>• Crocchette di patate • Olive ascolane • Arancini di Riso",
+                incl_title: "La pizza è per tutti.",
+                incl_desc: "Deve essere buona per tutti. Prepariamo su richiesta opzioni dedicate, basta dircelo al momento dell'ordine.",
+                incl_gf: "Senza Glutine",
+                incl_lf: "Mozzarella Senza Lattosio",
+                footer_desc: "Pizzeria artigianale a forno a legna.",
+                footer_find_us: "Vieni a trovarci",
+                footer_open: "Aperto dalle 18 alle 22:30",
+                footer_closed: "Chiusi il lunedì",
+                footer_summer: "(durante il periodo estivo siamo aperti 7 su 7)",
+                footer_order: "Ordina da Asporto",
+                footer_order_desc: "Chiamaci per ordinare la tua pizza e ritirarla calda e fumante nel nostro locale.",
+                footer_rights: "Tutti i diritti riservati.",
+                footer_ingredients: "Ingredienti italiani, punto.",
+                p_01: "pomodoro, origano, aglio",
+                p_02: "pomodoro, fior di latte, basilico, olive",
+                p_03: "funghi freschi, pomodoro, fior di latte",
+                p_04: "würstel, pomodoro, fior di latte",
+                p_05: "pomodorini freschi, rucola, pomodoro, fior di latte",
+                p_06: "mozzarella di bufala, olive, pomodoro",
+                p_07: "patate fritte, pomodoro, fior di latte",
+                p_08: "salsiccia fresca, pomodoro, fior di latte",
+                p_09: "acciughe, origano, capperi, olive nere, pomodoro, fior di latte",
+                p_10: "salamino piccante, pomodoro, fior di latte",
+                p_11: "prosciutto cotto, olive, pomodoro, fior di latte",
+                p_12: "peperoni, melanzane e zucchine grigliate, pomodoro, fior di latte",
+                p_13: "prosciutto cotto, funghi freschi, olive, pomodoro, fior di latte",
+                p_14: "tonno, cipolla di Tropea, pomodoro, fior di latte",
+                p_15: "salamino piccante, funghi, pomodoro, fior di latte",
+                p_16: "fior di latte, fontina, provola, gorgonzola, pomodoro",
+                p_17: "würstel, patate fritte, pomodoro, fior di latte",
+                p_18: "prosciutto cotto, funghi, carciofini, olive, pomodoro, fior di latte",
+                p_19: "prosciutto crudo, grana, rucola, pomodoro, fior di latte",
+                p_20: "carciofini, peperoni, salamino piccante, capperi, olive, pomodoro, fior di latte",
+                p_21: "pomodorini freschi, prosciutto crudo, grana, rucola, fior di latte",
+                p_22: "mozzarella di bufala, pomodorini freschi",
+                p_23: "nduja calabrese, cipolla di Tropea, origano, pomodoro, fior di latte",
+                p_24: "nduja calabrese, ricotta fresca, pomodoro, fior di latte",
+                p_25: "guanciale di maiale, provola, pomodoro, fior di latte",
+                p_26: "salamino piccante, gorgonzola, peperoncino, pomodoro, fior di latte",
+                p_27: "speck, scamorza affumicata, pomodoro, fior di latte",
+                p_28: "salsiccia fresca, funghi, pomodoro, fior di latte",
+                p_29: "ricotta fresca, grana, rucola, pomodorini freschi, noci, fior di latte",
+                p_30: "peperoni grigliati, salsiccia fresca, pomodoro, fior di latte",
+                p_31: "salsiccia fresca, patate fritte, pomodoro, fior di latte",
+                p_32: "provola affumicata, pancetta fumè, rucola, pomodoro, fior di latte",
+                p_33: "salamino piccante, patate fritte, pomodoro, fior di latte",
+                p_34: "nduja calabrese, peperoni, salamino piccante, peperoncino, pomodoro, fior di latte",
+                p_35: "bacon, cipolla, patate fritte, pomodoro, fior di latte",
+                p_36_note: "(Rape Saltate piccantine)",
+                p_36: "rape saltate, salsiccia fresca, fior di latte",
+                p_37: "funghi porcini, salsiccia fresca, grana, pomodoro, fior di latte",
+                p_38: "bresaola, rucola, grana, pomodoro, fior di latte",
+                p_39: "speck, mozzarella di bufala, grana, rucola, pomodorini freschi",
+                p_40: "funghi porcini, gorgonzola, provola, fior di latte"
+            },
+            es: {
+                nav_about: "Quiénes Somos",
+                nav_menu: "El Menú",
+                nav_contact: "Contactos",
+                nav_order: "Pide Ahora",
+                hero_sub: "Horno de Leña · Patù",
+                hero_desc: "Durante veinte años, el sabor de algo verdadero.",
+                btn_menu: "Descubre el Menú",
+                btn_call: "Llama",
+                phil_label: "Nuestra filosofía",
+                phil_title: "Masa, llama y corazón.",
+                phil_desc: "Todo comenzó en 2006, de una idea simple pero ambiciosa de Franco: llevar comida para llevar de calidad a Capo di Leuca. Desde entonces, nuestro objetivo ha sido uno: ofrecerle una pizza tradicional única e inconfundible. Así es como lo hacemos:",
+                card1_title: "100% Italianos",
+                card1_desc: "Seleccionamos solo materias primas auténticas, frescas y rigurosamente italianas.",
+                card2_title: "Cocida en Leña de Olivo",
+                card2_desc: "La artesanía ante todo. Nuestro horno arde con perfumada leña de olivo, dando a la pizza ese sabor inconfundible.",
+                card3_title: "48h de Fermentación",
+                card3_desc: "Una receta secreta que guardamos celosamente: una mezcla de 4 harinas diferentes y una fermentación lenta de 48 horas para máxima digestibilidad.",
+                menu_title: "Nuestro Menú",
+                menu_classic: "Pizzas Clásicas",
+                menu_special: "Pizzas Especiales",
+                menu_metro: "Pizzas por Metro",
+                metro_m_half: "1/2 Metro Margherita",
+                metro_m_full: "1 Metro Margherita",
+                metro_mix_half: "1/2 Metro Mixta",
+                metro_mix_full: "1 Metro Mixta",
+                metro_2_flavors: "dos sabores",
+                metro_3_flavors: "tres sabores",
+                metro_supp: "Suplemento de € 2,00 por 1/2 metro y € 4,00 por 1 metro con los siguientes ingredientes:",
+                metro_supp_ing: "Champiñones Porcini • Grelos • Mozzarella de Búfala • Salchicha fresca • Bresaola • Doble Mozzarella",
+                focacce_title: "Focaccias",
+                focacce_1_name: "Clásica",
+                focacce_1_desc: "jamón serrano, queso grana, rúcula, mayonesa, tomates cherry frescos, fior di latte",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "atún, tomates cherry frescos, rúcula, mayonesa, ensalada, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "salami picante, ensalada, mayonesa, tomates cherry frescos, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "patatas fritas, cebolla, kebab, ensalada, rúcula, mayonesa, ketchup",
+                extra_half: "Media Pizza",
+                extra_calzone: "Calzone Mediano",
+                extra_pittule: "Pittule Naturales",
+                extra_nutella: "con Nutella",
+                extra_fries: "Patatas Fritas",
+                fries_small: "Porción: Pequeña",
+                fries_med: "Mediana",
+                fries_large: "Grande",
+                rosticceria_title: "Rosticería",
+                rosticceria_price: "€ 5,00 Porción - € 17,00 Kg.",
+                rosticceria_items: "• Mini Calzones • Pinzas de Cangrejo<br>• Croquetas de papa • Aceitunas Ascolanas • Bolas de Arroz",
+                incl_title: "La pizza es para todos.",
+                incl_desc: "Debe ser buena para todos. Preparamos opciones dedicadas a pedido, solo díganos al hacer el pedido.",
+                incl_gf: "Sin Gluten",
+                incl_lf: "Mozzarella Sin Lactosa",
+                footer_desc: "Pizzería artesanal en horno de leña.",
+                footer_find_us: "Ven a visitarnos",
+                footer_open: "Abierto de 18:00 a 22:30",
+                footer_closed: "Cerrado los lunes",
+                footer_summer: "(durante el verano abrimos 7 días a la semana)",
+                footer_order: "Pide para Llevar",
+                footer_order_desc: "Llámanos para pedir tu pizza y recógela caliente y humeante en nuestro local.",
+                footer_rights: "Todos los derechos reservados.",
+                footer_ingredients: "Ingredientes italianos, y punto.",
+                p_01: "tomate, orégano, ajo",
+                p_02: "tomate, fior di latte (mozzarella), albahaca, aceitunas",
+                p_03: "champiñones frescos, tomate, fior di latte",
+                p_04: "salchicha de frankfurt, tomate, fior di latte",
+                p_05: "tomates cherry frescos, rúcula, tomate, fior di latte",
+                p_06: "mozzarella de búfala, aceitunas, tomate",
+                p_07: "patatas fritas, tomate, fior di latte",
+                p_08: "salchicha fresca, tomate, fior di latte",
+                p_09: "anchoas, orégano, alcaparras, aceitunas negras, tomate, fior di latte",
+                p_10: "salami picante, tomate, fior di latte",
+                p_11: "jamón cocido, aceitunas, tomate, fior di latte",
+                p_12: "pimientos, berenjenas y calabacines a la parrilla, tomate, fior di latte",
+                p_13: "jamón cocido, champiñones frescos, aceitunas, tomate, fior di latte",
+                p_14: "atún, cebolla roja, tomate, fior di latte",
+                p_15: "salami picante, champiñones, tomate, fior di latte",
+                p_16: "fior di latte, fontina, provola, queso gorgonzola, tomate",
+                p_17: "salchicha de frankfurt, patatas fritas, tomate, fior di latte",
+                p_18: "jamón cocido, champiñones, alcachofas, aceitunas, tomate, fior di latte",
+                p_19: "jamón serrano, queso grana, rúcula, tomate, fior di latte",
+                p_20: "alcachofas, pimientos, salami picante, alcaparras, aceitunas, tomate, fior di latte",
+                p_21: "tomates cherry frescos, jamón serrano, queso grana, rúcula, fior di latte",
+                p_22: "mozzarella de búfala, tomates cherry frescos",
+                p_23: "nduja calabresa, cebolla roja, orégano, tomate, fior di latte",
+                p_24: "nduja calabresa, ricotta fresca, tomate, fior di latte",
+                p_25: "carrillera de cerdo (guanciale), provola, tomate, fior di latte",
+                p_26: "salami picante, gorgonzola, guindilla, tomate, fior di latte",
+                p_27: "speck, scamorza ahumada, tomate, fior di latte",
+                p_28: "salchicha fresca, champiñones, tomate, fior di latte",
+                p_29: "ricotta fresca, queso grana, rúcula, tomates cherry frescos, nueces, fior di latte",
+                p_30: "pimientos asados, salchicha fresca, tomate, fior di latte",
+                p_31: "salchicha fresca, patatas fritas, tomate, fior di latte",
+                p_32: "provola ahumada, panceta ahumada, rúcula, tomate, fior di latte",
+                p_33: "salami picante, patatas fritas, tomate, fior di latte",
+                p_34: "nduja calabresa, pimientos, salami picante, guindilla, tomate, fior di latte",
+                p_35: "bacon, cebolla, patatas fritas, tomate, fior di latte",
+                p_36_note: "(Grelos salteados picantes)",
+                p_36: "grelos salteados, salchicha fresca, fior di latte",
+                p_37: "champiñones porcini, salchicha fresca, queso grana, tomate, fior di latte",
+                p_38: "bresaola, rúcula, queso grana, tomate, fior di latte",
+                p_39: "speck, mozzarella de búfala, queso grana, rúcula, tomates cherry frescos",
+                p_40: "champiñones porcini, queso gorgonzola, provola, fior di latte"
+            },
+            pt: {
+                nav_about: "Quem Somos",
+                nav_menu: "O Menu",
+                nav_contact: "Contactos",
+                nav_order: "Peça Agora",
+                hero_sub: "Forno a Lenha · Patù",
+                hero_desc: "Há vinte anos, o sabor de algo verdadeiro.",
+                btn_menu: "Descubra o Menu",
+                btn_call: "Ligue",
+                phil_label: "A nossa filosofia",
+                phil_title: "Massa, chama e coração.",
+                phil_desc: "Tudo começou em 2006, de uma ideia simples, mas ambiciosa, do Franco: trazer comida para levar de qualidade para Capo di Leuca. Desde então, o nosso objetivo permaneceu o mesmo: oferecer-lhe uma pizza tradicional única e inconfundível. Veja como fazemos:",
+                card1_title: "100% Italianos",
+                card1_desc: "Selecionamos apenas matérias-primas autênticas, frescas e estritamente italianas.",
+                card2_title: "Cozida a Lenha de Oliveira",
+                card2_desc: "O artesanato em primeiro lugar. O nosso forno arde com perfumada lenha de oliveira, dando à pizza aquele sabor inconfundível.",
+                card3_title: "48h de Fermentação",
+                card3_desc: "Uma receita secreta que guardamos zelosamente: uma mistura de 4 farinhas diferentes e uma lenta fermentação de 48 horas para máxima digestibilidade.",
+                menu_title: "O Nosso Menu",
+                menu_classic: "Pizzas Clássicas",
+                menu_special: "Pizzas Especiais",
+                menu_metro: "Pizzas a Metro",
+                metro_m_half: "1/2 Metro Margherita",
+                metro_m_full: "1 Metro Margherita",
+                metro_mix_half: "1/2 Metro Mista",
+                metro_mix_full: "1 Metro Mista",
+                metro_2_flavors: "dois sabores",
+                metro_3_flavors: "três sabores",
+                metro_supp: "Suplemento de € 2,00 por 1/2 metro e € 4,00 por 1 metro com os seguintes ingredientes:",
+                metro_supp_ing: "Cogumelos Porcini • Grelos • Mozzarella de Búfala • Salsicha fresca • Bresaola • Dupla Mozzarella",
+                focacce_title: "Focaccias",
+                focacce_1_name: "Clássica",
+                focacce_1_desc: "presunto de parma, queijo grana, rúcula, maionese, tomate cereja fresco, fior di latte",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "atum, tomate cereja fresco, rúcula, maionese, salada, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "salame picante, salada, maionese, tomate cereja fresco, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "batatas fritas, cebola, kebab, salada, rúcula, maionese, ketchup",
+                extra_half: "Meia Pizza",
+                extra_calzone: "Calzone Médio",
+                extra_pittule: "Pittule Naturais",
+                extra_nutella: "com Nutella",
+                extra_fries: "Batatas Fritas",
+                fries_small: "Porção: Pequena",
+                fries_med: "Média",
+                fries_large: "Grande",
+                rosticceria_title: "Rotisserie",
+                rosticceria_price: "€ 5,00 Porção - € 17,00 Kg.",
+                rosticceria_items: "• Mini Calzones • Garras de Caranguejo<br>• Croquetes de batata • Azeitonas Ascolanas • Bolinhos de Arroz",
+                incl_title: "A pizza é para todos.",
+                incl_desc: "Tem de ser boa para todos. Preparamos opções dedicadas a pedido, basta avisar-nos na hora de encomendar.",
+                incl_gf: "Sem Glúten",
+                incl_lf: "Mozzarella Sem Lactose",
+                footer_desc: "Pizzaria artesanal em forno a lenha.",
+                footer_find_us: "Venha visitar-nos",
+                footer_open: "Aberto das 18h00 às 22h30",
+                footer_closed: "Encerrado à segunda-feira",
+                footer_summer: "(durante o verão abrimos 7 dias por semana)",
+                footer_order: "Encomendar para Levar",
+                footer_order_desc: "Ligue-nos para encomendar a sua pizza e levante-a quente e fumegante no nosso espaço.",
+                footer_rights: "Todos os direitos reservados.",
+                footer_ingredients: "Ingredientes italianos, e ponto.",
+                p_01: "tomate, orégãos, alho",
+                p_02: "tomate, fior di latte (mozzarella), manjericão, azeitonas",
+                p_03: "cogumelos frescos, tomate, fior di latte",
+                p_04: "salsicha de frankfurt, tomate, fior di latte",
+                p_05: "tomate cereja fresco, rúcula, tomate, fior di latte",
+                p_06: "mozzarella de búfala, azeitonas, tomate",
+                p_07: "batatas fritas, tomate, fior di latte",
+                p_08: "salsicha fresca, tomate, fior di latte",
+                p_09: "anchovas, orégãos, alcaparras, azeitonas pretas, tomate, fior di latte",
+                p_10: "salame picante, tomate, fior di latte",
+                p_11: "fiambre, azeitonas, tomate, fior di latte",
+                p_12: "pimentos, beringelas e curgetes grelhadas, tomate, fior di latte",
+                p_13: "fiambre, cogumelos frescos, azeitonas, tomate, fior di latte",
+                p_14: "atum, cebola roxa, tomate, fior di latte",
+                p_15: "salame picante, cogumelos, tomate, fior di latte",
+                p_16: "fior di latte, fontina, provola, queijo gorgonzola, tomate",
+                p_17: "salsicha de frankfurt, batatas fritas, tomate, fior di latte",
+                p_18: "fiambre, cogumelos, alcachofras, azeitonas, tomate, fior di latte",
+                p_19: "presunto de parma, queijo grana, rúcula, tomate, fior di latte",
+                p_20: "alcachofras, pimentos, salame picante, alcaparras, azeitonas, tomate, fior di latte",
+                p_21: "tomate cereja fresco, presunto de parma, queijo grana, rúcula, fior di latte",
+                p_22: "mozzarella de búfala, tomate cereja fresco",
+                p_23: "nduja da calábria, cebola roxa, orégãos, tomate, fior di latte",
+                p_24: "nduja da calábria, ricota fresca, tomate, fior di latte",
+                p_25: "bochecha de porco (guanciale), provola, tomate, fior di latte",
+                p_26: "salame picante, gorgonzola, pimenta malagueta, tomate, fior di latte",
+                p_27: "speck, scamorza fumada, tomate, fior di latte",
+                p_28: "salsicha fresca, cogumelos, tomate, fior di latte",
+                p_29: "ricota fresca, queijo grana, rúcula, tomate cereja fresco, nozes, fior di latte",
+                p_30: "pimentos grelhados, salsicha fresca, tomate, fior di latte",
+                p_31: "salsicha fresca, batatas fritas, tomate, fior di latte",
+                p_32: "provola fumada, panceta fumada, rúcula, tomate, fior di latte",
+                p_33: "salame picante, batatas fritas, tomate, fior di latte",
+                p_34: "nduja da calábria, pimentos, salame picante, pimenta malagueta, tomate, fior di latte",
+                p_35: "bacon, cebola, batatas fritas, tomate, fior di latte",
+                p_36_note: "(Grelos salteados picantes)",
+                p_36: "grelos salteados, salsicha fresca, fior di latte",
+                p_37: "cogumelos porcini, salsicha fresca, queijo grana, tomate, fior di latte",
+                p_38: "bresaola, rúcula, queijo grana, tomate, fior di latte",
+                p_39: "speck, mozzarella de búfala, queijo grana, rúcula, tomate cereja fresco",
+                p_40: "cogumelos porcini, queijo gorgonzola, provola, fior di latte"
+            },
+            zh: {
+                nav_about: "关于我们",
+                nav_menu: "菜单",
+                nav_contact: "联系我们",
+                nav_order: "立即点餐",
+                hero_sub: "木柴烤炉 · 帕图",
+                hero_desc: "二十年来，原汁原味。",
+                btn_menu: "探索菜单",
+                btn_call: "致电",
+                phil_label: "我们的理念",
+                phil_title: "面团，火焰，和心意。",
+                phil_desc: "这一切始于2006年Franco的一个简单而雄心勃勃的想法：将优质的外卖带到莱乌卡角。从那时起，我们的目标始终如一：为您提供独特而纯正的传统比萨。我们是这样做的：",
+                card1_title: "100% 意大利原料",
+                card1_desc: "我们只选用正宗、新鲜且严格来自意大利的原材料。",
+                card2_title: "橄榄木烤制",
+                card2_desc: "工艺至上。我们的烤炉燃烧着芬芳的橄榄木，赋予比萨无可挑剔的风味。",
+                card3_title: "48小时发酵",
+                card3_desc: "我们小心守护的秘密配方：4种不同面粉的混合，以及48小时的缓慢发酵，以达到最佳的易消化性。",
+                menu_title: "我们的菜单",
+                menu_classic: "经典比萨",
+                menu_special: "特色比萨",
+                menu_metro: "米级比萨",
+                metro_m_half: "半米 玛格丽特",
+                metro_m_full: "一米 玛格丽特",
+                metro_mix_half: "半米 混合口味",
+                metro_mix_full: "一米 混合口味",
+                metro_2_flavors: "两种口味",
+                metro_3_flavors: "三种口味",
+                metro_supp: "半米加收2欧元，一米加收4欧元，可添加以下配料：",
+                metro_supp_ing: "牛肝菌 • 芜菁菜 • 水牛马苏里拉奶酪 • 新鲜香肠 • 意式风干牛肉(Bresaola) • 双份马苏里拉奶酪",
+                focacce_title: "佛卡夏面包",
+                focacce_1_name: "Classica",
+                focacce_1_desc: "帕尔马火腿，格拉纳奶酪，芝麻菜，蛋黄酱，新鲜樱桃番茄，牛奶鲜奶酪",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "金枪鱼，新鲜樱桃番茄，芝麻菜，蛋黄酱，沙拉，牛奶鲜奶酪",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "辣味萨拉米，沙拉，蛋黄酱，新鲜樱桃番茄，牛奶鲜奶酪",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "炸薯条，洋葱，烤肉，沙拉，芝麻菜，蛋黄酱，番茄酱",
+                extra_half: "半份比萨",
+                extra_calzone: "中号披萨饺(Calzone)",
+                extra_pittule: "原味炸面球(Pittule)",
+                extra_nutella: "配榛子酱(Nutella)",
+                extra_fries: "炸薯条",
+                fries_small: "小份",
+                fries_med: "中份",
+                fries_large: "大份",
+                rosticceria_title: "熟食小吃",
+                rosticceria_price: "€ 5.00/份 - € 17.00/公斤",
+                rosticceria_items: "• 迷你披萨饺 • 蟹钳<br>• 炸土豆丸子 • 阿斯科利炸橄榄 • 炸饭团",
+                incl_title: "比萨是为大家准备的。",
+                incl_desc: "它必须适合所有人。我们可应要求提供专属选项，只需在点餐时告诉我们。",
+                incl_gf: "无麸质",
+                incl_lf: "无乳糖马苏里拉奶酪",
+                footer_desc: "传统木柴烤炉比萨店。",
+                footer_find_us: "欢迎光临",
+                footer_open: "营业时间：18:00 至 22:30",
+                footer_closed: "周一休息",
+                footer_summer: "(夏季每周7天营业)",
+                footer_order: "外卖点餐",
+                footer_order_desc: "致电我们预订比萨，然后在店里自取热气腾腾的美食。",
+                footer_rights: "保留所有权利。",
+                footer_ingredients: "纯正意大利原料。",
+                p_01: "番茄，牛至，大蒜",
+                p_02: "番茄，牛奶鲜奶酪 (马苏里拉奶酪)，罗勒，橄榄",
+                p_03: "新鲜蘑菇，番茄，牛奶鲜奶酪",
+                p_04: "法兰克福香肠，番茄，牛奶鲜奶酪",
+                p_05: "新鲜樱桃番茄，芝麻菜，番茄，牛奶鲜奶酪",
+                p_06: "水牛马苏里拉奶酪，橄榄，番茄",
+                p_07: "炸薯条，番茄，牛奶鲜奶酪",
+                p_08: "新鲜香肠，番茄，牛奶鲜奶酪",
+                p_09: "凤尾鱼，牛至，刺山柑，黑橄榄，番茄，牛奶鲜奶酪",
+                p_10: "辣味萨拉米，番茄，牛奶鲜奶酪",
+                p_11: "熟火腿，橄榄，番茄，牛奶鲜奶酪",
+                p_12: "烤灯笼椒、茄子和西葫芦，番茄，牛奶鲜奶酪",
+                p_13: "熟火腿，新鲜蘑菇，橄榄，番茄，牛奶鲜奶酪",
+                p_14: "金枪鱼，红洋葱，番茄，牛奶鲜奶酪",
+                p_15: "辣味萨拉米，蘑菇，番茄，牛奶鲜奶酪",
+                p_16: "牛奶鲜奶酪，芳提娜奶酪，普罗沃拉奶酪，戈贡佐拉奶酪，番茄",
+                p_17: "法兰克福香肠，炸薯条，番茄，牛奶鲜奶酪",
+                p_18: "熟火腿，蘑菇，洋蓟，橄榄，番茄，牛奶鲜奶酪",
+                p_19: "帕尔马火腿，格拉纳奶酪，芝麻菜，番茄，牛奶鲜奶酪",
+                p_20: "洋蓟，灯笼椒，辣味萨拉米，刺山柑，橄榄，番茄，牛奶鲜奶酪",
+                p_21: "新鲜樱桃番茄，帕尔马火腿，格拉纳奶酪，芝麻菜，牛奶鲜奶酪",
+                p_22: "水牛马苏里拉奶酪，新鲜樱桃番茄",
+                p_23: "卡拉布里亚辣肉酱(nduja)，红洋葱，牛至，番茄，牛奶鲜奶酪",
+                p_24: "卡拉布里亚辣肉酱，新鲜里科塔奶酪，番茄，牛奶鲜奶酪",
+                p_25: "猪颊肉(guanciale)，普罗沃拉奶酪，番茄，牛奶鲜奶酪",
+                p_26: "辣味萨拉米，戈贡佐拉奶酪，辣椒，番茄，牛奶鲜奶酪",
+                p_27: "斯佩克熏火腿，烟熏斯卡莫扎奶酪，番茄，牛奶鲜奶酪",
+                p_28: "新鲜香肠，蘑菇，番茄，牛奶鲜奶酪",
+                p_29: "新鲜里科塔奶酪，格拉纳奶酪，芝麻菜，新鲜樱桃番茄，核桃，牛奶鲜奶酪",
+                p_30: "烤灯笼椒，新鲜香肠，番茄，牛奶鲜奶酪",
+                p_31: "新鲜香肠，炸薯条，番茄，牛奶鲜奶酪",
+                p_32: "烟熏普罗沃拉奶酪，烟熏培根，芝麻菜，番茄，牛奶鲜奶酪",
+                p_33: "辣味萨拉米，炸薯条，番茄，牛奶鲜奶酪",
+                p_34: "卡拉布里亚辣肉酱，灯笼椒，辣味萨拉米，辣椒，番茄，牛奶鲜奶酪",
+                p_35: "培根，洋葱，炸薯条，番茄，牛奶鲜奶酪",
+                p_36_note: "(辣炒芜菁菜)",
+                p_36: "炒芜菁菜，新鲜香肠，牛奶鲜奶酪",
+                p_37: "牛肝菌，新鲜香肠，格拉纳奶酪，番茄，牛奶鲜奶酪",
+                p_38: "意式风干牛肉(bresaola)，芝麻菜，格拉纳奶酪，番茄，牛奶鲜奶酪",
+                p_39: "斯佩克熏火腿，水牛马苏里拉奶酪，格拉纳奶酪，芝麻菜，新鲜樱桃番茄",
+                p_40: "牛肝菌，戈贡佐拉奶酪，普罗沃拉奶酪，牛奶鲜奶酪"
+            },
+            en: {
+                nav_about: "About Us",
+                nav_menu: "Menu",
+                nav_contact: "Contact",
+                nav_order: "Order Now",
+                hero_sub: "Wood-Fired Oven · Patù",
+                hero_desc: "For twenty years, the taste of something real.",
+                btn_menu: "Discover the Menu",
+                btn_call: "Call",
+                phil_label: "Our Philosophy",
+                phil_title: "Dough, flame, and heart.",
+                phil_desc: "It all started in 2006, from a simple yet ambitious idea by Franco: to bring quality takeout to Capo di Leuca. Since then, our goal has remained the same: to offer you a unique and unmistakable traditional pizza. Here is how we do it:",
+                card1_title: "100% Italian",
+                card1_desc: "We select only authentic, fresh, and strictly Italian raw materials.",
+                card2_title: "Olive Wood Baked",
+                card2_desc: "Craftsmanship first. Our oven burns with fragrant olive wood, giving the pizza an unmistakable flavor.",
+                card3_title: "48h Leavening",
+                card3_desc: "A secret recipe we jealously guard: a blend of 4 different flours and a slow 48-hour leavening for maximum digestibility.",
+                menu_title: "Our Menu",
+                menu_classic: "Classic Pizzas",
+                menu_special: "Special Pizzas",
+                menu_metro: "Pizza by the Meter",
+                metro_m_half: "1/2 Meter Margherita",
+                metro_m_full: "1 Meter Margherita",
+                metro_mix_half: "1/2 Meter Mixed",
+                metro_mix_full: "1 Meter Mixed",
+                metro_2_flavors: "two flavors",
+                metro_3_flavors: "three flavors",
+                metro_supp: "Supplement of € 2,00 for 1/2 meter and € 4,00 for 1 meter with the following ingredients:",
+                metro_supp_ing: "Porcini Mushrooms • Turnip greens • Buffalo Mozzarella • Fresh sausage • Bresaola • Double Mozzarella",
+                focacce_title: "Focaccias",
+                focacce_1_name: "Classic",
+                focacce_1_desc: "parma ham, grana cheese, arugula, mayo, fresh cherry tomatoes, fior di latte",
+                focacce_2_name: "Modern",
+                focacce_2_desc: "tuna, fresh cherry tomatoes, arugula, mayo, lettuce, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "spicy salami, lettuce, mayo, fresh cherry tomatoes, fior di latte",
+                focacce_4_name: "Kebab Puccia",
+                focacce_4_desc: "french fries, onion, kebab meat, lettuce, arugula, mayo, ketchup",
+                extra_half: "Half Pizza",
+                extra_calzone: "Medium Calzone",
+                extra_pittule: "Natural Pittule",
+                extra_nutella: "with Nutella",
+                extra_fries: "French Fries",
+                fries_small: "Portion: Small",
+                fries_med: "Medium",
+                fries_large: "Large",
+                rosticceria_title: "Rotisserie & Snacks",
+                rosticceria_price: "€ 5,00 Portion - € 17,00 Kg.",
+                rosticceria_items: "• Mini Calzones • Crab Claws<br>• Potato Croquettes • Ascolana Olives • Rice Arancini",
+                incl_title: "Pizza is for everyone.",
+                incl_desc: "It must be good for everyone. We prepare dedicated options upon request, just tell us when ordering.",
+                incl_gf: "Gluten Free",
+                incl_lf: "Lactose-Free Mozzarella",
+                footer_desc: "Artisanal wood-fired pizzeria.",
+                footer_find_us: "Come visit us",
+                footer_open: "Open from 18:00 to 22:30",
+                footer_closed: "Closed on Mondays",
+                footer_summer: "(Open 7 days a week during summer)",
+                footer_order: "Order Takeaway",
+                footer_order_desc: "Call us to order your pizza and pick it up hot and steaming in our shop.",
+                footer_rights: "All rights reserved.",
+                footer_ingredients: "Italian ingredients, period.",
+                p_01: "tomato, oregano, garlic",
+                p_02: "tomato, fior di latte (mozzarella), basil, olives",
+                p_03: "fresh mushrooms, tomato, fior di latte",
+                p_04: "frankfurter sausage, tomato, fior di latte",
+                p_05: "fresh cherry tomatoes, arugula, tomato, fior di latte",
+                p_06: "buffalo mozzarella, olives, tomato",
+                p_07: "french fries, tomato, fior di latte",
+                p_08: "fresh sausage, tomato, fior di latte",
+                p_09: "anchovies, oregano, capers, black olives, tomato, fior di latte",
+                p_10: "spicy salami, tomato, fior di latte",
+                p_11: "cooked ham, olives, tomato, fior di latte",
+                p_12: "grilled peppers, eggplants and zucchini, tomato, fior di latte",
+                p_13: "cooked ham, fresh mushrooms, olives, tomato, fior di latte",
+                p_14: "tuna, red onion, tomato, fior di latte",
+                p_15: "spicy salami, mushrooms, tomato, fior di latte",
+                p_16: "fior di latte, fontina, provola, gorgonzola cheese, tomato",
+                p_17: "frankfurter sausage, french fries, tomato, fior di latte",
+                p_18: "cooked ham, mushrooms, artichokes, olives, tomato, fior di latte",
+                p_19: "parma ham, grana cheese, arugula, tomato, fior di latte",
+                p_20: "artichokes, peppers, spicy salami, capers, olives, tomato, fior di latte",
+                p_21: "fresh cherry tomatoes, parma ham, grana cheese, arugula, fior di latte",
+                p_22: "buffalo mozzarella, fresh cherry tomatoes",
+                p_23: "calabrian nduja, red onion, oregano, tomato, fior di latte",
+                p_24: "calabrian nduja, fresh ricotta, tomato, fior di latte",
+                p_25: "pork cheek (guanciale), provola cheese, tomato, fior di latte",
+                p_26: "spicy salami, gorgonzola cheese, chili pepper, tomato, fior di latte",
+                p_27: "speck (smoked ham), smoked scamorza, tomato, fior di latte",
+                p_28: "fresh sausage, mushrooms, tomato, fior di latte",
+                p_29: "fresh ricotta, grana cheese, arugula, fresh cherry tomatoes, walnuts, fior di latte",
+                p_30: "grilled peppers, fresh sausage, tomato, fior di latte",
+                p_31: "fresh sausage, french fries, tomato, fior di latte",
+                p_32: "smoked provola, smoked bacon, arugula, tomato, fior di latte",
+                p_33: "spicy salami, french fries, tomato, fior di latte",
+                p_34: "calabrian nduja, peppers, spicy salami, chili pepper, tomato, fior di latte",
+                p_35: "bacon, onion, french fries, tomato, fior di latte",
+                p_36_note: "(Spicy sauteed turnip greens)",
+                p_36: "sauteed turnip greens, fresh sausage, fior di latte",
+                p_37: "porcini mushrooms, fresh sausage, grana cheese, tomato, fior di latte",
+                p_38: "bresaola, arugula, grana cheese, tomato, fior di latte",
+                p_39: "speck (smoked ham), buffalo mozzarella, grana cheese, arugula, fresh cherry tomatoes",
+                p_40: "porcini mushrooms, gorgonzola cheese, provola, fior di latte"
+            },
+            fr: {
+                nav_about: "Qui Sommes-Nous",
+                nav_menu: "Le Menu",
+                nav_contact: "Contact",
+                nav_order: "Commander",
+                hero_sub: "Four à Bois · Patù",
+                hero_desc: "Depuis vingt ans, le goût de quelque chose de vrai.",
+                btn_menu: "Découvrir le Menu",
+                btn_call: "Appeler",
+                phil_label: "Notre Philosophie",
+                phil_title: "Pâte, flamme et cœur.",
+                phil_desc: "Tout a commencé en 2006, à partir d'une idée simple mais ambitieuse de Franco : apporter des plats à emporter de qualité au Capo di Leuca. Depuis lors, notre objectif est resté le même : vous offrir une pizza traditionnelle unique et incomparable. Voici comment nous procédons :",
+                card1_title: "100% Italiens",
+                card1_desc: "Nous sélectionnons uniquement des matières premières authentiques, fraîches et rigoureusement italiennes.",
+                card2_title: "Cuite au Bois d'Olivier",
+                card2_desc: "Le savoir-faire avant tout. Notre four brûle avec du bois d'olivier parfumé, donnant à la pizza une saveur incomparable.",
+                card3_title: "Levage 48h",
+                card3_desc: "Une recette secrète jalousement gardée : un assemblage de 4 farines différentes et une levée lente de 48 heures pour une digestibilité maximale.",
+                menu_title: "Notre Menu",
+                menu_classic: "Pizzas Classiques",
+                menu_special: "Pizzas Spéciales",
+                menu_metro: "Pizzas au Mètre",
+                metro_m_half: "1/2 Mètre Margherita",
+                metro_m_full: "1 Mètre Margherita",
+                metro_mix_half: "1/2 Mètre Mixte",
+                metro_mix_full: "1 Mètre Mixte",
+                metro_2_flavors: "deux saveurs",
+                metro_3_flavors: "trois saveurs",
+                metro_supp: "Supplément de € 2,00 pour 1/2 mètre et € 4,00 pour 1 mètre avec les ingrédients suivants :",
+                metro_supp_ing: "Cèpes • Fanons de navet • Mozzarella de Bufflonne • Saucisse fraîche • Bresaola • double Mozzarella",
+                focacce_title: "Focaccias",
+                focacce_1_name: "Classique",
+                focacce_1_desc: "jambon de parme, parmesan, roquette, mayo, tomates cerises fraîches, fior di latte",
+                focacce_2_name: "Moderne",
+                focacce_2_desc: "thon, tomates cerises fraîches, roquette, mayo, salade, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "salami piquant, salade, mayo, tomates cerises fraîches, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "frites, oignon, kebab, salade, roquette, mayo, ketchup",
+                extra_half: "Demi-Pizza",
+                extra_calzone: "Calzone Moyen",
+                extra_pittule: "Pittule Nature",
+                extra_nutella: "avec Nutella",
+                extra_fries: "Frites",
+                fries_small: "Portion : Petite",
+                fries_med: "Moyenne",
+                fries_large: "Grande",
+                rosticceria_title: "Rôtisserie & Snacks",
+                rosticceria_price: "€ 5,00 Portion - € 17,00 Kg.",
+                rosticceria_items: "• Mini Calzones • Pinces de crabe<br>• Croquettes de pommes de terre • Olives Ascolana • Arancini de Riz",
+                incl_title: "La pizza est pour tout le monde.",
+                incl_desc: "Elle doit être bonne pour tout le monde. Nous préparons des options dédiées sur demande, dites-le-nous simplement lors de la commande.",
+                incl_gf: "Sans Gluten",
+                incl_lf: "Mozzarella Sans Lactose",
+                footer_desc: "Pizzeria artisanale au feu de bois.",
+                footer_find_us: "Venez nous rendre visite",
+                footer_open: "Ouvert de 18h00 à 22h30",
+                footer_closed: "Fermé le Lundi",
+                footer_summer: "(Ouvert 7 jours sur 7 en été)",
+                footer_order: "Commander à Emporter",
+                footer_order_desc: "Appelez-nous pour commander votre pizza et venez la chercher chaude dans notre local.",
+                footer_rights: "Tous droits réservés.",
+                footer_ingredients: "Ingrédients italiens, un point c'est tout.",
+                p_01: "tomate, origan, ail",
+                p_02: "tomate, fior di latte (mozzarella), basilic, olives",
+                p_03: "champignons frais, tomate, fior di latte",
+                p_04: "saucisse de strasbourg, tomate, fior di latte",
+                p_05: "tomates cerises fraîches, roquette, tomate, fior di latte",
+                p_06: "mozzarella de bufflonne, olives, tomate",
+                p_07: "frites, tomate, fior di latte",
+                p_08: "saucisse fraîche, tomate, fior di latte",
+                p_09: "anchois, origan, câpres, olives noires, tomate, fior di latte",
+                p_10: "salami piquant, tomate, fior di latte",
+                p_11: "jambon blanc, olives, tomate, fior di latte",
+                p_12: "poivrons, aubergines et courgettes grillées, tomate, fior di latte",
+                p_13: "jambon blanc, champignons frais, olives, tomate, fior di latte",
+                p_14: "thon, oignon rouge, tomate, fior di latte",
+                p_15: "salami piquant, champignons, tomate, fior di latte",
+                p_16: "fior di latte, fontina, provola, gorgonzola, tomate",
+                p_17: "saucisse de strasbourg, frites, tomate, fior di latte",
+                p_18: "jambon blanc, champignons, artichauts, olives, tomate, fior di latte",
+                p_19: "jambon de parme, parmesan, roquette, tomate, fior di latte",
+                p_20: "artichauts, poivrons, salami piquant, câpres, olives, tomate, fior di latte",
+                p_21: "tomates cerises fraîches, jambon de parme, parmesan, roquette, fior di latte",
+                p_22: "mozzarella de bufflonne, tomates cerises fraîches",
+                p_23: "nduja calabraise, oignon rouge, origan, tomate, fior di latte",
+                p_24: "nduja calabraise, ricotta fraîche, tomate, fior di latte",
+                p_25: "joue de porc (guanciale), provola, tomate, fior di latte",
+                p_26: "salami piquant, gorgonzola, piment, tomate, fior di latte",
+                p_27: "speck, scamorza fumée, tomate, fior di latte",
+                p_28: "saucisse fraîche, champignons, tomate, fior di latte",
+                p_29: "ricotta fraîche, parmesan, roquette, tomates cerises fraîches, noix, fior di latte",
+                p_30: "poivrons grillés, saucisse fraîche, tomate, fior di latte",
+                p_31: "saucisse fraîche, frites, tomate, fior di latte",
+                p_32: "provola fumée, poitrine fumée, roquette, tomate, fior di latte",
+                p_33: "salami piquant, frites, tomate, fior di latte",
+                p_34: "nduja calabraise, poivrons, salami piquant, piment, tomate, fior di latte",
+                p_35: "bacon, oignon, frites, tomate, fior di latte",
+                p_36_note: "(Fanons de navet sautés piquants)",
+                p_36: "fanons de navet sautés, saucisse fraîche, fior di latte",
+                p_37: "cèpes, saucisse fraîche, parmesan, tomate, fior di latte",
+                p_38: "bresaola, roquette, parmesan, tomate, fior di latte",
+                p_39: "speck, mozzarella de bufflonne, parmesan, roquette, tomates cerises",
+                p_40: "cèpes, gorgonzola, provola, fior di latte"
+            },
+            de: {
+                nav_about: "Über Uns",
+                nav_menu: "Speisekarte",
+                nav_contact: "Kontakt",
+                nav_order: "Jetzt Bestellen",
+                hero_sub: "Holzofen · Patù",
+                hero_desc: "Seit zwanzig Jahren der Geschmack von etwas Echtem.",
+                btn_menu: "Menü Entdecken",
+                btn_call: "Anrufen",
+                phil_label: "Unsere Philosophie",
+                phil_title: "Teig, Flamme und Herz.",
+                phil_desc: "Alles begann 2006 mit einer einfachen, aber ehrgeizigen Idee von Franco: qualitativ hochwertige Speisen zum Mitnehmen nach Capo di Leuca zu bringen. Seitdem ist unser Ziel dasselbe geblieben: Ihnen eine einzigartige und unverwechselbare traditionelle Pizza anzubieten. So machen wir das:",
+                card1_title: "100% Italienisch",
+                card1_desc: "Wir wählen nur authentische, frische und streng italienische Rohstoffe aus.",
+                card2_title: "Im Olivenholz Gebacken",
+                card2_desc: "Handwerkskunst an erster Stelle. Unser Ofen brennt mit duftendem Olivenholz und verleiht der Pizza ein unverwechselbares Aroma.",
+                card3_title: "48h Gärung",
+                card3_desc: "Ein Geheimrezept, das wir eifersüchtig hüten: eine Mischung aus 4 verschiedenen Mehlsorten und eine langsame 48-stündige Gärung für maximale Bekömmlichkeit.",
+                menu_title: "Unsere Speisekarte",
+                menu_classic: "Klassische Pizzen",
+                menu_special: "Spezial-Pizzen",
+                menu_metro: "Pizza nach Meter",
+                metro_m_half: "1/2 Meter Margherita",
+                metro_m_full: "1 Meter Margherita",
+                metro_mix_half: "1/2 Meter Gemischt",
+                metro_mix_full: "1 Meter Gemischt",
+                metro_2_flavors: "zwei Sorten",
+                metro_3_flavors: "drei Sorten",
+                metro_supp: "Aufpreis von € 2,00 für 1/2 Meter und € 4,00 für 1 Meter mit folgenden Zutaten:",
+                metro_supp_ing: "Steinpilze • Stängelkohl • Büffelmozzarella • Frische Bratwurst • Bresaola • Doppelter Mozzarella",
+                focacce_title: "Focaccia",
+                focacce_1_name: "Klassisch",
+                focacce_1_desc: "Parmaschinken, Grana-Käse, Rucola, Mayo, frische Kirschtomaten, Fior di Latte",
+                focacce_2_name: "Modern",
+                focacce_2_desc: "Thunfisch, frische Kirschtomaten, Rucola, Mayo, Salat, Fior di Latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "pikante Salami, Salat, Mayo, frische Kirschtomaten, Fior di Latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "Pommes frites, Zwiebeln, Kebab-Fleisch, Salat, Rucola, Mayo, Ketchup",
+                extra_half: "Halbe Pizza",
+                extra_calzone: "Mittlere Calzone",
+                extra_pittule: "Pittule Natur",
+                extra_nutella: "mit Nutella",
+                extra_fries: "Pommes Frites",
+                fries_small: "Portion: Klein",
+                fries_med: "Mittel",
+                fries_large: "Groß",
+                rosticceria_title: "Snacks & Rotisserie",
+                rosticceria_price: "€ 5,00 Portion - € 17,00 Kg.",
+                rosticceria_items: "• Mini-Calzone • Krabbenscheren<br>• Kartoffelkroketten • Ascolana Oliven • Reis-Arancini",
+                incl_title: "Pizza ist für alle da.",
+                incl_desc: "Sie muss für jeden gut sein. Wir bereiten auf Anfrage spezielle Optionen zu, sagen Sie es uns einfach bei der Bestellung.",
+                incl_gf: "Glutenfrei",
+                incl_lf: "Laktosefreier Mozzarella",
+                footer_desc: "Handwerkliche Holzofen-Pizzeria.",
+                footer_find_us: "Besuchen Sie uns",
+                footer_open: "Geöffnet von 18:00 bis 22:30",
+                footer_closed: "Montags geschlossen",
+                footer_summer: "(Im Sommer 7 Tage die Woche geöffnet)",
+                footer_order: "Zum Mitnehmen Bestellen",
+                footer_order_desc: "Rufen Sie uns an, um Ihre Pizza zu bestellen und heiß bei uns abzuholen.",
+                footer_rights: "Alle Rechte vorbehalten.",
+                footer_ingredients: "Italienische Zutaten, Punkt.",
+                p_01: "Tomaten, Oregano, Knoblauch",
+                p_02: "Tomaten, Fior di Latte (Mozzarella), Basilikum, Oliven",
+                p_03: "frische Champignons, Tomaten, Fior di Latte",
+                p_04: "Würstchen, Tomaten, Fior di Latte",
+                p_05: "frische Kirschtomaten, Rucola, Tomaten, Fior di Latte",
+                p_06: "Büffelmozzarella, Oliven, Tomaten",
+                p_07: "Pommes frites, Tomaten, Fior di Latte",
+                p_08: "frische Bratwurst, Tomaten, Fior di Latte",
+                p_09: "Sardellen, Oregano, Kapern, schwarze Oliven, Tomaten, Fior di Latte",
+                p_10: "pikante Salami, Tomaten, Fior di Latte",
+                p_11: "gekochter Schinken, Oliven, Tomaten, Fior di Latte",
+                p_12: "gegrillte Paprika, Auberginen und Zucchini, Tomaten, Fior di Latte",
+                p_13: "gekochter Schinken, frische Champignons, Oliven, Tomaten, Fior di Latte",
+                p_14: "Thunfisch, rote Zwiebeln, Tomaten, Fior di Latte",
+                p_15: "pikante Salami, Champignons, Tomaten, Fior di Latte",
+                p_16: "Fior di Latte, Fontina, Provola, Gorgonzola, Tomaten",
+                p_17: "Würstchen, Pommes frites, Tomaten, Fior di Latte",
+                p_18: "gekochter Schinken, Champignons, Artischocken, Oliven, Tomaten, Fior di Latte",
+                p_19: "Parmaschinken, Grana-Käse, Rucola, Tomaten, Fior di Latte",
+                p_20: "Artischocken, Paprika, pikante Salami, Kapern, Oliven, Tomaten, Fior di Latte",
+                p_21: "frische Kirschtomaten, Parmaschinken, Grana-Käse, Rucola, Fior di Latte",
+                p_22: "Büffelmozzarella, frische Kirschtomaten",
+                p_23: "kalabrische Nduja, rote Zwiebeln, Oregano, Tomaten, Fior di Latte",
+                p_24: "kalabrische Nduja, frischer Ricotta, Tomaten, Fior di Latte",
+                p_25: "Schweinebacke (Guanciale), Provola, Tomaten, Fior di Latte",
+                p_26: "pikante Salami, Gorgonzola, Chili, Tomaten, Fior di Latte",
+                p_27: "Speck, geräucherter Scamorza, Tomaten, Fior di Latte",
+                p_28: "frische Bratwurst, Champignons, Tomaten, Fior di Latte",
+                p_29: "frischer Ricotta, Grana-Käse, Rucola, frische Kirschtomaten, Walnüsse, Fior di Latte",
+                p_30: "gegrillte Paprika, frische Bratwurst, Tomaten, Fior di Latte",
+                p_31: "frische Bratwurst, Pommes frites, Tomaten, Fior di Latte",
+                p_32: "geräucherter Provola, geräucherter Bauchspeck, Rucola, Tomaten, Fior di Latte",
+                p_33: "pikante Salami, Pommes frites, Tomaten, Fior di Latte",
+                p_34: "kalabrische Nduja, Paprika, pikante Salami, Chili, Tomaten, Fior di Latte",
+                p_35: "Bacon, Zwiebeln, Pommes frites, Tomaten, Fior di Latte",
+                p_36_note: "(Scharf angebratener Stängelkohl)",
+                p_36: "angebratener Stängelkohl, frische Bratwurst, Fior di Latte",
+                p_37: "Steinpilze, frische Bratwurst, Grana-Käse, Tomaten, Fior di Latte",
+                p_38: "Bresaola, Rucola, Grana-Käse, Tomaten, Fior di Latte",
+                p_39: "Speck, Büffelmozzarella, Grana-Käse, Rucola, Kirschtomaten",
+                p_40: "Steinpilze, Gorgonzola, Provola, Fior di Latte"
+            },
+            sv: {
+                nav_about: "Om Oss",
+                nav_menu: "Meny",
+                nav_contact: "Kontakt",
+                nav_order: "Beställ Nu",
+                hero_sub: "Vedugn · Patù",
+                hero_desc: "I tjugo år, smaken av något äkta.",
+                btn_menu: "Upptäck Menyn",
+                btn_call: "Ring",
+                phil_label: "Vår filosofi",
+                phil_title: "Deg, flamma och hjärta.",
+                phil_desc: "Allt började 2006, från en enkel men ambitiös idé av Franco: att ta med högkvalitativ hämtmat till Capo di Leuca. Sedan dess har vårt mål förblivit detsamma: att erbjuda dig en unik och omisskännlig traditionell pizza. Så här gör vi:",
+                card1_title: "100% Italienskt",
+                card1_desc: "Vi väljer endast autentiska, färska och strikt italienska råvaror.",
+                card2_title: "Bakad med Olivved",
+                card2_desc: "Hantverk i första hand. Vår ugn brinner med doftande olivved, vilket ger pizzan dess omisskännliga smak.",
+                card3_title: "48 timmars Jäsning",
+                card3_desc: "Ett hemligt recept som vi svartsjukt vaktar: en blandning av 4 olika mjölsorter och en långsam jäsning på 48 timmar för maximal smältbarhet.",
+                menu_title: "Vår Meny",
+                menu_classic: "Klassiska Pizzor",
+                menu_special: "Specialpizzor",
+                menu_metro: "Pizza per Meter",
+                metro_m_half: "1/2 Meter Margherita",
+                metro_m_full: "1 Meter Margherita",
+                metro_mix_half: "1/2 Meter Mixad",
+                metro_mix_full: "1 Meter Mixad",
+                metro_2_flavors: "två smaker",
+                metro_3_flavors: "tre smaker",
+                metro_supp: "Tillägg på € 2,00 för 1/2 meter och € 4,00 för 1 meter med följande ingredienser:",
+                metro_supp_ing: "Karljohansvamp • Majrovor • Buffelmozzarella • Färsk korv • Bresaola • Dubbel Mozzarella",
+                focacce_title: "Focaccias",
+                focacce_1_name: "Classica",
+                focacce_1_desc: "parmaskinka, granaost, ruccola, majonnäs, färska körsbärstomater, fior di latte",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "tonfisk, färska körsbärstomater, ruccola, majonnäs, sallad, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "kryddig salami, sallad, majonnäs, färska körsbärstomater, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "pommes frites, lök, kebab, sallad, ruccola, majonnäs, ketchup",
+                extra_half: "Halv Pizza",
+                extra_calzone: "Mellan Calzone",
+                extra_pittule: "Naturliga Pittule",
+                extra_nutella: "med Nutella",
+                extra_fries: "Pommes Frites",
+                fries_small: "Portion: Liten",
+                fries_med: "Mellan",
+                fries_large: "Stor",
+                rosticceria_title: "Rotisserie",
+                rosticceria_price: "€ 5,00 Portion - € 17,00 Kg.",
+                rosticceria_items: "• Mini-Calzone • Krabbklor<br>• Potatiskroketter • Ascolana-oliver • Riskroketter",
+                incl_title: "Pizzan är för alla.",
+                incl_desc: "Den måste vara bra för alla. Vi förbereder dedikerade alternativ på begäran, säg bara till när du beställer.",
+                incl_gf: "Glutenfri",
+                incl_lf: "Laktosfri Mozzarella",
+                footer_desc: "Hantverksmässig vedugnspizzeria.",
+                footer_find_us: "Kom och besök oss",
+                footer_open: "Öppet från 18:00 till 22:30",
+                footer_closed: "Stängt på måndagar",
+                footer_summer: "(öppet 7 dagar i veckan under sommaren)",
+                footer_order: "Beställ för Avhämtning",
+                footer_order_desc: "Ring oss för att beställa din pizza och hämta den varm och rykande i vår butik.",
+                footer_rights: "Alla rättigheter förbehållna.",
+                footer_ingredients: "Italienska ingredienser, punkt.",
+                p_01: "tomat, oregano, vitlök",
+                p_02: "tomat, fior di latte (mozzarella), basilika, oliver",
+                p_03: "färska champinjoner, tomat, fior di latte",
+                p_04: "frankfurterkorv, tomat, fior di latte",
+                p_05: "färska körsbärstomater, ruccola, tomat, fior di latte",
+                p_06: "buffelmozzarella, oliver, tomat",
+                p_07: "pommes frites, tomat, fior di latte",
+                p_08: "färsk korv, tomat, fior di latte",
+                p_09: "ansjovis, oregano, kapris, svarta oliver, tomat, fior di latte",
+                p_10: "kryddig salami, tomat, fior di latte",
+                p_11: "kokt skinka, oliver, tomat, fior di latte",
+                p_12: "grillad paprika, aubergine och zucchini, tomat, fior di latte",
+                p_13: "kokt skinka, färska champinjoner, oliver, tomat, fior di latte",
+                p_14: "tonfisk, rödlök, tomat, fior di latte",
+                p_15: "kryddig salami, champinjoner, tomat, fior di latte",
+                p_16: "fior di latte, fontina, provola, gorgonzola, tomat",
+                p_17: "frankfurterkorv, pommes frites, tomat, fior di latte",
+                p_18: "kokt skinka, champinjoner, kronärtskocka, oliver, tomat, fior di latte",
+                p_19: "parmaskinka, granaost, ruccola, tomat, fior di latte",
+                p_20: "kronärtskocka, paprika, kryddig salami, kapris, oliver, tomat, fior di latte",
+                p_21: "färska körsbärstomater, parmaskinka, granaost, ruccola, fior di latte",
+                p_22: "buffelmozzarella, färska körsbärstomater",
+                p_23: "kalabrisk nduja, rödlök, oregano, tomat, fior di latte",
+                p_24: "kalabrisk nduja, färsk ricotta, tomat, fior di latte",
+                p_25: "griskind (guanciale), provola, tomat, fior di latte",
+                p_26: "kryddig salami, gorgonzola, chili, tomat, fior di latte",
+                p_27: "speck, rökt scamorza, tomat, fior di latte",
+                p_28: "färsk korv, champinjoner, tomat, fior di latte",
+                p_29: "färsk ricotta, granaost, ruccola, färska körsbärstomater, valnötter, fior di latte",
+                p_30: "grillad paprika, färsk korv, tomat, fior di latte",
+                p_31: "färsk korv, pommes frites, tomat, fior di latte",
+                p_32: "rökt provola, rökt pancetta, ruccola, tomat, fior di latte",
+                p_33: "kryddig salami, pommes frites, tomat, fior di latte",
+                p_34: "kalabrisk nduja, paprika, kryddig salami, chili, tomat, fior di latte",
+                p_35: "bacon, lök, pommes frites, tomat, fior di latte",
+                p_36_note: "(Kryddig stekt majrova)",
+                p_36: "stekt majrova, färsk korv, fior di latte",
+                p_37: "karljohansvamp, färsk korv, granaost, tomat, fior di latte",
+                p_38: "bresaola, ruccola, granaost, tomat, fior di latte",
+                p_39: "speck, buffelmozzarella, granaost, ruccola, körsbärstomater",
+                p_40: "karljohansvamp, gorgonzola, provola, fior di latte"
+            },
+            nl: {
+                nav_about: "Over Ons",
+                nav_menu: "Menu",
+                nav_contact: "Contact",
+                nav_order: "Bestel Nu",
+                hero_sub: "Houtoven · Patù",
+                hero_desc: "Al twintig jaar de smaak van iets echts.",
+                btn_menu: "Ontdek het Menu",
+                btn_call: "Bel",
+                phil_label: "Onze filosofie",
+                phil_title: "Deeg, vlam en hart.",
+                phil_desc: "Het begon allemaal in 2006, met een eenvoudig maar ambitieus idee van Franco: kwaliteitsafhaalmaaltijden naar Capo di Leuca brengen. Sindsdien is ons doel hetzelfde gebleven: u een unieke en onmiskenbare traditionele pizza bieden. Dit is hoe we het doen:",
+                card1_title: "100% Italiaans",
+                card1_desc: "Wij selecteren uitsluitend authentieke, verse en strikt Italiaanse grondstoffen.",
+                card2_title: "Gebakken op Olijfhout",
+                card2_desc: "Vakmanschap staat voorop. Onze oven brandt met geurig olijfhout, wat de pizza zijn onmiskenbare smaak geeft.",
+                card3_title: "48u Rijzing",
+                card3_desc: "Een geheim recept dat we angstvallig bewaken: een mix van 4 verschillende bloemsoorten en een trage rijzing van 48 uur voor maximale verteerbaarheid.",
+                menu_title: "Ons Menu",
+                menu_classic: "Klassieke Pizza's",
+                menu_special: "Speciale Pizza's",
+                menu_metro: "Pizza per Meter",
+                metro_m_half: "1/2 Meter Margherita",
+                metro_m_full: "1 Meter Margherita",
+                metro_mix_half: "1/2 Meter Gemengd",
+                metro_mix_full: "1 Meter Gemengd",
+                metro_2_flavors: "twee smaken",
+                metro_3_flavors: "drie smaken",
+                metro_supp: "Toeslag van € 2,00 per 1/2 meter en € 4,00 per 1 meter met de volgende ingrediënten:",
+                metro_supp_ing: "Eekhoorntjesbrood • Raapstelen • Buffelmozzarella • Verse worst • Bresaola • Dubbele Mozzarella",
+                focacce_title: "Focaccia's",
+                focacce_1_name: "Classica",
+                focacce_1_desc: "parmaham, grana kaas, rucola, mayonaise, verse kerstomaatjes, fior di latte",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "tonijn, verse kerstomaatjes, rucola, mayonaise, salade, fior di latte",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "pikante salami, salade, mayonaise, verse kerstomaatjes, fior di latte",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "frietjes, ui, kebab, salade, rucola, mayonaise, ketchup",
+                extra_half: "Halve Pizza",
+                extra_calzone: "Middelgrote Calzone",
+                extra_pittule: "Natuurlijke Pittule",
+                extra_nutella: "met Nutella",
+                extra_fries: "Frietjes",
+                fries_small: "Portie: Klein",
+                fries_med: "Middel",
+                fries_large: "Groot",
+                rosticceria_title: "Rosticceria",
+                rosticceria_price: "€ 5,00 Portie - € 17,00 Kg.",
+                rosticceria_items: "• Mini Calzones • Krabscharen<br>• Aardappelkroketten • Ascolana olijven • Rijstballetjes",
+                incl_title: "Pizza is voor iedereen.",
+                incl_desc: "Het moet voor iedereen goed zijn. Op verzoek bereiden wij speciale opties, vertel het ons gewoon bij uw bestelling.",
+                incl_gf: "Glutenvrij",
+                incl_lf: "Lactosevrije Mozzarella",
+                footer_desc: "Ambachtelijke houtovenpizzeria.",
+                footer_find_us: "Kom ons bezoeken",
+                footer_open: "Geopend van 18:00 tot 22:30",
+                footer_closed: "Gesloten op maandag",
+                footer_summer: "(tijdens de zomer 7 dagen per week geopend)",
+                footer_order: "Bestel om mee te nemen",
+                footer_order_desc: "Bel ons om uw pizza te bestellen en haal hem warm en dampend af in onze zaak.",
+                footer_rights: "Alle rechten voorbehouden.",
+                footer_ingredients: "Italiaanse ingrediënten, punt uit.",
+                p_01: "tomaat, oregano, knoflook",
+                p_02: "tomaat, fior di latte (mozzarella), basilicum, olijven",
+                p_03: "verse champignons, tomaat, fior di latte",
+                p_04: "frankfurter worst, tomaat, fior di latte",
+                p_05: "verse kerstomaatjes, rucola, tomaat, fior di latte",
+                p_06: "buffelmozzarella, olijven, tomaat",
+                p_07: "frietjes, tomaat, fior di latte",
+                p_08: "verse worst, tomaat, fior di latte",
+                p_09: "ansjovis, oregano, kappertjes, zwarte olijven, tomaat, fior di latte",
+                p_10: "pikante salami, tomaat, fior di latte",
+                p_11: "gekookte ham, olijven, tomaat, fior di latte",
+                p_12: "gegrilde paprika, aubergine en courgette, tomaat, fior di latte",
+                p_13: "gekookte ham, verse champignons, olijven, tomaat, fior di latte",
+                p_14: "tonijn, rode ui, tomaat, fior di latte",
+                p_15: "pikante salami, champignons, tomaat, fior di latte",
+                p_16: "fior di latte, fontina, provola, gorgonzola, tomaat",
+                p_17: "frankfurter worst, frietjes, tomaat, fior di latte",
+                p_18: "gekookte ham, champignons, artisjokken, olijven, tomaat, fior di latte",
+                p_19: "parmaham, grana kaas, rucola, tomaat, fior di latte",
+                p_20: "artisjokken, paprika, pikante salami, kappertjes, olijven, tomaat, fior di latte",
+                p_21: "verse kerstomaatjes, parmaham, grana kaas, rucola, fior di latte",
+                p_22: "buffelmozzarella, verse kerstomaatjes",
+                p_23: "calabrische nduja, rode ui, oregano, tomaat, fior di latte",
+                p_24: "calabrische nduja, verse ricotta, tomaat, fior di latte",
+                p_25: "varkenswang (guanciale), provola, tomaat, fior di latte",
+                p_26: "pikante salami, gorgonzola, chilipeper, tomaat, fior di latte",
+                p_27: "speck, gerookte scamorza, tomaat, fior di latte",
+                p_28: "verse worst, champignons, tomaat, fior di latte",
+                p_29: "verse ricotta, grana kaas, rucola, verse kerstomaatjes, walnoten, fior di latte",
+                p_30: "gegrilde paprika, verse worst, tomaat, fior di latte",
+                p_31: "verse worst, frietjes, tomaat, fior di latte",
+                p_32: "gerookte provola, gerookt spek, rucola, tomaat, fior di latte",
+                p_33: "pikante salami, frietjes, tomaat, fior di latte",
+                p_34: "calabrische nduja, paprika, pikante salami, chilipeper, tomaat, fior di latte",
+                p_35: "bacon, ui, frietjes, tomaat, fior di latte",
+                p_36_note: "(Pittig gebakken raapstelen)",
+                p_36: "gebakken raapstelen, verse worst, fior di latte",
+                p_37: "eekhoorntjesbrood, verse worst, grana kaas, tomaat, fior di latte",
+                p_38: "bresaola, rucola, grana kaas, tomaat, fior di latte",
+                p_39: "speck, buffelmozzarella, grana kaas, rucola, kerstomaatjes",
+                p_40: "eekhoorntjesbrood, gorgonzola, provola, fior di latte"
+            },
+            ru: {
+                nav_about: "О Нас",
+                nav_menu: "Меню",
+                nav_contact: "Контакты",
+                nav_order: "Заказать Сейчас",
+                hero_sub: "Дровяная Печь · Пату",
+                hero_desc: "Двадцать лет вкуса чего-то настоящего.",
+                btn_menu: "Посмотреть Меню",
+                btn_call: "Позвонить",
+                phil_label: "Наша философия",
+                phil_title: "Тесто, пламя и сердце.",
+                phil_desc: "Все началось в 2006 году с простой, но амбициозной идеи Франко: принести качественную еду на вынос в Капо ди Леука. С тех пор наша цель осталась неизменной: предложить вам уникальную и безошибочно узнаваемую традиционную пиццу. Вот как мы это делаем:",
+                card1_title: "100% Итальянское",
+                card1_desc: "Мы отбираем только аутентичные, свежие и строго итальянские ингредиенты.",
+                card2_title: "На Оливковых Дровах",
+                card2_desc: "Мастерство превыше всего. В нашей печи горят ароматные оливковые дрова, придающие пицце ее неповторимый вкус.",
+                card3_title: "48 часов Ферментации",
+                card3_desc: "Секретный рецепт, который мы ревностно храним: смесь из 4 видов муки и медленная 48-часовая ферментация для максимального усвоения.",
+                menu_title: "Наше Меню",
+                menu_classic: "Классическая Пицца",
+                menu_special: "Фирменная Пицца",
+                menu_metro: "Пицца Метрами",
+                metro_m_half: "1/2 Метра Маргарита",
+                metro_m_full: "1 Метр Маргарита",
+                metro_mix_half: "1/2 Метра Ассорти",
+                metro_mix_full: "1 Метр Ассорти",
+                metro_2_flavors: "два вкуса",
+                metro_3_flavors: "три вкуса",
+                metro_supp: "Доплата € 2,00 за 1/2 метра и € 4,00 за 1 метр со следующими ингредиентами:",
+                metro_supp_ing: "Белые грибы • Ботва репы • Моцарелла Буффало • Свежая колбаса • Брезаола • Двойная Моцарелла",
+                focacce_title: "Фокачча",
+                focacce_1_name: "Classica",
+                focacce_1_desc: "пармская ветчина, сыр грана, руккола, майонез, свежие помидоры черри, фьор ди латте",
+                focacce_2_name: "Moderna",
+                focacce_2_desc: "тунец, свежие помидоры черри, руккола, майонез, салат, фьор ди латте",
+                focacce_3_name: "Salentina",
+                focacce_3_desc: "острая салями, салат, майонез, свежие помидоры черри, фьор ди латте",
+                focacce_4_name: "Puccia Kebab",
+                focacce_4_desc: "картофель фри, лук, кебаб, салат, руккола, майонез, кетчуп",
+                extra_half: "Половина Пиццы",
+                extra_calzone: "Средний Кальцоне",
+                extra_pittule: "Обычные Питтуле",
+                extra_nutella: "с Нутеллой",
+                extra_fries: "Картофель Фри",
+                fries_small: "Порция: Маленькая",
+                fries_med: "Средняя",
+                fries_large: "Большая",
+                rosticceria_title: "Закуски",
+                rosticceria_price: "€ 5,00 Порция - € 17,00 Кг.",
+                rosticceria_items: "• Мини-кальцоне • Крабовые клешни<br>• Картофельные крокеты • Оливки Асколана • Рисовые шарики",
+                incl_title: "Пицца для всех.",
+                incl_desc: "Она должна быть хороша для всех. По запросу мы готовим специальные варианты, просто сообщите нам при заказе.",
+                incl_gf: "Без Глютена",
+                incl_lf: "Моцарелла Без Лактозы",
+                footer_desc: "Ремесленная пиццерия на дровах.",
+                footer_find_us: "Приходите к нам",
+                footer_open: "Открыто с 18:00 до 22:30",
+                footer_closed: "Закрыто по понедельникам",
+                footer_summer: "(летом открыто 7 дней в неделю)",
+                footer_order: "Заказать на Вынос",
+                footer_order_desc: "Позвоните нам, чтобы заказать пиццу, и заберите ее горячей в нашем заведении.",
+                footer_rights: "Все права защищены.",
+                footer_ingredients: "Итальянские ингредиенты, и точка.",
+                p_01: "помидоры, орегано, чеснок",
+                p_02: "помидоры, фьор ди латте (моцарелла), базилик, оливки",
+                p_03: "свежие грибы, помидоры, фьор ди латте",
+                p_04: "сосиски, помидоры, фьор ди латте",
+                p_05: "свежие помидоры черри, руккола, помидоры, фьор ди латте",
+                p_06: "моцарелла буффало, оливки, помидоры",
+                p_07: "картофель фри, помидоры, фьор ди латте",
+                p_08: "свежая колбаса, помидоры, фьор ди латте",
+                p_09: "анчоусы, орегано, каперсы, черные оливки, помидоры, фьор ди латте",
+                p_10: "острая салями, помидоры, фьор ди латте",
+                p_11: "вареная ветчина, оливки, помидоры, фьор ди латте",
+                p_12: "жареный перец, баклажаны и цуккини, помидоры, фьор ди латте",
+                p_13: "вареная ветчина, свежие грибы, оливки, помидоры, фьор ди латте",
+                p_14: "тунец, красный лук, помидоры, фьор ди латте",
+                p_15: "острая салями, грибы, помидоры, фьор ди латте",
+                p_16: "фьор ди латте, фонтина, провола, сыр горгонзола, помидоры",
+                p_17: "сосиски, картофель фри, помидоры, фьор ди латте",
+                p_18: "вареная ветчина, грибы, артишоки, оливки, помидоры, фьор ди латте",
+                p_19: "пармская ветчина, сыр грана, руккола, помидоры, фьор ди латте",
+                p_20: "артишоки, перец, острая салями, каперсы, оливки, помидоры, фьор ди латте",
+                p_21: "свежие помидоры черри, пармская ветчина, сыр грана, руккола, фьор ди латте",
+                p_22: "моцарелла буффало, свежие помидоры черри",
+                p_23: "калабрийская ндуйя, красный лук, орегано, помидоры, фьор ди латте",
+                p_24: "калабрийская ндуйя, свежая рикотта, помидоры, фьор ди латте",
+                p_25: "свиная щековина (гуанчиале), провола, помидоры, фьор ди латте",
+                p_26: "острая салями, горгонзола, острый перец, помидоры, фьор ди латте",
+                p_27: "спек, копченая скаморца, помидоры, фьор ди латте",
+                p_28: "свежая колбаса, грибы, помидоры, фьор ди латте",
+                p_29: "свежая рикотта, сыр грана, руккола, свежие помидоры черри, грецкие орехи, фьор ди латте",
+                p_30: "жареный перец, свежая колбаса, помидоры, фьор ди латте",
+                p_31: "свежая колбаса, картофель фри, помидоры, фьор ди латте",
+                p_32: "копченая провола, копченая панчетта, руккола, помидоры, фьор ди латте",
+                p_33: "острая салями, картофель фри, помидоры, фьор ди латте",
+                p_34: "калабрийская ндуйя, перец, острая салями, острый перец, помидоры, фьор ди латте",
+                p_35: "бекон, лук, картофель фри, помидоры, фьор ди латте",
+                p_36_note: "(Острая жареная ботва репы)",
+                p_36: "жареная ботва репы, свежая колбаса, фьор ди латте",
+                p_37: "белые грибы, свежая колбаса, сыр грана, помидоры, фьор ди латте",
+                p_38: "брезаола, руккола, сыр грана, помидоры, фьор ди латте",
+                p_39: "спек, моцарелла буффало, сыр грана, руккола, помидоры черри",
+                p_40: "белые грибы, горгонзола, провола, фьор ди латте"
+            }
+        };
+
+        function switchLanguage(lang) {
+            document.documentElement.lang = lang;
+            
+            // Loop through all elements holding a data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    // Using innerHTML ensures formatted strings (like span tags inside JSON) render perfectly
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+            
+            // Save the user's preference in localStorage
+            try { localStorage.setItem('preferredLanguage', lang); } catch {}
+        }
+
+        // Initialize preferred language when DOM is ready
+        document.addEventListener("DOMContentLoaded", () => {
+            let savedLang = 'it';
+            try { savedLang = localStorage.getItem('preferredLanguage') || 'it'; } catch {}
+            const requestedLang = new URL(location.href).searchParams.get('lang');
+            if (Object.hasOwn(translations, requestedLang)) savedLang = requestedLang;
+            if (!Object.hasOwn(translations, savedLang)) savedLang = 'it';
+            document.getElementById('lang-selector').value = savedLang;
+            if(savedLang !== 'it') {
+                switchLanguage(savedLang);
+            }
+        });
+
+        // Flag rendering and language updates are shared through home-configurator.js.
+
+    </script>
+    
+    <script>
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

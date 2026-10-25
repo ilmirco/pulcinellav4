@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FAF9F6">
+  <meta name="description" content="Componi le tue pizze Pulcinella, aggiungi focacce e sfizi dal menu e prepara il tuo ordine con un riepilogo PDF.">
+  <title>Componi la tua pizza · Pizzeria Pulcinella, Patù</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="refinements.css">
+  <link rel="stylesheet" href="language-picker.css">
+  <script src="asset-files.js" defer></script>
+  <script src="recipe-previews.js" defer></script>
+  <script src="ingredient-icons.js" defer></script>
+  <script src="i18n-catalog.js" defer></script>
+  <script src="i18n.js" defer></script>
+  <script src="pizza.js" defer></script>
+  <script src="formats.js" defer></script>
+  <script src="preview-engine.js" defer></script>
+  <script src="materials.js" defer></script>
+  <script src="ingredient-assets.js" defer></script>
+  <script src="base-surface.js" defer></script>
+  <script src="long-renderer.js" defer></script>
+  <script src="vendor/pdf-lib.min.js" defer></script>
+  <script src="order.js" defer></script>
+  <script src="pizza-personal.js" defer></script>
+  <script src="pdf-unicode.js" defer></script>
+  <script src="order-pdf.js" defer></script>
+  <script src="order-ui.js" defer></script>
+  <script src="mobile-ui.js" defer></script>
+  <script src="pizza-picker-ui.js" defer></script>
+  <script src="experience-ui.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="language-picker.js" defer></script>
+  <link rel="stylesheet" href="../site-header.css">
+  <script src="../site-header-copy.js" defer></script>
+  <script src="../site-header.js" defer></script>
+  <link rel="canonical" href="https://www.pulcinellapatu.it/componi/">
+</head>
+<body>
+  <a class="skip-link" href="#ingredienti">Vai agli ingredienti</a>
+  <div class="site-tricolore" aria-hidden="true"></div>
+<nav class="site-header" aria-label="Navigazione principale" data-home-path="../" data-config-path="./" data-no-translate>
+        <div class="site-header-inner">
+            <div class="site-header-row">
+                <div class="site-header-brand-wrap">
+                    <a href="../" class="site-header-brand">
+                        <img src="../logo.svg" alt="Logo Pizzeria Pulcinella" class="site-header-logo">
+                    </a>
+                </div>
+
+                <div class="site-header-actions">
+                    <!-- Nav Links -->
+                    <div class="site-header-links">
+                        <a href="../#chi-siamo" data-i18n="nav_about" data-site-nav="nav_about" data-site-section="#chi-siamo" class="site-header-link">Chi Siamo</a>
+                        <a href="../#menu" data-i18n="nav_menu" data-site-nav="nav_menu" data-site-section="#menu" class="site-header-link">Il Menu</a>
+                        <a href="./" aria-current="page" data-config-copy="0" data-site-nav="config" class="site-header-config">Componi la tua pizza</a>
+                        <a href="../#contatti" data-i18n="nav_contact" data-site-nav="nav_contact" data-site-section="#contatti" class="site-header-link">Contatti</a>
+                        <a href="tel:+393398390660" class="home-order-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span data-i18n="nav_order" data-site-nav="nav_order">Ordina Ora</span>
+                        </a>
+                    </div>
+
+                    <!-- Language Switcher -->
+                    <div class="home-language-switch"><span id="language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
+                    <select id="config-language" aria-label="Seleziona la lingua" class="bg-transparent text-brand-black border border-gray-300 text-xl rounded-md focus:ring-brand-green focus:border-brand-green block p-1.5 cursor-pointer outline-none shadow-sm"></select></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<div class="site-header-space" aria-hidden="true"></div>
+  <main>
+    <div class="composer-toolbar">
+    <div class="format-picker" id="format-picker" role="group" aria-label="Formato della pizza"><button type="button" data-format="round" aria-pressed="true"><strong>Tonda</strong><span>Un gusto</span></button><button type="button" data-format="half" aria-pressed="false"><strong>½ metro</strong><span>50 × 35 cm · 2 gusti</span></button><button type="button" data-format="meter" aria-pressed="false"><strong>1 metro</strong><span>100 × 35 cm · 2 o 3 gusti</span></button></div>
+    <div class="intro">
+      <div class="intro-actions"><button class="order-open" id="order-open" type="button" aria-haspopup="dialog" aria-controls="order-dialog">Il tuo ordine <span id="order-count">0</span></button></div>
+    </div>
+    </div>
+    <fieldset class="meter-split" id="meter-split" hidden><legend>Come dividiamo il metro?</legend><div><button type="button" data-meter-parts="2" aria-pressed="false">Metà e metà<span>2 gusti · 50 × 35 cm ciascuno</span></button><button type="button" data-meter-parts="3" aria-pressed="true">In tre parti<span>3 gusti · un terzo ciascuno</span></button></div></fieldset>
+    <div class="workspace">
+      <div class="mobile-composer-tabs" id="mobile-composer-tabs" role="tablist" aria-label="Personalizza la pizza"><button id="composer-tab-ingredients" type="button" role="tab" aria-selected="true" aria-controls="ingredienti" data-composer-panel="ingredients" data-no-translate>Aggiunte</button><button id="composer-tab-menu" type="button" role="tab" aria-selected="false" aria-controls="menu-tools" data-composer-panel="menu" tabindex="-1">Pizze</button><button id="composer-tab-recipe" type="button" role="tab" aria-selected="false" aria-controls="recipe-panel" data-composer-panel="recipe" tabindex="-1">Ingredienti</button></div>
+      <section class="pantry" id="ingredienti" aria-labelledby="pantry-title">
+        <div class="panel-heading"><h2 id="pantry-title" tabindex="-1">Scegli il gusto</h2><span id="available-count"></span></div>
+        <p class="panel-description"><span class="desktop-guidance">Trascina sulla pizza o tocca per aggiungere.</span><span class="mobile-guidance">Tocca o usa +. Per trascinare, usa la presa ⋮⋮.</span></p>
+        <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Cerca un ingrediente…" aria-label="Cerca un ingrediente" autocomplete="off" autocapitalize="none" autocorrect="off" enterkeyhint="search"></label>
+        <div class="filters" role="group" aria-label="Categorie ingredienti" id="filters"></div>
+        <div class="ingredients-grid" id="ingredients-grid"></div>
+        <p class="no-results" id="no-results" hidden>Nessun ingrediente trovato.<br>Prova un altro nome.</p>
+        <div class="portion-key"><span>1 <b>standard</b></span><span>2 <b>doppia porzione</b></span><small>Seconda aggiunta: doppia porzione.</small></div>
+      </section>
+      <section class="pizza-workspace" aria-label="Banco di composizione">
+        <div class="pizza-preview">
+        <div class="stage-heading"><span id="stage-label">Margherita</span><button id="mobile-zoom" class="mobile-zoom" type="button" aria-haspopup="dialog" aria-controls="zoom-dialog" disabled>Ingrandisci <span aria-hidden="true">⤢</span></button></div>
+        <div id="flavor-tabs" class="flavor-tabs" role="group" aria-label="Gusto da modificare" hidden></div>
+        <div class="pizza-stage" id="pizza-stage">
+          <div class="plate" aria-hidden="true"></div>
+          <canvas id="pizza-canvas" width="1200" height="1200" role="img" aria-label="Anteprima della tua pizza" aria-describedby="pizza-instructions"></canvas>
+          <div class="drop-zone" aria-hidden="true"><span>Lascia qui: una porzione su tutta la pizza</span></div>
+          <div class="loading" id="loading" role="status"><span class="pizza-loader" aria-hidden="true"><span class="pizza-loader-slice"></span><span class="pizza-loader-slice"></span><span class="pizza-loader-slice"></span><span class="pizza-loader-slice"></span><span class="pizza-loader-slice"></span><span class="pizza-loader-slice"></span></span><span class="sr-only" id="loading-message">Prepariamo la tua pizza…</span><button id="preview-retry" type="button" hidden>Riprova</button></div>
+        </div>
+        <div class="mobile-canvas-tools"><button id="mobile-undo" type="button" aria-label="Annulla" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 3 10l5 5M3 10h10a7 7 0 0 1 0 14" transform="translate(1 -3)"/></svg></button><button id="mobile-reset" type="button" aria-label="Ricomincia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a8 8 0 1 1 0 6M4 3v6h6"/></svg></button></div>
+        <p class="pizza-instructions" id="pizza-instructions" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 3 1 15 4-4 5 1L6 3Zm9 0 1-2m3 7 3-1M3 9H1"/></svg><span></span></p>
+        </div>
+        <div class="stage-tools" id="menu-tools">
+        <label class="search mobile-pizza-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="pizza-search" type="search" placeholder="Cerca una pizza…" aria-label="Cerca una pizza" autocomplete="off" enterkeyhint="search"></label><button id="favorites-toggle" class="favorites-toggle" type="button" aria-pressed="false" aria-controls="favorites-panel" aria-label="Mostra le pizze preferite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span class="favorites-toggle-label">Preferite</span><span id="favorites-count">0</span></button><section id="favorites-panel" class="favorites-panel" aria-label="Le tue pizze preferite" hidden><div id="favorites-grid" class="favorites-grid"></div><p id="favorites-empty">Le pizze che salvi le ritrovi qui.</p><p id="favorites-storage-note" role="status" hidden>Preferite conservate solo per questa sessione.</p></section><div id="mobile-menu-grid" class="mobile-menu-grid"></div><p id="mobile-menu-empty" class="no-results" hidden>Nessuna pizza trovata.</p><div class="stage-actions"><button id="undo" disabled><span aria-hidden="true">↶</span> Annulla</button><button id="reset"><span aria-hidden="true">↻</span> Ricomincia</button><button id="empty"><span aria-hidden="true">−</span> Solo impasto</button></div>
+        <div class="menu-start"><button id="pizza-picker-open" class="quiet-action pizza-picker-open" type="button" aria-haspopup="dialog" aria-controls="pizza-picker-dialog" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/></svg><span>Scegli una pizza</span></button></div>
+        </div>
+      </section>
+      <aside id="recipe-panel" class="recipe" aria-labelledby="recipe-title">
+        <button class="back-to-ingredients" id="mobile-ingredients" type="button">← Torna alle aggiunte</button>
+        <div class="recipe-caption"><h2 id="recipe-title" tabindex="-1"><span id="recipe-name">Margherita</span></h2><span id="ingredient-count"></span></div>
+        <div id="all-flavors" class="all-flavors" role="group" aria-label="Riepilogo dei gusti" hidden></div>
+        <p id="format-warning" class="format-warning" role="status" hidden></p>
+        <div id="recipe-variations" class="recipe-variations" hidden></div>
+        <div class="recipe-items" id="recipe-items"></div>
+        <p class="empty-recipe" id="empty-recipe" hidden>Si parte dall’impasto.<br>Il prossimo ingrediente lo scegli tu.</p>
+        <div class="recipe-total"><div><span id="price-label" hidden></span><strong id="total"></strong></div><p id="price-note"></p></div>
+        <details class="pizza-note" id="pizza-note-details"><summary>Note per questa pizza <span id="pizza-note-status">Facoltative</span></summary><label class="sr-only" for="pizza-note">Note per questa pizza</label><textarea id="pizza-note" rows="2" maxlength="240" placeholder="Ad esempio: ben cotta…"></textarea></details>
+        <fieldset class="pizza-options" id="pizza-options"><legend>Su richiesta</legend>
+          <label id="gluten-free-option"><input type="checkbox" id="pizza-gluten-free"> Senza glutine <span>+ €4,50</span></label>
+          <p id="gluten-free-unavailable" hidden>Senza glutine disponibile solo sulla tonda.</p>
+          <label id="lactose-free-round"><input type="checkbox" id="pizza-lactose-free"> Mozzarella senza lattosio <span>+ €1,50</span></label>
+          <fieldset id="lactose-free-long" hidden><legend>Mozzarella senza lattosio</legend><div id="lactose-free-tastes"></div><p id="lactose-free-tariff"></p></fieldset>
+          <p id="diet-surcharge" role="status" aria-live="polite" hidden></p>
+        </fieldset>
+        <p class="editing-order-note" id="editing-order-note" role="status" hidden>Stai modificando una pizza del tuo ordine.</p>
+        <button class="primary-button add-order" id="add-order" type="button" disabled>Aggiungi all’ordine</button>
+        <button class="cancel-order-edit" id="cancel-order-edit" type="button" hidden>Annulla modifica</button>
+        <button class="primary-button save-single" id="save"><span>Salva la tua pizza</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v6h16v-6"/></svg></button>
+        <div class="recipe-secondary-actions"><button id="favorite-current" class="quiet-action" type="button" aria-pressed="false" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span>Salva nei preferiti</span></button><button id="share-pizza" class="quiet-action" type="button" aria-haspopup="dialog" aria-controls="share-dialog" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v9h14v-9"/></svg><span>Condividi</span></button></div>
+        <a href="tel:+393398390660" class="call-order">Per ordinare, chiama</a>
+      </aside>
+    </div>
+    <div class="menu-return"><a class="primary-button menu-return-button" id="menu-return" href="../#menu">Vai al nostro menu <span aria-hidden="true">↗</span></a></div>
+  </main>
+  <footer><img src="assets/logo.svg" width="125" height="46" alt="Pizzeria Pulcinella"><p>Via Giuseppe Garibaldi, 24 · Patù (LE)</p><a href="../">Torna alla home</a></footer>
+  <div class="mobile-bar"><button class="mobile-recipe" id="mobile-recipe" type="button" aria-label="Vai alla tua ricetta"><small>Vedi ricetta ↑</small><strong id="mobile-name">Margherita</strong></button><button class="mobile-save-single" id="mobile-save" type="button" aria-label="Salva foto della pizza">Foto</button><button class="primary-button" id="mobile-add-order" type="button" disabled>Aggiungi</button><button class="mobile-order-open" id="mobile-order-open" type="button" aria-label="Consulta il tuo ordine" aria-haspopup="dialog" aria-controls="order-dialog"><svg class="mobile-cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h14l-2 9H7L4 3H1M9 21h.01M17 21h.01"/></svg><span class="mobile-cart-label">Ordine</span> <span id="mobile-order-count">0</span></button></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="pizza-picker-dialog" class="dialog pizza-picker-dialog" aria-labelledby="pizza-picker-title"><button class="close-dialog" data-close="pizza-picker-dialog" aria-label="Torna alla pizza">×</button><div class="pizza-picker-heading"><h2 id="pizza-picker-title">Scegli una pizza</h2><p id="pizza-picker-context"></p><div id="pizza-picker-parts" class="pizza-picker-parts" role="group" aria-label="Gusto da modificare" hidden></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="pizza-picker-search" type="search" placeholder="Cerca una pizza…" aria-label="Cerca una pizza" autocomplete="off" enterkeyhint="search" autofocus></label></div><div class="pizza-picker-list" id="pizza-picker-list"></div><p id="pizza-picker-empty" class="no-results" role="status" hidden>Nessuna pizza trovata.</p></dialog>
+  <section id="added-notice" class="added-notice" aria-labelledby="added-title" hidden inert><button id="added-dismiss" class="added-dismiss" type="button" aria-label="Chiudi notifica">×</button><div class="added-summary"><div id="added-thumbnail" class="pizza-thumb" aria-hidden="true"></div><div role="status" aria-live="polite" aria-atomic="true"><h2 id="added-title">Pizza aggiunta</h2><p id="added-name"></p><p id="added-format"></p></div></div><div class="added-actions"><button id="added-continue" class="primary-button" type="button">Componi un’altra</button><button id="added-order" class="quiet-action" type="button">Vedi ordine</button></div></section>
+  <dialog id="share-dialog" class="dialog share-dialog" aria-labelledby="share-title"><button class="close-dialog" data-close="share-dialog" aria-label="Torna alla pizza">×</button><h2 id="share-title">Condividi la pizza</h2><div id="share-thumbnail" class="pizza-thumb" aria-hidden="true"></div><p id="share-description"></p><p id="share-status" class="share-status" role="status"></p><div class="share-actions"><button id="share-native" class="primary-button" type="button" disabled>Condividi</button><button id="share-copy" class="quiet-action" type="button">Copia riepilogo</button><a id="share-download" class="quiet-action" hidden>Scarica immagine</a></div><textarea id="share-manual-copy" aria-label="Riepilogo da copiare" readonly hidden data-no-translate></textarea></dialog>
+  <dialog class="dialog zoom-dialog" id="zoom-dialog" aria-labelledby="zoom-title"><button class="close-dialog" data-close="zoom-dialog" aria-label="Chiudi anteprima ingrandita">×</button><p class="eyebrow">LA TUA PIZZA DA VICINO</p><h2 id="zoom-title">Margherita</h2><button class="zoom-detail" id="zoom-detail" type="button" aria-pressed="false">Vedi i dettagli +</button><div class="zoom-frame"><canvas id="zoom-canvas" width="1200" height="1200" role="img" aria-label="Anteprima ingrandita della pizza"></canvas></div><p class="zoom-hint" hidden>Scorri lateralmente per vedere tutta la pizza.</p><button class="primary-button" data-close="zoom-dialog">Torna agli ingredienti</button></dialog>
+  <dialog class="dialog result-dialog" id="result-dialog" aria-labelledby="result-title"><button class="close-dialog" data-close="result-dialog" aria-label="Torna alla pizza">×</button><p class="eyebrow">PIZZERIA PULCINELLA · PATÙ</p><h2 id="result-title">Fatta proprio come piace a te.</h2><canvas id="result-canvas" width="1000" height="1000" role="img" aria-label="La tua pizza completa"></canvas><p id="result-summary"></p><a class="primary-button" id="download" download="pulcinella-la-mia-pizza.png">Scarica pizza e ricetta <span aria-hidden="true">↓</span></a><button class="text-button" data-close="result-dialog">Torno al banco</button></dialog>
+  <dialog class="dialog order-dialog" id="order-dialog" aria-labelledby="order-title">
+    <header class="order-heading"><div><p>Pizzeria Pulcinella · Patù</p><h2 id="order-title">Il tuo ordine</h2><p class="order-live" id="order-live" role="status" aria-live="polite"></p></div><button class="close-dialog" data-close="order-dialog" aria-label="Chiudi ordine">×</button><div class="order-mobile-tabs" role="group" aria-label="Naviga nell’ordine"><button type="button" data-order-view="basket" aria-pressed="true">La lista</button><button type="button" data-order-view="menu" aria-pressed="false">Dal banco</button></div></header>
+    <div class="order-body">
+      <section class="order-basket" aria-label="Articoli del tuo ordine"><div class="order-basket-heading"><span id="order-quantity">0 articoli</span><button id="order-new-pizza" type="button">Componi un’altra pizza +</button><button id="order-menu-jump" type="button">Sfizi e altro ↓</button></div><div class="order-empty" id="order-empty"><p>Cominciamo dalla pizza?</p><span>Aggiungila dal configuratore oppure scegli qualcosa dal banco qui sotto.</span></div><ol class="order-lines" id="order-lines"></ol><label class="order-notes-field" id="order-notes-field" hidden>Note per il tuo ordine<textarea id="order-notes" maxlength="600" rows="3" placeholder="Ad esempio: come distinguere le pizze o richieste da confermare"></textarea></label><p id="order-storage-note" class="order-storage-note" role="status" hidden>Il browser non consente di conservare la lista. Scarica il PDF prima di chiudere.</p></section>
+      <section class="order-menu" aria-labelledby="order-menu-title"><h3 id="order-menu-title" tabindex="-1">Aggiungi dal banco</h3><p>Qualcosa da condividere, prima della pizza.</p><div class="order-categories" id="order-categories" role="group" aria-label="Categorie del menu"><button type="button" data-order-category="sfizi" aria-pressed="true">Sfizi e patatine</button><button type="button" data-order-category="focacce" aria-pressed="false">Focacce e puccia</button><button type="button" data-order-category="rosticceria" aria-pressed="false">Rosticceria</button></div><div class="order-catalog" id="order-catalog"></div><a class="order-menu-source" href="../#menu">Dal menu della pizzeria</a></section>
+    </div>
+    <footer class="order-footer"><div><span id="order-total-label">Totale ordine</span><strong id="order-total">0,00 €</strong><small id="order-pending" hidden></small></div><div class="order-footer-actions"><button id="share-order" class="quiet-action" type="button" aria-haspopup="dialog" aria-controls="share-dialog">Condividi l’ordine</button><a class="primary-button" id="order-pdf" download="pulcinella-il-mio-ordine.pdf" aria-disabled="true">Scarica PDF</a><a href="tel:+393398390660" class="order-call">Per ordinare, chiama</a></div></footer>
+  </dialog>
+  <noscript>Per comporre la pizza, abilita JavaScript nel browser.</noscript>
+</body>
+</html>

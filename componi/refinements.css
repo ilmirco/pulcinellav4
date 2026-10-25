@@ -1,0 +1,160 @@
+:root{--control-radius:12px;--action-radius:14px;--motion-quick:160ms}
+.header .phone-link{border-radius:var(--action-radius);min-height:44px}
+.composer-toolbar{display:contents}
+body:not(.mobile-composer) main{padding-top:18px}
+body:not(.mobile-composer) .composer-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;margin-bottom:24px}
+body:not(.mobile-composer) .composer-toolbar .format-picker{width:100%;max-width:760px;margin:0 auto}
+body:not(.mobile-composer) .composer-toolbar .intro{margin:0;min-width:0;justify-content:flex-end}
+body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--action-radius)}
+@media(min-width:1101px){
+  body:not(.mobile-composer) .composer-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,min(760px,calc(100% - 384px))) minmax(0,1fr);gap:12px}
+  body:not(.mobile-composer) .composer-toolbar .format-picker{grid-column:2;grid-row:1}
+  body:not(.mobile-composer) .composer-toolbar .intro{grid-column:3;grid-row:1}
+}
+#recipe-name,#total,.pizza-note summary,.pizza-note summary span:after{color:var(--ink)}
+#stage-label{color:var(--ink)}
+.recipe{border-top:0}
+.recipe .recipe-caption{display:block;padding-bottom:16px;margin-bottom:4px}
+.recipe .recipe-caption #recipe-title{display:block;font:700 28px/1.15 var(--sans);letter-spacing:-.035em;margin:0 0 8px;overflow-wrap:anywhere}
+.recipe .recipe-caption #ingredient-count{font-size:12px;color:var(--muted);white-space:normal}
+.pizza-picker-open{width:100%;min-height:52px;font-size:15px}
+.dialog.pizza-picker-dialog{width:min(900px,calc(100% - 40px));max-width:900px;max-height:min(800px,calc(100dvh - 48px));padding:0;border-radius:20px;overflow:hidden}
+.pizza-picker-dialog[open]{display:flex;flex-direction:column}
+.dialog.pizza-picker-dialog>.close-dialog{position:absolute;left:auto;right:10px;top:10px;margin:0;float:none;width:44px;height:44px;z-index:1}
+.pizza-picker-heading{padding:28px 28px 18px;border-bottom:1px solid var(--line);flex-shrink:0}
+.pizza-picker-heading h2{font:700 28px/1.2 var(--sans);letter-spacing:-.035em;margin:0 30px 4px 0}
+#pizza-picker-context{font-size:13px;color:var(--muted);margin:0 0 16px}
+.pizza-picker-heading .search{border-radius:var(--control-radius);padding:12px;background:var(--surface);min-height:48px}
+.pizza-picker-heading .search input{font-size:16px}
+.pizza-picker-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;overflow:auto;overscroll-behavior:contain;padding:0 28px 20px;min-height:0}
+.pizza-picker-item{position:relative;display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0;min-height:106px;padding:18px 10px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);text-align:left;font-family:var(--sans)}
+.pizza-picker-item-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;width:100%;padding-right:22px}
+.pizza-picker-item strong{font-size:17px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.pizza-picker-cost{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pizza-picker-description{font-size:13px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere;padding-right:16px}
+.pizza-picker-check{position:absolute;right:9px;top:18px;color:var(--green);visibility:hidden}
+.pizza-picker-item[aria-pressed=true]{background:var(--surface-soft);box-shadow:inset 3px 0 var(--green)}
+.pizza-picker-item[aria-pressed=true] .pizza-picker-check{visibility:visible}
+.pizza-picker-item:focus-visible{outline-offset:-3px}
+.pizza-picker-item:disabled{opacity:.5}
+.pizza-picker-item{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:14px;min-height:132px}
+.pizza-picker-copy{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pizza-picker-item .recipe-preview{width:92px;height:92px;background:transparent}
+.pizza-picker-parts{display:flex;gap:8px;margin:0 0 16px}
+.pizza-picker-parts button{flex:1;min-width:0;min-height:54px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:8px 10px;text-align:left;color:var(--ink);overflow-wrap:anywhere}
+.pizza-picker-parts button[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.pizza-picker-parts small{display:block;color:var(--ink);font-size:11px}
+.pizza-picker-parts span{font-size:13px;font-weight:600}
+@media(hover:hover) and (pointer:fine){.pizza-picker-item:hover:not(:disabled){background:var(--surface-soft)}}
+@media(max-width:820px) and (orientation:portrait),(max-width:500px){
+  .mobile-composer .recipe .recipe-caption #recipe-title{font-size:26px;margin-bottom:6px}
+  .mobile-composer .dialog.pizza-picker-dialog{inset:0;width:100%;max-width:none;max-height:100dvh;height:100dvh;margin:0;border-radius:0;padding:0}
+  .pizza-picker-heading{padding:24px 18px 16px}
+  .pizza-picker-list{grid-template-columns:minmax(0,1fr);padding:0 18px max(20px,env(safe-area-inset-bottom))}
+  .pizza-picker-item{grid-template-columns:72px minmax(0,1fr);gap:12px}
+  .pizza-picker-item .recipe-preview{width:72px;height:72px}
+  .pizza-picker-item-heading{flex-wrap:wrap;gap:4px 10px;padding-right:14px}
+  .mobile-composer .mobile-menu-card{min-height:192px}
+  .mobile-composer .mobile-menu-card .recipe-preview{width:84px;height:84px;margin:4px auto 8px;background:transparent}
+}
+.quiet-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:var(--control-radius);background:var(--surface);color:var(--ink);font:600 13px/1.35 var(--sans);text-align:center;text-decoration:none;overflow-wrap:anywhere;cursor:pointer;transition:background var(--motion-quick) ease-out,transform var(--motion-quick) ease-out}
+.quiet-action svg{width:18px;height:18px;flex-shrink:0}
+.quiet-action:disabled{opacity:.45;cursor:default}
+.quiet-action:active:not(:disabled){transform:scale(.98);background:var(--surface-pressed)}
+.recipe .primary-button,.added-notice .primary-button,.share-dialog .primary-button,.order-dialog .primary-button{border-radius:var(--action-radius);min-height:48px;font-weight:650}
+.recipe>.eyebrow{display:none}
+.recipe-secondary-actions{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:8px;margin-top:8px}
+.recipe-secondary-actions button{min-height:52px;padding:8px;font-size:12px}
+.recipe-secondary-actions span{min-width:0}
+#favorite-current[aria-pressed=true] svg{fill:var(--red);stroke:var(--red)}
+.recipe-variations{margin:10px 0 14px}
+.variations-label{font-size:11px;color:var(--muted);margin:0 0 6px}
+.variation-chips{display:flex;gap:6px;flex-wrap:wrap;list-style:none;padding:0;margin:0}
+.variation-chips li{font-size:11px;line-height:1.4;padding:5px 8px;border-radius:6px;background:var(--surface-soft);color:var(--ink);overflow-wrap:anywhere}
+.pizza-thumb{position:relative;width:72px;height:72px;aspect-ratio:1;flex-shrink:0;border-radius:var(--control-radius);background:var(--surface-soft);display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:10px;line-height:1.3;text-align:center}
+.pizza-thumb img{position:relative;display:block;width:100%;height:100%;object-fit:contain;z-index:1}
+.pizza-thumb.is-loading:before{content:'';position:absolute;inset:14%;border-radius:50%;background:var(--surface-pressed);animation:preview-placeholder 1.3s ease-in-out infinite alternate}
+.ingredient-photo.is-skeleton{background:radial-gradient(ellipse at center,var(--surface-pressed) 0 58%,transparent 61%);animation:preview-placeholder 1.3s ease-in-out infinite alternate;filter:none}
+@keyframes preview-placeholder{from{opacity:.45}to{opacity:.85}}
+.favorites-toggle{display:flex;align-items:center;justify-content:center;gap:6px;align-self:flex-end;min-height:44px;margin:0 0 10px auto;padding:8px 12px;border:1px solid var(--line);border-radius:var(--control-radius);background:var(--surface);font-size:12px;color:var(--ink)}
+.favorites-toggle svg{width:19px;height:19px}
+.favorites-toggle[aria-pressed=true]{border-color:var(--green);color:var(--green)}
+.favorites-toggle[aria-pressed=true] svg{fill:var(--green)}
+#favorites-count{font-variant-numeric:tabular-nums;font-size:11px}
+.favorites-panel{min-height:0;overflow:auto;overscroll-behavior:contain}
+.favorites-grid{display:grid;grid-template-columns:minmax(0,1fr)}
+.favorite-row{display:flex;align-items:center;gap:4px;padding:10px 0;border-bottom:1px solid var(--line)}
+.favorite-load{display:flex;align-items:center;gap:12px;flex:1;min-width:0;min-height:72px;padding:0;border:0;background:none;text-align:left;color:var(--ink)}
+.favorite-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.favorite-copy strong{font-size:14px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.favorite-copy>span{font-size:11px;color:var(--green)}
+.favorite-copy small{font-size:11px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.favorite-remove{width:44px;height:44px;flex-shrink:0;padding:0;background:none;border:0;color:var(--muted);font-size:24px;border-radius:50%}
+#favorites-empty{font-size:14px;color:var(--muted);text-align:center;padding:26px 12px}
+#favorites-storage-note{font-size:12px;color:var(--muted)}
+.stage-tools[data-favorites-view=true] #mobile-menu-grid,.stage-tools[data-favorites-view=true] #mobile-menu-empty,.stage-tools[data-favorites-view=true] .menu-start,.stage-tools[data-favorites-view=true] .quick-recipes{display:none!important}
+.order-line.has-thumbnail{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:14px;row-gap:0}
+.order-line.has-thumbnail .order-line-content{display:contents}
+.order-line.has-thumbnail>.pizza-thumb{grid-column:1;grid-row:1 / span 2;align-self:start}
+.order-line.has-thumbnail .order-line-heading,.order-line.has-thumbnail .order-line-description{grid-column:2;min-width:0}
+.order-line.has-thumbnail .order-line-controls{grid-column:1 / -1}
+.order-line h3{font-size:18px;line-height:1.3}
+.order-line-heading{align-items:flex-start;gap:10px}
+.order-line-description .order-line-tastes{color:var(--ink)}
+.order-line-description .order-line-variations{color:var(--ink);font-weight:500}
+.order-line-ingredients{margin-top:5px}
+.order-line-ingredients summary{display:inline-flex;align-items:center;gap:5px;min-height:44px;cursor:pointer;color:var(--green);font-size:12px;list-style:none}
+.order-line-ingredients summary:after{content:'+';font-size:15px}
+.order-line-ingredients[open] summary:after{content:'−'}
+.order-line-ingredients summary::-webkit-details-marker{display:none}
+.order-line-ingredients p{margin-top:0}
+.order-line-controls{margin-top:7px}
+.added-notice{position:fixed;z-index:80;left:50%;bottom:max(24px,env(safe-area-inset-bottom));width:min(460px,calc(100% - 32px));max-height:calc(100dvh - 48px);overflow:auto;padding:18px 16px 12px;border:1px solid var(--line);border-radius:var(--action-radius);background:var(--surface);color:var(--ink);box-shadow:0 8px 30px #211c1526;opacity:0;transform:translate(-50%,32px);pointer-events:none;transition:opacity 180ms ease-out,transform 220ms cubic-bezier(.2,.7,.3,1)}
+.added-notice[hidden]{display:none}
+.added-notice.is-visible{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.added-dismiss{position:absolute;right:4px;top:4px;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:12px;background:transparent;color:var(--muted);font:400 24px/1 var(--sans);cursor:pointer}
+.dialog.share-dialog>.close-dialog{position:absolute;right:8px;top:8px;margin:0;float:none;background:transparent;width:44px;height:44px}
+.added-summary{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:center;padding-right:30px}
+.added-summary .pizza-thumb{width:56px;height:56px}
+.added-summary h2{font:650 15px/1.25 var(--sans);color:var(--green);margin:0 0 4px}
+#added-name{font-size:15px;font-weight:600;line-height:1.3;margin:0 0 4px;overflow-wrap:anywhere}
+#added-format{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.added-actions{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:8px;margin-top:12px}
+.added-actions .primary-button,.added-actions .quiet-action{justify-content:center;min-height:44px;font-size:13px;text-align:center;padding:10px;white-space:normal}
+.added-dismiss:focus-visible{outline:2px solid var(--green);outline-offset:-3px}
+.dialog.share-dialog{max-width:520px;padding:28px;border-radius:20px}
+.share-dialog h2{font-size:25px;line-height:1.25;margin:0 24px 14px 0}
+.share-dialog>.pizza-thumb{width:100px;height:100px;margin:0 auto 12px}
+#share-description{max-height:220px;overflow:auto;overscroll-behavior:contain;white-space:pre-line;overflow-wrap:anywhere;font-size:13px;line-height:1.6;margin:0}
+.share-status{min-height:20px;font-size:12px;color:var(--muted);line-height:1.5;margin:12px 0}
+.share-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#share-native{grid-column:1 / -1;justify-content:center}
+#share-manual-copy{width:100%;min-height:130px;font:400 16px/1.5 var(--sans);color:var(--ink);margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.share-dialog[open]{animation:action-sheet-open 180ms ease-out}
+@keyframes action-sheet-open{from{opacity:.8;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(hover:hover) and (pointer:fine){.quiet-action:hover:not(:disabled),.favorites-toggle:hover,.favorite-load:hover,.favorite-remove:hover{background:var(--surface-soft)}}
+@media(max-width:820px) and (orientation:portrait),(max-width:500px){
+  .mobile-composer .mobile-composer-tabs{position:relative}
+  .mobile-composer-tabs [aria-selected=true]:after{display:none}
+  .mobile-composer-tabs:after{content:'';position:absolute;bottom:0;left:12px;width:calc((100% - 24px) / 3);height:3px;background:linear-gradient(90deg,transparent 20%,var(--red) 20% 80%,transparent 80%);transform:translateX(calc(var(--composer-tab-index,0) * 100%));transition:transform 180ms ease-out;pointer-events:none}
+  .mobile-composer .ingredient,.mobile-menu-card{border-radius:var(--control-radius)}
+  .mobile-composer .stage-tools{position:relative}
+  .mobile-composer .mobile-pizza-search{width:calc(100% - 54px)}
+  .mobile-composer .favorites-toggle{position:absolute;right:12px;top:12px;width:44px;height:44px;min-height:44px;padding:8px;margin:0;gap:0}
+  .mobile-composer .favorites-toggle-label{display:none}
+  .mobile-composer #favorites-count{position:absolute;top:0;right:1px;font-size:9px;line-height:14px;min-width:14px;height:14px;border-radius:7px;color:var(--green);background:var(--surface);padding:0 2px}
+  .mobile-composer .favorites-panel{flex:1;order:1}
+  .mobile-composer .favorite-row .pizza-thumb{width:64px;height:64px}
+  .mobile-composer .recipe-secondary-actions button{font-size:12px}
+  .mobile-composer .order-line.has-thumbnail{grid-template-columns:64px minmax(0,1fr);column-gap:10px}
+  .mobile-composer .order-line>.pizza-thumb{width:64px;height:64px}
+  .mobile-composer .order-line h3{font-size:18px}
+  .mobile-composer .order-footer-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:1;min-width:0;max-width:260px;align-items:stretch}
+  .mobile-composer .order-footer-actions .primary-button{min-width:0;width:100%;font-size:12px;padding:9px 8px;justify-content:center}
+  .mobile-composer #share-order{font-size:12px;padding:9px 6px;min-height:48px}
+  .mobile-composer .order-footer-actions .order-call{grid-column:1 / -1;min-height:44px;display:grid;place-items:center}
+  .mobile-composer .added-notice{bottom:calc(var(--notice-bar-height,76px) + 10px);width:calc(100% - 24px);max-height:calc(100dvh - var(--notice-bar-height,76px) - 72px);padding:14px 12px 10px}
+  .mobile-composer .dialog.share-dialog{padding:28px 20px;max-height:calc(100dvh - 24px - env(safe-area-inset-top))}
+}
+@media(prefers-reduced-motion:reduce){.pizza-thumb.is-loading:before,.ingredient-photo.is-skeleton,.share-dialog[open]{animation:none}.mobile-composer-tabs:after,.quiet-action,.added-notice{transition:none}.added-notice{transform:translate(-50%,0)}}
+#pizza-canvas{object-fit:contain}
