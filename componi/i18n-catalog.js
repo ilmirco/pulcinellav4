@@ -3,6 +3,9 @@
   // Italian source, English, French, German, Spanish, Portuguese, Chinese, Swedish, Dutch, Russian.
   const columns=['it','en','fr','de','es','pt','zh','sv','nl','ru'];
   const rows=String.raw`
+Espandi il pannello|Expand panel|Agrandir le panneau|Bereich vergrößern|Amplía el panel|Expandir painel|展开面板|Expandera panelen|Paneel vergroten|Развернуть панель
+Riduci il pannello|Collapse panel|Réduire le panneau|Bereich verkleinern|Reduce el panel|Recolher painel|收起面板|Fäll ihop panelen|Paneel verkleinen|Свернуть панель
+Trascina la barra in alto o in basso|Drag the bar up or down|Faites glisser la barre vers le haut ou le bas|Leiste nach oben oder unten ziehen|Arrastra la barra hacia arriba o abajo|Arraste a barra para cima ou para baixo|向上或向下拖动栏|Dra listen uppåt eller nedåt|Sleep de balk omhoog of omlaag|Потяните панель вверх или вниз
 La tua pizza|Your pizza|Votre pizza|Deine Pizza|Tu pizza|A sua pizza|你的披萨|Din pizza|Jouw pizza|Ваша пицца
 Componi la tua pizza|Build your pizza|Composez votre pizza|Pizza zusammenstellen|Crea tu pizza|Crie a sua pizza|定制你的披萨|Skapa din pizza|Stel je pizza samen|Соберите свою пиццу
 Scegli una pizza|Choose a pizza|Choisir une pizza|Pizza auswählen|Elige una pizza|Escolha uma pizza|选择披萨|Välj en pizza|Kies een pizza|Выберите пиццу

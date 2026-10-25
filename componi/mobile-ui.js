@@ -6,6 +6,7 @@
     const panels={ingredients:$('#ingredienti'),menu:$('#menu-tools'),recipe:$('.recipe')};
     const menuReturn=$('#menu-return'),menuReturnHome=menuReturn.parentElement;
     const tabs=[...document.querySelectorAll('[data-composer-panel]')];
+    const sheet=root.PizzaMobileSheet.create({bar:$('#mobile-panel-bar'),workspace:$('.workspace'),toggle:$('#mobile-sheet-toggle'),layout,getFormat:()=>getDesign().format});
     const previews=createRecipePreviews($('#mobile-menu-grid'));let active='ingredients',menuLanguage='',query='';
     function setPanel(name,{focus=false}={}){
       if(!panels[name])return;
@@ -37,6 +38,7 @@
     for(const input of [$('#search'),$('#pizza-search')])input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();input.blur();}});
     $('#mobile-menu-grid').addEventListener('click',event=>{const button=event.target.closest('[data-mobile-preset]');if(!button||button.disabled)return;if(button.dataset.mobilePreset==='empty')empty();else choose(button.dataset.mobilePreset);});
     function sync(){
+      sheet.sync();
       if(!layout.matches)return;
       $('#composer-tab-ingredients').textContent=I.catalog['Aggiunte (catalogo)'][I.language];
       if(menuLanguage!==I.language)renderMenu();
@@ -49,7 +51,7 @@
       document.body.classList.toggle('mobile-composer',layout.matches);
       if(layout.matches)panels.recipe.append(menuReturn);else menuReturnHome.append(menuReturn);
       for(const [name,panel] of Object.entries(panels)){if(layout.matches){panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','composer-tab-'+name);}else{panel.removeAttribute('role');panel.removeAttribute('aria-labelledby');}}
-      setPanel(active);if(layout.matches)sync();
+      setPanel(active);sheet.sync();if(layout.matches)sync();
     }
     layout.addEventListener('change',()=>{updateLayout();onLayout();});updateLayout();
     return{sync,setPanel,get active(){return active;},get matches(){return layout.matches;}};
