@@ -9,12 +9,12 @@
   <title>Componi la tua pizza · Pizzeria Pulcinella, Patù</title>
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="refinements.css?v=20261026-sheet">
+  <link rel="stylesheet" href="refinements.css?v=20261026-touch">
   <link rel="stylesheet" href="language-picker.css">
   <script src="asset-files.js" defer></script>
   <script src="recipe-previews.js" defer></script>
   <script src="ingredient-icons.js" defer></script>
-  <script src="i18n-catalog.js?v=20261026-sheet" defer></script>
+  <script src="i18n-catalog.js?v=20261026-touch" defer></script>
   <script src="i18n.js" defer></script>
   <script src="pizza.js" defer></script>
   <script src="formats.js" defer></script>
@@ -29,11 +29,11 @@
   <script src="pdf-unicode.js" defer></script>
   <script src="order-pdf.js" defer></script>
   <script src="order-ui.js" defer></script>
-  <script src="mobile-sheet.js?v=20261026-sheet" defer></script>
-  <script src="mobile-ui.js?v=20261026-sheet" defer></script>
+  <script src="mobile-sheet.js?v=20261026-touch" defer></script>
+  <script src="mobile-ui.js?v=20261026-touch" defer></script>
   <script src="pizza-picker-ui.js" defer></script>
   <script src="experience-ui.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20261026-touch" defer></script>
   <script src="language-picker.js" defer></script>
   <link rel="stylesheet" href="../site-header.css">
   <script src="../site-header-copy.js" defer></script>
@@ -85,8 +85,9 @@
       <div class="mobile-panel-bar" id="mobile-panel-bar"><button class="mobile-sheet-toggle" id="mobile-sheet-toggle" type="button" aria-label="Espandi il pannello" aria-expanded="false" aria-controls="ingredienti menu-tools recipe-panel" data-no-translate><span aria-hidden="true"></span></button><div class="mobile-composer-tabs" id="mobile-composer-tabs" role="tablist" aria-label="Personalizza la pizza"><button id="composer-tab-ingredients" type="button" role="tab" aria-selected="true" aria-controls="ingredienti" data-composer-panel="ingredients" data-no-translate>Aggiunte</button><button id="composer-tab-menu" type="button" role="tab" aria-selected="false" aria-controls="menu-tools" data-composer-panel="menu" tabindex="-1">Pizze</button><button id="composer-tab-recipe" type="button" role="tab" aria-selected="false" aria-controls="recipe-panel" data-composer-panel="recipe" tabindex="-1">Ingredienti</button></div></div>
       <section class="pantry" id="ingredienti" aria-labelledby="pantry-title">
         <div class="panel-heading"><h2 id="pantry-title" tabindex="-1">Scegli il gusto</h2><span id="available-count"></span></div>
-        <p class="panel-description"><span class="desktop-guidance">Trascina sulla pizza o tocca per aggiungere.</span><span class="mobile-guidance">Tocca o usa +. Per trascinare, usa la presa ⋮⋮.</span></p>
+        <p class="panel-description"><span class="desktop-guidance">Trascina sulla pizza o tocca per aggiungere.</span><span class="mobile-guidance">Trascina la foto sulla pizza. Scorri sui nomi.</span></p>
         <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Cerca un ingrediente…" aria-label="Cerca un ingrediente" autocomplete="off" autocapitalize="none" autocorrect="off" enterkeyhint="search"></label>
+        <button class="mobile-pantry-search" id="mobile-pantry-search" type="button" aria-controls="search filters"><span aria-hidden="true">⌕</span> <span>Cerca un ingrediente</span><span aria-hidden="true">↑</span></button>
         <div class="filters" role="group" aria-label="Categorie ingredienti" id="filters"></div>
         <div class="ingredients-grid" id="ingredients-grid"></div>
         <p class="no-results" id="no-results" hidden>Nessun ingrediente trovato.<br>Prova un altro nome.</p>

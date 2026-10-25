@@ -63,13 +63,13 @@
       const n=servings[i.id]||0;let card=pantryCards.get(i.id);
       if(!card){
         card=document.createElement('div');card.dataset.card=i.id;const add=document.createElement('button');add.type='button';add.className='ingredient-add';add.dataset.action='add';add.dataset.ingredient=i.id;
-        add.append(photo(i.id));const name=document.createElement('span');name.className='ingredient-name';add.append(name);
+        const visual=document.createElement('span');visual.className='ingredient-visual';visual.append(photo(i.id));add.append(visual);const name=document.createElement('span');name.className='ingredient-name';add.append(name);
         const controls=document.createElement('div');controls.className='ingredient-quantity';const quantity=document.createElement('span');quantity.className='quantity-value';controls.append(makeButton('−','','remove',i.id,true),quantity,makeButton('+','','plus',i.id,true));
         const grip=document.createElement('button');grip.type='button';grip.className='ingredient-drag';grip.textContent='⋮⋮';grip.dataset.ingredient=i.id;grip.tabIndex=-1;grip.setAttribute('aria-hidden','true');card.append(add,grip,controls);pantryCards.set(i.id,card);
       }
       const old=card.dataset.quantity;card.dataset.quantity=String(n);card.className=`ingredient${n?' selected':''}${n===2?' at-limit':''}`;
       const button=card.querySelector('.ingredient-add');button.disabled=!ready||n===2;button.setAttribute('aria-label',`${i.name}: aumenta la quantità (${n} di 2)`);button.querySelector('.ingredient-name').textContent=i.name;
-      if(ready&&button.querySelector('.is-skeleton'))button.firstElementChild.replaceWith(photo(i.id));
+      if(ready&&button.querySelector('.is-skeleton'))button.querySelector('.is-skeleton').replaceWith(photo(i.id));
       const minus=card.querySelector('[data-action="remove"]'),plus=card.querySelector('[data-action="plus"]');minus.disabled=!ready||n===0;plus.disabled=!ready||n===2;minus.setAttribute('aria-label',`Riduci la quantità di ${i.name}`);plus.setAttribute('aria-label',`Aumenta la quantità di ${i.name}`);
       const quantity=card.querySelector('.quantity-value');quantity.innerHTML=`<strong>${n}</strong><span class="quantity-limit"> / 2</span><span class="quantity-kind" aria-hidden="true">${n===2?'Doppia':n===1?'Standard':'Assente'}</span>`;quantity.setAttribute('aria-label',`${n} ${n===1?'aggiunta':'aggiunte'} su 2: ${n===2?'doppia porzione':n===1?'standard':'nessuna'}`);
       if(old!==undefined&&old!==String(n)&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)quantity.animate?.([{transform:'translateY(3px)',opacity:.5},{transform:'translateY(0)',opacity:1}],{duration:160,easing:'ease-out'});
@@ -298,19 +298,24 @@
   canvas.addEventListener('click',e=>{if(ready&&design.format!=='round'){const index=pointSection(e.clientX,e.clientY);if(index!==null)selectActive(index);}});
   document.addEventListener('pointerdown',e=>{
     const source=e.target.closest('.ingredient-add,.ingredient-drag');if(!source||source.disabled||e.button!==0||!ready)return;
-    // A swipe over the image scrolls normally. Touch dragging starts only on its dedicated grip.
-    if(e.pointerType==='touch'&&!source.classList.contains('ingredient-drag'))return;
+    // Photo gestures belong to the ingredient; labels and card gaps retain native scrolling.
+    // Changing touch-action after a hold is too late once the browser has claimed a pan.
+    if(e.isPrimary===false)return;
+    if(e.pointerType==='touch'&&!source.classList.contains('ingredient-drag')&&!e.target.closest('.ingredient-visual'))return;
     drag={id:source.dataset.ingredient,source,pointer:e.pointerId,x:e.clientX,y:e.clientY,currentY:e.clientY,moved:false,ghost:null};source.setPointerCapture(e.pointerId);
   });
   document.addEventListener('pointermove',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;
     drag.currentY=e.clientY;
-    if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;drag.ghost=document.createElement('div');drag.ghost.className='drag-ghost';drag.ghost.append(photo(drag.id));document.body.append(drag.ghost);requestAnimationFrame(scrollWhileDragging);}
+    if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;mobileUI?.revealPizza();document.body.classList.add('ingredient-dragging');drag.ghost=document.createElement('div');drag.ghost.className='drag-ghost'+(e.pointerType==='touch'?' is-touch':'');drag.ghost.append(photo(drag.id));document.body.append(drag.ghost);requestAnimationFrame(scrollWhileDragging);}
     if(!drag.moved)return;e.preventDefault();drag.ghost.style.left=`${e.clientX}px`;drag.ghost.style.top=`${e.clientY}px`;$('#pizza-stage').classList.toggle('drag-over',pointInside(e.clientX,e.clientY));
   },{passive:false});
-  function scrollWhileDragging(){if(!drag?.moved)return;const y=drag.currentY,edge=70;let speed=0;if(y<edge)speed=-Math.min(16,(edge-y)/4);else if(y>window.innerHeight-edge)speed=Math.min(16,(y-window.innerHeight+edge)/4);if(speed)window.scrollBy(0,speed);requestAnimationFrame(scrollWhileDragging);}
-  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;d.ghost?.remove();$('#pizza-stage').classList.remove('drag-over');if(d.moved){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
+  function scrollWhileDragging(){if(!drag?.moved)return;const y=drag.currentY,edge=70;let speed=0;if(!mobileUI?.matches){if(y<edge)speed=-Math.min(16,(edge-y)/4);else if(y>window.innerHeight-edge)speed=Math.min(16,(y-window.innerHeight+edge)/4);if(speed)window.scrollBy(0,speed);}requestAnimationFrame(scrollWhileDragging);}
+  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;d.ghost?.remove();document.body.classList.remove('ingredient-dragging');$('#pizza-stage').classList.remove('drag-over');if(d.source.hasPointerCapture?.(d.pointer))d.source.releasePointerCapture(d.pointer);if(d.moved){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
   document.addEventListener('pointerup',e=>endDrag(e));document.addEventListener('pointercancel',e=>endDrag(e,true));
+  document.addEventListener('lostpointercapture',e=>endDrag(e,true));
+  const cancelDrag=()=>{if(drag)endDrag({pointerId:drag.pointer,clientX:-1,clientY:-1},true);};
+  window.addEventListener('pagehide',cancelDrag);window.addEventListener('blur',cancelDrag);document.addEventListener('keydown',e=>{if(e.key==='Escape')cancelDrag();});
   document.addEventListener('click',e=>{
     const section=e.target.closest('[data-section]');if(section&&!section.disabled){selectActive(Number(section.dataset.section));return;}
     const split=e.target.closest('[data-meter-parts]');if(split&&!split.disabled){if(Number(split.dataset.meterParts)!==Q.count(design))commitDesign(Q.setMeterParts(design,Number(split.dataset.meterParts)));announce(Q.count(design)===2?'Metro diviso a metà: scegli i due gusti.':'Metro diviso in tre parti: scegli i tre gusti.');return;}
