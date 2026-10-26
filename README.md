@@ -11,3 +11,5 @@ Versione preparata il 25 ottobre 2026 dalla copia approvata, commit `ffe4d2f`, c
 Aggiornamento del 26 ottobre 2026: pannello mobile Aggiunte / Pizze / Ingredienti espandibile dalla barra dei titoli, con gesto inverso per richiuderlo, pulsante accessibile e liste indipendenti.
 
 Versione 4.9, 26 ottobre 2026: ingredienti trascinabili direttamente dalle fotografie su touch, pizza mobile più grande, riapertura automatica del target e righe compatte sugli schermi bassi.
+
+Versione 4.10, 26 ottobre 2026: tendina mobile dai titoli senza fascia superiore, correzione cattura touch, icone mano aperta/chiusa, foto con pressione prolungata e ricerca che mantiene il focus quando si apre la tastiera.

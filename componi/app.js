@@ -65,7 +65,7 @@
         card=document.createElement('div');card.dataset.card=i.id;const add=document.createElement('button');add.type='button';add.className='ingredient-add';add.dataset.action='add';add.dataset.ingredient=i.id;
         const visual=document.createElement('span');visual.className='ingredient-visual';visual.append(photo(i.id));add.append(visual);const name=document.createElement('span');name.className='ingredient-name';add.append(name);
         const controls=document.createElement('div');controls.className='ingredient-quantity';const quantity=document.createElement('span');quantity.className='quantity-value';controls.append(makeButton('−','','remove',i.id,true),quantity,makeButton('+','','plus',i.id,true));
-        const grip=document.createElement('button');grip.type='button';grip.className='ingredient-drag';grip.textContent='⋮⋮';grip.dataset.ingredient=i.id;grip.tabIndex=-1;grip.setAttribute('aria-hidden','true');card.append(add,grip,controls);pantryCards.set(i.id,card);
+        const grip=document.createElement('button');grip.type='button';grip.className='ingredient-drag';grip.innerHTML='<svg class="hand-open" viewBox="0 0 24 26" aria-hidden="true"><path d="M8 14V6a1.5 1.5 0 0 1 3 0v6m0 0V3a1.5 1.5 0 0 1 3 0v9m0 0V5a1.5 1.5 0 0 1 3 0v8m0 0V9a1.5 1.5 0 0 1 3 0v8c0 4-2.5 7-6 7h-1c-2 0-3.3-.8-4.5-2.5L4 15c-1.1-1.7 1-3.5 2.3-2.1L8 15"/></svg><svg class="hand-closed" viewBox="0 0 24 26" aria-hidden="true"><path d="M7 14V9a1.5 1.5 0 0 1 3 0v3m0-1V7.5a1.5 1.5 0 0 1 3 0V12m0-1V8a1.5 1.5 0 0 1 3 0v4m0-1V9.5a1.5 1.5 0 0 1 3 0V17c0 4-2.5 7-6 7h-1c-2.2 0-3.6-1.3-4.6-3.2L4 16c-1-1.8 1.2-3.3 2.5-1.8L9 17m0 0h5"/></svg>';grip.dataset.ingredient=i.id;grip.tabIndex=-1;grip.setAttribute('aria-hidden','true');card.append(add,grip,controls);pantryCards.set(i.id,card);
       }
       const old=card.dataset.quantity;card.dataset.quantity=String(n);card.className=`ingredient${n?' selected':''}${n===2?' at-limit':''}`;
       const button=card.querySelector('.ingredient-add');button.disabled=!ready||n===2;button.setAttribute('aria-label',`${i.name}: aumenta la quantità (${n} di 2)`);button.querySelector('.ingredient-name').textContent=i.name;
@@ -298,22 +298,27 @@
   canvas.addEventListener('click',e=>{if(ready&&design.format!=='round'){const index=pointSection(e.clientX,e.clientY);if(index!==null)selectActive(index);}});
   document.addEventListener('pointerdown',e=>{
     const source=e.target.closest('.ingredient-add,.ingredient-drag');if(!source||source.disabled||e.button!==0||!ready)return;
-    // Photo gestures belong to the ingredient; labels and card gaps retain native scrolling.
-    // Changing touch-action after a hold is too late once the browser has claimed a pan.
+    // Only the hand or the actual photo can start a touch drag. The photo arms
+    // after a short hold; touch-action is reserved up front so the browser cannot steal it.
     if(e.isPrimary===false)return;
-    if(e.pointerType==='touch'&&!source.classList.contains('ingredient-drag')&&!e.target.closest('.ingredient-visual'))return;
-    drag={id:source.dataset.ingredient,source,pointer:e.pointerId,x:e.clientX,y:e.clientY,currentY:e.clientY,moved:false,ghost:null};source.setPointerCapture(e.pointerId);
+    const hand=source.classList.contains('ingredient-drag'),photoTarget=e.target.closest('.ingredient-visual');
+    if(e.pointerType==='touch'&&!hand&&!photoTarget)return;
+    const hold=e.pointerType==='touch'&&!hand;
+    drag={id:source.dataset.ingredient,source,pointer:e.pointerId,x:e.clientX,y:e.clientY,currentY:e.clientY,moved:false,ghost:null,armed:!hold,hold:null};source.setPointerCapture(e.pointerId);
+    const grip=source.closest('.ingredient')?.querySelector('.ingredient-drag');drag.grip=grip;
+    if(hold){const pending=drag;drag.hold=setTimeout(()=>{if(drag!==pending)return;drag.armed=true;grip?.classList.add('is-grabbed');},280);}else grip?.classList.add('is-grabbed');
   });
   document.addEventListener('pointermove',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;
     drag.currentY=e.clientY;
+    if(!drag.armed){if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10)endDrag(e,true);return;}
     if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;mobileUI?.revealPizza();document.body.classList.add('ingredient-dragging');drag.ghost=document.createElement('div');drag.ghost.className='drag-ghost'+(e.pointerType==='touch'?' is-touch':'');drag.ghost.append(photo(drag.id));document.body.append(drag.ghost);requestAnimationFrame(scrollWhileDragging);}
     if(!drag.moved)return;e.preventDefault();drag.ghost.style.left=`${e.clientX}px`;drag.ghost.style.top=`${e.clientY}px`;$('#pizza-stage').classList.toggle('drag-over',pointInside(e.clientX,e.clientY));
   },{passive:false});
   function scrollWhileDragging(){if(!drag?.moved)return;const y=drag.currentY,edge=70;let speed=0;if(!mobileUI?.matches){if(y<edge)speed=-Math.min(16,(edge-y)/4);else if(y>window.innerHeight-edge)speed=Math.min(16,(y-window.innerHeight+edge)/4);if(speed)window.scrollBy(0,speed);}requestAnimationFrame(scrollWhileDragging);}
-  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;d.ghost?.remove();document.body.classList.remove('ingredient-dragging');$('#pizza-stage').classList.remove('drag-over');if(d.source.hasPointerCapture?.(d.pointer))d.source.releasePointerCapture(d.pointer);if(d.moved){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
+  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;clearTimeout(d.hold);d.grip?.classList.remove('is-grabbed');d.ghost?.remove();document.body.classList.remove('ingredient-dragging');$('#pizza-stage').classList.remove('drag-over');if(d.source.hasPointerCapture?.(d.pointer))d.source.releasePointerCapture(d.pointer);if(d.moved||cancel){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(d.moved&&!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
   document.addEventListener('pointerup',e=>endDrag(e));document.addEventListener('pointercancel',e=>endDrag(e,true));
-  document.addEventListener('lostpointercapture',e=>endDrag(e,true));
+  document.addEventListener('lostpointercapture',e=>{if(e.target===drag?.source)endDrag(e,true);});
   const cancelDrag=()=>{if(drag)endDrag({pointerId:drag.pointer,clientX:-1,clientY:-1},true);};
   window.addEventListener('pagehide',cancelDrag);window.addEventListener('blur',cancelDrag);document.addEventListener('keydown',e=>{if(e.key==='Escape')cancelDrag();});
   document.addEventListener('click',e=>{
