@@ -159,7 +159,9 @@ body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--act
 @media(prefers-reduced-motion:reduce){.pizza-thumb.is-loading:before,.ingredient-photo.is-skeleton,.share-dialog[open]{animation:none}.mobile-composer-tabs:after,.quiet-action,.added-notice{transition:none}.added-notice{transform:translate(-50%,0)}}
 #pizza-canvas{object-fit:contain}
 .ingredient-visual{display:grid;place-items:center;width:65px;max-width:100%;touch-action:none;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
-.ingredient-drag svg{width:22px;height:25px;stroke-width:1.5;pointer-events:none;fill:none}
+.ingredient-drag:before{content:'';position:absolute;inset:7px;border:1px solid var(--line);border-radius:9px;background:var(--surface-soft);pointer-events:none;transition:background 120ms,border-color 120ms}
+.ingredient-drag svg{position:relative;width:21px;height:21px;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;fill:none}
+.ingredient-drag:active:before,.ingredient-drag.is-grabbed:before{background:#eaf0e7;border-color:#c1cebc}
 .ingredient-drag .hand-closed{display:none}
 .ingredient-drag:active .hand-open,.ingredient-drag.is-grabbed .hand-open{display:none}
 .ingredient-drag:active .hand-closed,.ingredient-drag.is-grabbed .hand-closed{display:block}
@@ -177,7 +179,8 @@ body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--act
   .mobile-composer .mobile-panel-bar{grid-area:tabs;display:flex;flex-direction:column;height:50px;min-height:50px;background:#fff;border-radius:14px 14px 0 0;border-top:1px solid var(--line);box-shadow:0 -5px 16px #273b0b05;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:ns-resize}
   .mobile-composer .mobile-panel-bar .mobile-composer-tabs{grid-area:auto;flex:1;min-height:0;padding-top:0;border:0;border-radius:0;background:transparent;box-shadow:none}
   .mobile-panel-bar button{touch-action:none;user-select:none;-webkit-user-select:none;cursor:ns-resize;min-height:48px}
-  .mobile-composer .ingredient-drag{opacity:1;color:var(--ink);width:44px;height:44px;letter-spacing:0}
+  .mobile-composer .ingredient-drag{opacity:1;color:var(--green);width:44px;height:44px;letter-spacing:0}
+  .mobile-composer .ingredient-drag:disabled{opacity:.3}
   .mobile-composer[data-composer-expanded="true"] .mobile-canvas-tools,.mobile-composer[data-composer-expanded="true"] .mobile-zoom,.mobile-composer .sheet-dragging .mobile-canvas-tools{display:none}
   .mobile-composer .workspace.sheet-settling{transition:grid-template-rows 240ms cubic-bezier(.2,.7,.3,1)}
   .mobile-composer .workspace.sheet-dragging{transition:none}
