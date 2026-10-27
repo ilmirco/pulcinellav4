@@ -3,7 +3,7 @@
   const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
   function limits(height,barHeight,min,ratio,long,contentMin=100,coverHeight=0){const collapsed=clamp(Math.max(min,height*ratio),0,Math.max(0,height-barHeight-contentMin));return{collapsed,expanded:coverHeight>0?-coverHeight:0};}
   function destination(position,velocity,bounds){return Math.abs(velocity)>.35?velocity<0:position+velocity*150<(bounds.collapsed+bounds.expanded)/2;}
-  function create({bar,workspace,layout,getFormat}){
+  function create({bar,workspace,layout,getFormat,handles=[]}){
     const I=root.PizzaI18n,preview=workspace.querySelector('.pizza-preview'),reduced=root.matchMedia('(prefers-reduced-motion: reduce)');
     let expanded=false,gesture=null,frame=0,settle=0,resizeFrame=0,suppress=false,suppressTimer,lastFormat='',lastBounds='';
     function bounds(){
@@ -33,7 +33,8 @@
       if(workspace.classList.contains('sheet-settling'))return;
       const range=bounds(),key=JSON.stringify(range);if(!gesture&&(key!==lastBounds||lastFormat!==getFormat()))setExpanded(expanded,false);
     }
-    bar.addEventListener('pointerdown',event=>{
+    // The tab bar and optional instruction rows share the same sheet gesture.
+    for(const handle of [bar,...handles.filter(Boolean)])handle.addEventListener('pointerdown',event=>{
       if(!layout.matches||event.isPrimary===false||event.button!==0){if(event.isPrimary===false)cancel();return;}
       clearTimeout(settle);workspace.classList.remove('sheet-settling');const range=bounds();gesture={id:event.pointerId,x:event.clientX,y:event.clientY,start:position(),position:position(),lastY:event.clientY,lastTime:event.timeStamp,velocity:0,range,dragging:false};
     });

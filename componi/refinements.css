@@ -216,3 +216,7 @@ body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--act
 @media(max-width:820px) and (orientation:portrait),(max-width:500px){
   .mobile-composer .pantry>.search,.mobile-composer .pantry>.mobile-pantry-search{display:none}
 }
+
+@media(max-width:820px) and (orientation:portrait),(max-width:500px){
+  .mobile-composer .pantry>.panel-description{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:ns-resize}
+}

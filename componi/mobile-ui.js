@@ -6,7 +6,7 @@
     const panels={ingredients:$('#ingredienti'),menu:$('#menu-tools'),recipe:$('.recipe')};
     const menuReturn=$('#menu-return'),menuReturnHome=menuReturn.parentElement;
     const tabs=[...document.querySelectorAll('[data-composer-panel]')];
-    const sheet=root.PizzaMobileSheet.create({bar:$('#mobile-panel-bar'),workspace:$('.workspace'),layout,getFormat:()=>getDesign().format});
+    const sheet=root.PizzaMobileSheet.create({bar:$('#mobile-panel-bar'),workspace:$('.workspace'),layout,getFormat:()=>getDesign().format,handles:[panels.ingredients.querySelector('.panel-description')]});
     // Expand before the keyboard shrinks the viewport and compact CSS can hide the field.
     for(const input of [$('#search'),$('#pizza-search')])input.addEventListener('focus',()=>{if(layout.matches)sheet.expand(false);});
     $('#mobile-pantry-search').addEventListener('click',()=>{sheet.expand(false);$('#search').focus({preventScroll:true});});
