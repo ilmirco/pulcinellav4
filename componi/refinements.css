@@ -185,7 +185,7 @@ body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--act
   .mobile-composer .quantity-value,.mobile-composer .quantity-value strong{color:var(--ink)}
   .mobile-composer .quantity-button[data-action="remove"]{color:var(--red)}
   .mobile-composer .quantity-button[data-action="plus"]{color:var(--green)}
-  .mobile-composer .mobile-cart-icon{color:var(--red)}
+  .mobile-composer .mobile-cart-icon{color:var(--ink)}
   .mobile-composer[data-composer-expanded="true"] .mobile-canvas-tools,.mobile-composer[data-composer-expanded="true"] .mobile-zoom,.mobile-composer .sheet-dragging .mobile-canvas-tools{display:none}
   .mobile-composer .workspace.sheet-settling{transition:grid-template-rows 240ms cubic-bezier(.2,.7,.3,1),margin-top 240ms cubic-bezier(.2,.7,.3,1)}
   .mobile-composer .workspace.sheet-dragging{transition:none}
