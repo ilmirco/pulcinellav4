@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
-  function limits(height,barHeight,min,ratio,long,contentMin=100,coverHeight=0){const collapsed=clamp(Math.max(min,height*ratio),0,Math.max(0,height-barHeight-contentMin));return{collapsed,expanded:coverHeight>0?-coverHeight:0};}
+  function limits(height,barHeight,min,ratio,long,contentMin=100,coverHeight=0,previewMax=Infinity){const collapsed=clamp(Math.max(min,height*ratio),0,Math.max(0,Math.min(previewMax,height-barHeight-contentMin)));return{collapsed,expanded:coverHeight>0?-coverHeight:0};}
   function destination(position,velocity,bounds){return Math.abs(velocity)>.35?velocity<0:position+velocity*150<(bounds.collapsed+bounds.expanded)/2;}
   function create({bar,workspace,layout,getFormat,handles=[]}){
     const I=root.PizzaI18n,preview=workspace.querySelector('.pizza-preview'),reduced=root.matchMedia('(prefers-reduced-motion: reduce)');
@@ -10,7 +10,16 @@
       const style=getComputedStyle(workspace),lift=Math.max(0,-parseFloat(style.marginTop)||0),main=workspace.closest('main');
       // Cover the format controls too, stopping directly below the site header.
       const cover=Math.max(0,workspace.getBoundingClientRect().top-main.getBoundingClientRect().top+lift);
-      return limits(workspace.clientHeight-lift,bar.offsetHeight,parseFloat(style.getPropertyValue('--sheet-preview-min'))||0,parseFloat(style.getPropertyValue('--sheet-preview-ratio'))||0,getFormat()!=='round',parseFloat(style.getPropertyValue('--sheet-content-min'))||100,cover);
+      // Stop at the usable width and the caption tracks, without wasting space below long pizzas.
+      let cap=Infinity;
+      if(workspace.clientWidth){
+        const photoStyle=getComputedStyle(preview),padding=name=>parseFloat(photoStyle[name])||0;
+        const tracks=photoStyle.gridTemplateRows.split(/\s+/),long=getFormat()!=='round';
+        const stage=workspace.querySelector('.pizza-stage');
+        const aspect=long?(parseFloat(getComputedStyle(stage).getPropertyValue('--pizza-aspect'))||1):1;
+        cap=(workspace.clientWidth-padding('paddingLeft')-padding('paddingRight'))/aspect+(parseFloat(tracks[0])||32)+(long?(parseFloat(tracks[1])||46):0)+padding('paddingTop')+padding('paddingBottom');
+      }
+      return limits(workspace.clientHeight-lift,bar.offsetHeight,parseFloat(style.getPropertyValue('--sheet-preview-min'))||0,parseFloat(style.getPropertyValue('--sheet-preview-ratio'))||0,getFormat()!=='round',parseFloat(style.getPropertyValue('--sheet-content-min'))||100,cover,cap);
     }
     function label(){bar.title=I.text('Trascina la barra in alto o in basso');}
     function position(){return preview.getBoundingClientRect().height+(parseFloat(getComputedStyle(workspace).marginTop)||0);}
