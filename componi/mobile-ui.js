@@ -52,6 +52,8 @@
     }
     function updateLayout(){
       document.body.classList.toggle('mobile-composer',layout.matches);
+      // Do not leave the list filtered by a desktop search that is hidden on mobile.
+      if(layout.matches&&$('#search').value){$('#search').value='';$('#search').dispatchEvent(new Event('input',{bubbles:true}));}
       if(layout.matches)panels.recipe.append(menuReturn);else menuReturnHome.append(menuReturn);
       for(const [name,panel] of Object.entries(panels)){if(layout.matches){panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','composer-tab-'+name);}else{panel.removeAttribute('role');panel.removeAttribute('aria-labelledby');}}
       setPanel(active);sheet.sync();if(layout.matches)sync();

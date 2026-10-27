@@ -211,3 +211,8 @@ body:not(.mobile-composer) .composer-toolbar .order-open{border-radius:var(--act
 }
 @media(max-width:500px) and (max-height:500px){.mobile-composer .workspace{--sheet-preview-min:96;--sheet-preview-ratio:0;grid-template-rows:var(--composer-preview-height,96px) 50px minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){.mobile-composer .workspace.sheet-settling{transition:none}}
+
+/* La ricerca ingredienti resta disponibile soltanto nel layout desktop. */
+@media(max-width:820px) and (orientation:portrait),(max-width:500px){
+  .mobile-composer .pantry>.search,.mobile-composer .pantry>.mobile-pantry-search{display:none}
+}
