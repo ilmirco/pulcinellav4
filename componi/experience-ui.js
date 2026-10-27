@@ -85,7 +85,7 @@
     function clearShare(){shareGeneration++;shareFile=null;if(shareURL){URL.revokeObjectURL(shareURL);shareURL=null;}$('#share-download').removeAttribute('href');}
     async function openShare(value,orderMode=false){
       clearShare();const generation=shareGeneration,dialog=$('#share-dialog'),download=$('#share-download'),native=$('#share-native');
-      shareText=orderMode?F.orderText(value):'Pizzeria Pulcinella · Patù\n'+F.pizzaText(value);$('#share-title').textContent=I.text(orderMode?'Condividi l’ordine':'Condividi la pizza');
+      shareText=orderMode?F.orderText(value):['Pizzeria Pulcinella · Patù',F.pizzaText(value),'',I.text('Per ordinare, chiama al 339 8390660'),'pulcinellapatu.it'].join('\n');$('#share-title').textContent=I.text(orderMode?'Condividi l’ordine':'Condividi la pizza');
       const description=$('#share-description');description.setAttribute('data-no-translate','');description.textContent=shareText;
       $('#share-status').textContent=I.text('Prepariamo la condivisione…');$('#share-manual-copy').hidden=true;download.hidden=true;native.disabled=true;native.hidden=typeof navigator.share!=='function';
       $('#share-thumbnail').hidden=orderMode;if(!orderMode)renderThumbnail($('#share-thumbnail'),value.design);dialog.showModal();

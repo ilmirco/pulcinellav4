@@ -20,7 +20,7 @@
       for(const index of new Set(indices)){
           const key=format+':'+index;if(bases.has(key)){const cached=bases.get(key);bases.delete(key);bases.set(key,cached);continue;}
           const plan=P.baseLayers({tomato:Math.floor(index/3),fior:index%3}),extra=n=>n===null?null:source(format,n);
-          const result=root.PizzaBaseSurface.compose(source(format,plan.foundation),extra(plan.tomato),extra(plan.fior),'rectangle');
+          const result=plan.rim===undefined?root.PizzaBaseSurface.compose(source(format,plan.foundation),extra(plan.tomato),extra(plan.fior),'rectangle'):root.PizzaBaseSurface.composeDough(source(format,plan.foundation),source(format,plan.rim),'rectangle');
           bases.set(key,result);if(bases.size>6)bases.delete(bases.keys().next().value);
       }
     }

@@ -26,10 +26,10 @@
   function designAssetsReady(snapshot){return Q.photoFiles(snapshot).every(file=>!!assets[file])&&T.ingredients(snapshot).every(id=>preparedIngredients.has(id))&&(!T.garnish(snapshot)||garnishReady);}
   function roundSurface(raw){
     const plan=P.baseLayers(raw),foundation=assets[P.baseAssets.flat()[plan.foundation]];
-    if(plan.tomato===null&&plan.fior===null)return foundation;
+    if(plan.rim===undefined&&plan.tomato===null&&plan.fior===null)return foundation;
     const key=JSON.stringify(plan);if(baseComposites.has(key))return baseComposites.get(key);
     const source=index=>index===null?null:assets[P.baseAssets.flat()[index]];
-    const result=window.PizzaBaseSurface.compose(foundation,source(plan.tomato),source(plan.fior),'round');
+    const result=plan.rim===undefined?window.PizzaBaseSurface.compose(foundation,source(plan.tomato),source(plan.fior),'round'):window.PizzaBaseSurface.composeDough(foundation,source(plan.rim),'round');
     baseComposites.set(key,result);if(baseComposites.size>2)baseComposites.delete(baseComposites.keys().next().value);return result;
   }
   // Each opening starts from Margherita; the order has its own persistent store.
@@ -68,7 +68,7 @@
         const grip=document.createElement('button');grip.type='button';grip.className='ingredient-drag';grip.innerHTML='<svg class="hand-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V6.5a1.25 1.25 0 0 1 2.5 0V11 5a1.25 1.25 0 0 1 2.5 0v6-4.5a1.25 1.25 0 0 1 2.5 0V12 9a1.25 1.25 0 0 1 2.5 0v5.5c0 3.6-2.1 6-5.4 6h-.7c-1.8 0-3.1-.8-4.2-2.2l-3.1-4.1a1.3 1.3 0 0 1 1.9-1.7L8 14.2"/></svg><svg class="hand-closed" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 12V9.5a1.3 1.3 0 0 1 2.6 0v1-2a1.3 1.3 0 0 1 2.6 0v2-1.3a1.3 1.3 0 0 1 2.6 0v1.7-.5a1.3 1.3 0 0 1 2.6 0v4.1c0 3.6-2.1 6-5.4 6H12c-1.8 0-3.1-.8-4.1-2.2L5.3 15a1.3 1.3 0 0 1 1.9-1.7l2.1 2.3h3.2"/></svg>';grip.dataset.ingredient=i.id;grip.tabIndex=-1;grip.setAttribute('aria-hidden','true');card.append(add,grip,controls);pantryCards.set(i.id,card);
       }
       const old=card.dataset.quantity;card.dataset.quantity=String(n);card.className=`ingredient${n?' selected':''}${n===2?' at-limit':''}`;
-      const button=card.querySelector('.ingredient-add');button.disabled=!ready||n===2;button.setAttribute('aria-label',`${i.name}: aumenta la quantità (${n} di 2)`);button.querySelector('.ingredient-name').textContent=i.name;
+      const button=card.querySelector('.ingredient-add');button.disabled=!ready||n===2;button.tabIndex=mobileUI?.matches?-1:0;if(mobileUI?.matches)button.setAttribute('aria-hidden','true');else button.removeAttribute('aria-hidden');button.setAttribute('aria-label',`${i.name}: aumenta la quantità (${n} di 2)`);button.querySelector('.ingredient-name').textContent=i.name;
       if(ready&&button.querySelector('.is-skeleton'))button.querySelector('.is-skeleton').replaceWith(photo(i.id));
       const minus=card.querySelector('[data-action="remove"]'),plus=card.querySelector('[data-action="plus"]');minus.disabled=!ready||n===0;plus.disabled=!ready||n===2;minus.setAttribute('aria-label',`Riduci la quantità di ${i.name}`);plus.setAttribute('aria-label',`Aumenta la quantità di ${i.name}`);
       const quantity=card.querySelector('.quantity-value');quantity.innerHTML=`<strong>${n}</strong><span class="quantity-limit"> / 2</span><span class="quantity-kind" aria-hidden="true">${n===2?'Doppia':n===1?'Standard':'Assente'}</span>`;quantity.setAttribute('aria-label',`${n} ${n===1?'aggiunta':'aggiunte'} su 2: ${n===2?'doppia porzione':n===1?'standard':'nessuna'}`);
@@ -167,11 +167,11 @@
   function draw(target,raw){
     const ctx=target.getContext('2d'),size=target.width,safe=P.normalize(raw),fior=P.visualFior(safe);
     ctx.clearRect(0,0,size,size);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
-    const base=P.baseFor(safe),baseImage=roundSurface(safe),foundation=assets[P.baseAssets.flat()[P.baseLayers(safe).foundation]];
+    const plan=P.baseLayers(safe),base=P.baseFor(safe),baseImage=roundSurface(safe),foundation=assets[P.baseAssets.flat()[plan.rim??plan.foundation]];
     if(foundation)ctx.drawImage(foundation,0,0,size,size);
     // Always scale the same original photograph for the rim. Drawing a canvas
     // instead can use different browser resampling, even for untouched pixels.
-    if(baseImage&&baseImage!==foundation){ctx.save();ctx.beginPath();ctx.arc(size*.5,size*.5,size*.418,0,Math.PI*2);ctx.clip();ctx.drawImage(baseImage,0,0,size,size);ctx.restore();}
+    if(baseImage&&baseImage!==foundation){ctx.save();ctx.beginPath();ctx.arc(size*.5,size*.5,size*(plan.rim===undefined?.418:.445),0,Math.PI*2);ctx.clip();ctx.drawImage(baseImage,0,0,size,size);ctx.restore();}
     const allPieces=P.pieces(safe,{scaleFor:id=>M.profile(id).scale}).map(p=>({...p,coBaked:M.withCheese(p.type,fior)})),pieces=allPieces.filter(p=>p.type!=='fior');
     const melted=pieces.filter(p=>M.profile(p.type).melted),oven=pieces.filter(p=>!M.profile(p.type).melted&&!M.profile(p.type).fresh&&M.profile(p.type).relief),fresh=pieces.filter(p=>!M.profile(p.type).melted&&(M.profile(p.type).fresh||!M.profile(p.type).relief));
     ctx.save();ctx.beginPath();ctx.arc(size*.5,size*.5,size*.432,0,Math.PI*2);ctx.clip();
@@ -200,7 +200,7 @@
     }
     ctx.restore();
     target.dataset.base=base;target.dataset.toppingCount=String(pieces.length);
-    target.dataset.foundation=P.baseAssets.flat()[P.baseLayers(safe).foundation];target.dataset.baseMode='ingredient-layers-v33';
+    target.dataset.foundation=P.baseAssets.flat()[plan.rim??plan.foundation];target.dataset.baseMode='ingredient-layers-v33';
     target.dataset.ovenCount=String(oven.length);target.dataset.finishCount=String(fresh.length);target.dataset.surfaceBlend=fior?'cheese-contact':'base-contact';
     target.dataset.pieceCount=String(allPieces.length);target.dataset.servings=JSON.stringify(safe);
     target.dataset.oliveGarnish=P.oliveGarnish(safe)?'2-green-1-black':'regular';
@@ -298,25 +298,22 @@
   canvas.addEventListener('click',e=>{if(ready&&design.format!=='round'){const index=pointSection(e.clientX,e.clientY);if(index!==null)selectActive(index);}});
   document.addEventListener('pointerdown',e=>{
     const source=e.target.closest('.ingredient-add,.ingredient-drag');if(!source||source.disabled||e.button!==0||!ready)return;
-    // Only the hand or the actual photo can start a touch drag. The photo arms
-    // after a short hold; touch-action is reserved up front so the browser cannot steal it.
+    // On phones only the grip owns a drag; photos and names remain scrollable.
     if(e.isPrimary===false)return;
-    const hand=source.classList.contains('ingredient-drag'),photoTarget=e.target.closest('.ingredient-visual');
-    if(e.pointerType==='touch'&&!hand&&!photoTarget)return;
-    const hold=e.pointerType==='touch'&&!hand;
-    drag={id:source.dataset.ingredient,source,pointer:e.pointerId,x:e.clientX,y:e.clientY,currentY:e.clientY,moved:false,ghost:null,armed:!hold,hold:null};source.setPointerCapture(e.pointerId);
+    const hand=source.classList.contains('ingredient-drag');
+    if((mobileUI?.matches||e.pointerType==='touch')&&!hand)return;
+    drag={id:source.dataset.ingredient,source,pointer:e.pointerId,x:e.clientX,y:e.clientY,currentY:e.clientY,moved:false,ghost:null};source.setPointerCapture(e.pointerId);
     const grip=source.closest('.ingredient')?.querySelector('.ingredient-drag');drag.grip=grip;
-    if(hold){const pending=drag;drag.hold=setTimeout(()=>{if(drag!==pending)return;drag.armed=true;grip?.classList.add('is-grabbed');},280);}else grip?.classList.add('is-grabbed');
+    grip?.classList.add('is-grabbed');
   });
   document.addEventListener('pointermove',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;
     drag.currentY=e.clientY;
-    if(!drag.armed){if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>10)endDrag(e,true);return;}
     if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;mobileUI?.revealPizza();document.body.classList.add('ingredient-dragging');drag.ghost=document.createElement('div');drag.ghost.className='drag-ghost'+(e.pointerType==='touch'?' is-touch':'');drag.ghost.append(photo(drag.id));document.body.append(drag.ghost);requestAnimationFrame(scrollWhileDragging);}
     if(!drag.moved)return;e.preventDefault();drag.ghost.style.left=`${e.clientX}px`;drag.ghost.style.top=`${e.clientY}px`;$('#pizza-stage').classList.toggle('drag-over',pointInside(e.clientX,e.clientY));
   },{passive:false});
   function scrollWhileDragging(){if(!drag?.moved)return;const y=drag.currentY,edge=70;let speed=0;if(!mobileUI?.matches){if(y<edge)speed=-Math.min(16,(edge-y)/4);else if(y>window.innerHeight-edge)speed=Math.min(16,(y-window.innerHeight+edge)/4);if(speed)window.scrollBy(0,speed);}requestAnimationFrame(scrollWhileDragging);}
-  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;clearTimeout(d.hold);d.grip?.classList.remove('is-grabbed');d.ghost?.remove();document.body.classList.remove('ingredient-dragging');$('#pizza-stage').classList.remove('drag-over');if(d.source.hasPointerCapture?.(d.pointer))d.source.releasePointerCapture(d.pointer);if(d.moved||cancel){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(d.moved&&!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
+  function endDrag(e,cancel=false){if(!drag||drag.pointer!==e.pointerId)return;const d=drag;drag=null;d.grip?.classList.remove('is-grabbed');d.ghost?.remove();document.body.classList.remove('ingredient-dragging');$('#pizza-stage').classList.remove('drag-over');if(d.source.hasPointerCapture?.(d.pointer))d.source.releasePointerCapture(d.pointer);if(d.moved||cancel){suppress={id:d.id,until:performance.now()+700};const index=pointSection(e.clientX,e.clientY);if(d.moved&&!cancel&&index!==null){if(index!==design.active)selectActive(index);add(d.id);}}}
   document.addEventListener('pointerup',e=>endDrag(e));document.addEventListener('pointercancel',e=>endDrag(e,true));
   document.addEventListener('lostpointercapture',e=>{if(e.target===drag?.source)endDrag(e,true);});
   const cancelDrag=()=>{if(drag)endDrag({pointerId:drag.pointer,clientX:-1,clientY:-1},true);};
@@ -326,6 +323,7 @@
     const split=e.target.closest('[data-meter-parts]');if(split&&!split.disabled){if(Number(split.dataset.meterParts)!==Q.count(design))commitDesign(Q.setMeterParts(design,Number(split.dataset.meterParts)));announce(Q.count(design)===2?'Metro diviso a metà: scegli i due gusti.':'Metro diviso in tre parti: scegli i tre gusti.');return;}
     const format=e.target.closest('#format-picker [data-format]');if(format&&!format.disabled){if(format.dataset.format!==design.format)commitDesign(Q.setFormat(design,format.dataset.format));announce(`Formato ${Q.formats[design.format].name}. ${design.format==='round'?'Un gusto':`${Q.count(design)} gusti da comporre separatamente`}.`);return;}
     const button=e.target.closest('[data-action]');if(!button||button.disabled)return;const id=button.dataset.ingredient;
+    if(mobileUI?.matches&&button.dataset.action==='add')return;
     if(suppress&&button.dataset.action==='add'&&suppress.id===id&&performance.now()<suppress.until){suppress=null;return;}
     if(button.dataset.action==='remove')remove(id);else add(id);
   });

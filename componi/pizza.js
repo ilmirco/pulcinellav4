@@ -122,7 +122,7 @@
   function baseFor(raw){const s=normalize(raw);return baseAssets[s.tomato||0][visualFior(s)];}
   function baseLayers(raw){
     const s=normalize(raw),tomato=Math.min(s.tomato||0,1),fior=visualFior(s);
-    return{foundation:tomato*3+(tomato?Math.min(fior,1):fior),tomato:s.tomato===2?6+Math.min(fior,1):null,fior:tomato&&fior===2?5:null};
+    return{foundation:tomato*3+(tomato?Math.min(fior,1):fior),tomato:s.tomato===2?6+Math.min(fior,1):null,fior:tomato&&fior===2?5:null,...(!tomato&&!fior?{rim:4}:{})};
   }
   function same(a,b){const x=normalize(a),y=normalize(b);return ingredients.every(i=>(x[i.id]||0)===(y[i.id]||0));}
   function match(raw){const servings=normalize(raw);return menu.find(r=>same(servings,r.servings))||null;}

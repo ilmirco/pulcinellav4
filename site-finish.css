@@ -1,0 +1,68 @@
+/* Finitura approvata: colori e geometrie originali, superfici chiare e riflessi finiti. */
+.site-finish{--button-shadow:#25201414;--relief-edge:inset 0 1px 0 #ffffffb3,inset 0 -1px 0 #0000000b;--relief-light:linear-gradient(155deg,#fff9 0%,#fff3 36%,#fff0 64%)}
+.site-finish :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button,.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button,.privacy-button,.sample-btn){
+  background-image:var(--button-light,var(--relief-light));
+  box-shadow:var(--relief-edge),0 3px 6px var(--button-shadow);
+  transition:background-color 150ms ease-out,box-shadow 150ms ease-out,transform 150ms ease-out;
+}
+.site-finish :is(.primary-button,.home-order-button,.order-product-add,.hero-configurator-actions>a:first-child,.privacy-button:not(.secondary),.order-categories button[aria-pressed=true],.demo-green){--button-shadow:#123e2423;--button-light:linear-gradient(155deg,#ffffff30 0%,#ffffff0a 36%,#ffffff00 64%);background-image:var(--button-light)}
+.site-finish :is(.configurator-link,.filters button[aria-pressed=true],.error-compose,.demo-red){--button-shadow:#8c15151c;--button-light:linear-gradient(155deg,#ffffff30 0%,#ffffff0a 36%,#ffffff00 64%);background-image:var(--button-light)}
+.site-finish :is(.hero-configurator-actions>a:nth-child(2),.demo-white){--button-shadow:#25201414}
+.site-finish .mobile-composer .recipe #save{--button-shadow:#25201414;background-image:var(--relief-light)}
+.site-finish .format-picker button[aria-pressed=true]{box-shadow:inset 0 0 0 1px var(--ink,#333),var(--relief-edge),0 3px 6px var(--button-shadow)}
+.site-finish :is(.format-picker button[aria-pressed=true],.mobile-composer .format-picker button[aria-pressed=true],.mobile-composer .filters button[aria-pressed=true]){background-image:var(--button-light,var(--relief-light))}
+.site-finish .ingredient-drag:before{background-image:var(--relief-light);box-shadow:var(--relief-edge),0 2px 4px #2520140f}
+.site-finish .ingredient-drag:active:before,.site-finish .ingredient-drag.is-grabbed:before{box-shadow:inset 0 1px 2px #2540271a;transform:translateY(1px)}
+@media(hover:hover) and (pointer:fine){
+  .site-finish :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button,.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button,.privacy-button,.sample-btn):hover:not(:disabled):not([aria-disabled=true]){background-image:var(--button-light,var(--relief-light));transform:translateY(-1px);box-shadow:var(--relief-edge),0 5px 9px var(--button-shadow)}
+  .site-finish .format-picker button[aria-pressed=true]:hover{box-shadow:inset 0 0 0 1px var(--ink,#333),var(--relief-edge),0 5px 9px var(--button-shadow)}
+}
+.site-finish :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button,.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button,.privacy-button,.sample-btn):active:not(:disabled):not([aria-disabled=true]){transform:translateY(1px);filter:none;box-shadow:inset 0 1px 3px #00000014,0 1px 3px var(--button-shadow)}
+.site-finish .format-picker button[aria-pressed=true]:active{box-shadow:inset 0 0 0 1px var(--ink,#333),inset 0 2px 4px #0000001c,0 1px 3px var(--button-shadow)}
+.site-finish :is(button:disabled,[aria-disabled=true]){transform:none}
+.site-finish .value-relief:not([data-icon-effect]) .value-icon{background-image:var(--relief-light);box-shadow:inset 0 1px 0 #fffe,inset 0 -1px 0 #0000000b,0 3px 6px #2520140b;outline:1px solid #00000006;outline-offset:-1px}
+.site-finish .value-relief .value-icon svg{display:block;width:32px;height:32px;shape-rendering:geometricPrecision}
+@media(prefers-reduced-motion:reduce){.site-finish :is(button,a){transition:none!important}}
+html.site-finish[data-button-variant="fume-luce"] :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button,.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button,.privacy-button,.preview-btn){--p-selection:inset 0 0 0 0 transparent;--p-depth:#d0cbc1;--p-rim:#97938a;--p-shadow:#30281d24;--p-face:var(--p-neutral-face);background-image:var(--p-face);transition:transform 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
+html.site-finish[data-button-variant="fume-luce"] :is(.primary-button,.home-order-button,.order-product-add,.hero-configurator-actions>a:first-child,.privacy-button:not(.secondary),.order-categories button[aria-pressed=true],.preview-green){--p-face:var(--p-color-face);--p-depth:#0f491d;--p-rim:#0f491d;--p-shadow:#113e2438;background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] :is(.configurator-link,.filters button[aria-pressed=true],.error-compose,.preview-red){--p-face:var(--p-color-face);--p-depth:#8c1111;--p-rim:#8c1111;--p-shadow:#8c15152e;background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] .format-picker button[aria-pressed=true]{--p-selection:inset 0 0 0 1px var(--ink,#333);background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] .mobile-composer .format-picker button[aria-pressed=true]{background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] .mobile-composer .recipe #save{--p-face:var(--p-neutral-face);--p-depth:#d0cbc1;--p-rim:#97938a;--p-shadow:#30281d24;background-image:var(--p-face)}
+.direction-light{position:absolute;pointer-events:none;opacity:0;inset:-2px;background:linear-gradient(115deg,transparent 25%,#ffffff00 36%,#ffffff52 49%,#ffffff00 62%,transparent 75%);transform:translateX(-110%)}
+.direction-ripple{position:absolute;left:0;top:0;width:180px;height:180px;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,#ffffff38,#ffffff14 40%,#ffffff00 70%)}
+html.site-finish[data-button-variant="fume-luce"]{--p-neutral-face:linear-gradient(135deg,#ffffff1c,#ffffff00 55%,#00000018);--p-color-face:var(--p-neutral-face)}
+html.site-finish[data-button-variant="fume-luce"] :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button[aria-pressed],.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button){
+ --p-face:var(--glass-face,var(--p-neutral-face));background-image:var(--p-face);box-shadow:var(--glass-selection,inset 0 0 0 0 transparent),inset 0 1px 0 #ffffff66,var(--glass-rest-shadow,0 4px 10px #142a1b21);transition:transform 150ms cubic-bezier(.22,1,.36,1);filter:none
+}
+/* Sui fondi chiari rimane soltanto una luce bianca, senza velature scure. */
+html.site-finish[data-button-variant="fume-luce"] :is(.hero-configurator-actions>a:nth-child(2),.direction-neutral-light,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button,.meter-split button,.flavor-tabs button,.filters button[aria-pressed=false],.order-categories button[aria-pressed=false],.order-mobile-tabs button){
+ --glass-face:linear-gradient(135deg,#ffffff40,#ffffff00 65%);--glass-rest-shadow:0 2px 5px #0000000a;--glass-hover-shadow:0 3px 6px #0000000d;--glass-press-shading:inset 0 1px 1px #00000005;--glass-press-shadow:0 1px 3px #0000000a
+}
+html.site-finish[data-button-variant="fume-luce"] .recipe #save{--glass-face:linear-gradient(135deg,#ffffff40,#ffffff00 65%);--glass-rest-shadow:0 2px 5px #0000000a;--glass-hover-shadow:0 3px 6px #0000000d;--glass-press-shading:inset 0 1px 1px #00000005;--glass-press-shadow:0 1px 3px #0000000a}
+html.site-finish[data-button-variant="fume-luce"] :is(.format-picker button[aria-pressed=true],.meter-split button[aria-pressed=true]){--glass-selection:inset 0 0 0 1px var(--ink,#333);border-color:var(--ink,#333)}
+html.site-finish[data-button-variant="fume-luce"] .flavor-tabs button[aria-pressed=true]{--glass-selection:inset 0 -2px 0 var(--ink,#333);border-color:var(--ink,#333)}
+html.site-finish[data-button-variant="fume-luce"] .mobile-composer .format-picker button[aria-pressed=true]{background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] :is(.order-open,.quiet-action,.order-mobile-tabs button){color:var(--ink,#333)}
+html.site-finish[data-button-variant="fume-luce"] :is(.quantity-button,.order-amount button){background-color:#fff;color:var(--green,#1a6b2a)}
+html.site-finish[data-button-variant="fume-luce"] :is(.quantity-button,.order-amount button):is(:hover,:active){background-color:#fff;color:var(--green,#1a6b2a)}
+html.site-finish[data-button-variant="fume-luce"] .recipe #save{--p-face:var(--glass-face);background-color:#fff;color:var(--ink,#333);background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] .recipe #save svg{color:var(--green,#1a6b2a)}
+html.site-finish[data-button-variant="fume-luce"] .mobile-composer .recipe #save{--p-face:var(--glass-face);background-color:#fff;color:var(--ink,#333);background-image:var(--p-face)}
+html.site-finish[data-button-variant="fume-luce"] .mobile-composer .recipe #save svg{color:var(--green,#1a6b2a)}
+html.site-finish[data-button-variant="fume-luce"] .direction-luminous{position:relative;isolation:isolate;overflow:hidden}
+html.site-finish[data-button-variant="fume-luce"] .direction-neutral-light .direction-light{background:linear-gradient(115deg,transparent 25%,#ffffff00 36%,#ffffff40 49%,#ffffff00 62%,transparent 75%)}
+html.site-finish[data-button-variant="fume-luce"] .direction-neutral-light .direction-ripple{background:radial-gradient(circle,#ffffff40,#ffffff14 40%,#ffffff00 70%)}
+@media(hover:hover) and (pointer:fine){
+ html.site-finish[data-button-variant="fume-luce"] :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button[aria-pressed],.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button):hover:not(:disabled):not([aria-disabled=true]){background-image:var(--p-face);box-shadow:var(--glass-selection,inset 0 0 0 0 transparent),inset 0 1px 0 #ffffff66,var(--glass-hover-shadow,0 5px 12px #142a1b26);transform:translateY(-1px)}
+}
+html.site-finish[data-button-variant="fume-luce"] :is(.hero-configurator-actions>a,.configurator-link,.home-order-button,.primary-button,.quiet-action,.order-open,.quantity-button,.order-amount button,.order-product-add,.mobile-order-open,.mobile-canvas-tools button,.format-picker button[aria-pressed],.meter-split button,.flavor-tabs button,.filters button,.order-categories button,.order-mobile-tabs button):active:not(:disabled):not([aria-disabled=true]){background-image:var(--p-face);box-shadow:var(--glass-selection,inset 0 0 0 0 transparent),var(--glass-press-shading,inset 0 1px 3px #0000001f),var(--glass-press-shadow,0 2px 5px #142a1b21);transform:scale(.985)}
+html.site-finish[data-button-variant="fume-luce"] :is(button:disabled,[aria-disabled=true]){transform:none}
+html.site-finish[data-button-variant="fume-luce"] :is(button,a):focus-visible{transition:none}
+@media(prefers-reduced-motion:reduce){html.site-finish[data-button-variant="fume-luce"] :is(button,a){transition:none!important}}
+
+/* Colori delle azioni mobili: superficie bianca, solo il segno cambia colore. */
+@media(max-width:820px) and (orientation:portrait),(max-width:500px){
+ html.site-finish[data-button-variant="fume-luce"] .mobile-composer .quantity-button[data-action="remove"]{color:var(--red)}
+ html.site-finish[data-button-variant="fume-luce"] .mobile-composer .quantity-button[data-action="plus"]{color:var(--green)}
+}

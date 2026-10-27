@@ -39,5 +39,24 @@
     function sample(image){if(!image)return null;paint.clearRect(0,0,w,h);paint.drawImage(image,0,0,w,h);return paint.getImageData(0,0,w,h).data;}
     blend(pixels.data,sample(tomato),sample(cheese),w,h,shape);ctx.putImageData(pixels,0,0);return c;
   }
-  const api={interior,blend,compose};if(node)module.exports=api;else root.PizzaBaseSurface=api;
+  // Keep the approved pizza silhouette and rim, filling only its middle with bare dough.
+  function blendDough(dough,rim,w,h,shape='round'){
+    for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+      const u=(x+.5)/w,v=(y+.5)/h,i=(y*w+x)*4;
+      const mask=shape==='round'?1-smooth(.425,.445,Math.hypot(u-.5,v-.5)):
+        smooth(.035,.065,u)*(1-smooth(.935,.965,u))*smooth(.055,.09,v)*(1-smooth(.91,.945,v));
+      if(!mask)continue;
+      for(let c=0;c<4;c++)rim[i+c]=Math.round(rim[i+c]*(1-mask)+dough[i+c]*mask);
+    }
+    return rim;
+  }
+  function composeDough(dough,rim,shape='round'){
+    const w=rim.naturalWidth||rim.width,h=rim.naturalHeight||rim.height;
+    const canvas=root.document.createElement('canvas');canvas.width=w;canvas.height=h;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(rim,0,0,w,h);
+    const pixels=ctx.getImageData(0,0,w,h),scratch=root.document.createElement('canvas');scratch.width=w;scratch.height=h;
+    const paint=scratch.getContext('2d',{willReadFrequently:true});paint.drawImage(dough,0,0,w,h);
+    blendDough(paint.getImageData(0,0,w,h).data,pixels.data,w,h,shape);ctx.putImageData(pixels,0,0);return canvas;
+  }
+  const api={interior,blend,compose,blendDough,composeDough};if(node)module.exports=api;else root.PizzaBaseSurface=api;
 })(typeof window!=='undefined'?window:globalThis);

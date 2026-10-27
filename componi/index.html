@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" class="site-finish" data-button-variant="fume-luce">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
@@ -9,36 +9,38 @@
   <title>Componi la tua pizza · Pizzeria Pulcinella, Patù</title>
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="refinements.css?v=20261026-mano">
+  <link rel="stylesheet" href="refinements.css?v=20261027-finiture-mobile">
   <link rel="stylesheet" href="language-picker.css">
-  <script src="asset-files.js" defer></script>
-  <script src="recipe-previews.js" defer></script>
+  <script src="asset-files.js?v=20261027-finiture-mobile" defer></script>
+  <script src="recipe-previews.js?v=20261027-finiture-mobile" defer></script>
   <script src="ingredient-icons.js" defer></script>
-  <script src="i18n-catalog.js?v=20261026-gesti" defer></script>
+  <script src="i18n-catalog.js?v=20261027-finiture-mobile" defer></script>
   <script src="i18n.js" defer></script>
-  <script src="pizza.js" defer></script>
+  <script src="pizza.js?v=20261027-finiture-mobile" defer></script>
   <script src="formats.js" defer></script>
   <script src="preview-engine.js" defer></script>
   <script src="materials.js" defer></script>
   <script src="ingredient-assets.js" defer></script>
-  <script src="base-surface.js" defer></script>
-  <script src="long-renderer.js" defer></script>
+  <script src="base-surface.js?v=20261027-finiture-mobile" defer></script>
+  <script src="long-renderer.js?v=20261027-finiture-mobile" defer></script>
   <script src="vendor/pdf-lib.min.js" defer></script>
   <script src="order.js" defer></script>
   <script src="pizza-personal.js" defer></script>
   <script src="pdf-unicode.js" defer></script>
   <script src="order-pdf.js" defer></script>
   <script src="order-ui.js" defer></script>
-  <script src="mobile-sheet.js?v=20261026-gesti" defer></script>
+  <script src="mobile-sheet.js?v=20261027-finiture-mobile" defer></script>
   <script src="mobile-ui.js?v=20261026-gesti" defer></script>
   <script src="pizza-picker-ui.js" defer></script>
-  <script src="experience-ui.js" defer></script>
-  <script src="app.js?v=20261026-mano" defer></script>
+  <script src="experience-ui.js?v=20261027-finiture-mobile" defer></script>
+  <script src="app.js?v=20261027-finiture-mobile" defer></script>
   <script src="language-picker.js" defer></script>
   <link rel="stylesheet" href="../site-header.css">
   <script src="../site-header-copy.js" defer></script>
   <script src="../site-header.js" defer></script>
   <link rel="canonical" href="https://www.pulcinellapatu.it/componi/">
+  <link rel="stylesheet" href="../site-finish.css?v=20261027-finiture-mobile">
+  <script src="../site-finish.js?v=20261027-finiture-mobile" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#ingredienti">Vai agli ingredienti</a>
@@ -85,7 +87,7 @@
       <div class="mobile-panel-bar" id="mobile-panel-bar"><div class="mobile-composer-tabs" id="mobile-composer-tabs" role="tablist" aria-label="Personalizza la pizza"><button id="composer-tab-ingredients" type="button" role="tab" aria-selected="true" aria-controls="ingredienti" aria-describedby="mobile-panel-help" data-composer-panel="ingredients" data-no-translate>Aggiunte</button><button id="composer-tab-menu" type="button" role="tab" aria-selected="false" aria-controls="menu-tools" aria-describedby="mobile-panel-help" data-composer-panel="menu" tabindex="-1">Pizze</button><button id="composer-tab-recipe" type="button" role="tab" aria-selected="false" aria-controls="recipe-panel" aria-describedby="mobile-panel-help" data-composer-panel="recipe" tabindex="-1">Ingredienti</button></div><span id="mobile-panel-help" class="sr-only">Trascina la barra in alto o in basso</span></div>
       <section class="pantry" id="ingredienti" aria-labelledby="pantry-title">
         <div class="panel-heading"><h2 id="pantry-title" tabindex="-1">Scegli il gusto</h2><span id="available-count"></span></div>
-        <p class="panel-description"><span class="desktop-guidance">Trascina sulla pizza o tocca per aggiungere.</span><span class="mobile-guidance">Tieni premuta la manina o la foto e trascina sulla pizza.</span></p>
+        <p class="panel-description"><span class="desktop-guidance">Trascina sulla pizza o tocca per aggiungere.</span><span class="mobile-guidance">Tieni premuta la manina e trascina l’ingrediente sulla pizza.</span></p>
         <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Cerca un ingrediente…" aria-label="Cerca un ingrediente" autocomplete="off" autocapitalize="none" autocorrect="off" enterkeyhint="search"></label>
         <button class="mobile-pantry-search" id="mobile-pantry-search" type="button" aria-controls="search filters"><span aria-hidden="true">⌕</span> <span>Cerca un ingrediente</span><span aria-hidden="true">↑</span></button>
         <div class="filters" role="group" aria-label="Categorie ingredienti" id="filters"></div>
