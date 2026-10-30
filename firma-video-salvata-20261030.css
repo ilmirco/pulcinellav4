@@ -1,0 +1,35 @@
+/* Local Firma study: full-bleed footage, white lettering and tricolour CTAs. */
+.vhb-firma.firma-video .vhb-inner{max-width:none;width:100%;padding:0}
+.vhb-firma.firma-video .vhs-film{border-radius:0}
+.firma-video .vhs-film:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none}
+.firma-video-copy{position:absolute;z-index:2;display:grid;grid-template-columns:minmax(0,1fr);pointer-events:none}
+.firma-video-copy h1{min-width:0;text-shadow:0 1px 12px #00000020}
+.vhb-firma.firma-video .vhs-name,.vhb-firma.firma-video .vhs-prefix,.vhb-firma.firma-video .vhs-subtitle{color:#fff}
+.vhb-firma.firma-video .vhs-subtitle{justify-self:start;margin:0;max-width:30ch;font-size:20px;line-height:1.5}
+.firma-video .vhs-action-base{position:relative;z-index:3;min-width:0}
+
+/* Desktop: footage and controls fit below the header. The lower vignette has no panel edge. */
+@media(min-width:821px){
+ .vhb-firma.firma-video .vhs-film{display:block;height:min(calc(100svh - 86px),56.25vw)}
+ .firma-video .hero-video-backdrop{height:100%;background:none}
+ .vhb-firma.firma-video .hero-video-backdrop img,.vhb-firma.firma-video .hero-video-backdrop video{height:calc(100% + 32px);object-position:50% 100%}
+ .firma-video .vhs-film:after{background:linear-gradient(0deg,rgba(9,8,6,.88) 0%,rgba(9,8,6,.60) 15%,rgba(9,8,6,.17) 34%,transparent 55%),linear-gradient(125deg,rgba(0,0,0,.53) 0%,rgba(0,0,0,.23) 28%,transparent 56%)}
+ .firma-video-copy{left:clamp(28px,3vw,48px);right:36px;top:32px;gap:15px;text-align:left;justify-items:start}
+ .vhb-firma.firma-video h1{font-size:clamp(76px,7.4vw,118px)}
+ .firma-video .vhs-action-base{position:absolute;inset:auto 0 18px;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+ .vhs-hero.firma-video .vhs-actions>a:focus-visible{outline-color:#fff}
+}
+
+/* Mobile keeps the existing crop and separate paper-coloured controls. */
+@media(max-width:820px){
+ .vhb-firma.firma-video .vhs-film{--firma-scene-height:clamp(380px,53svh,470px);display:grid;grid-template-rows:var(--firma-scene-height) auto;height:auto}
+ .firma-video .vhs-action-base{grid-row:2}
+ .firma-video-copy{top:23px;left:22px;right:22px;gap:14px}
+ .vhb-firma.firma-video h1{font-size:clamp(48px,14vw,86px);letter-spacing:-.055em}
+ .vhb-firma.firma-video .vhs-prefix{font-size:22px;margin-bottom:5px}
+ .vhb-firma.firma-video .vhs-subtitle{font-size:17px;line-height:1.45;max-width:27ch}
+ .firma-video .hero-video-backdrop,.firma-video .vhs-film:after{height:var(--firma-scene-height);bottom:auto}
+ .vhb-firma.firma-video .hero-video-backdrop img,.vhb-firma.firma-video .hero-video-backdrop video{object-position:32% 50%}
+ .firma-video .vhs-film:after{background:linear-gradient(180deg,#000000bd 0%,#00000073 31%,#00000014 62%,transparent 76%)}
+}
+@media(max-width:359px){.firma-video-copy{left:17px;right:17px}.vhb-firma.firma-video h1{font-size:47px}}

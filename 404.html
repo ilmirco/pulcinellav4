@@ -18,17 +18,47 @@
   <meta name="robots" content="noindex, follow">
   <link rel="stylesheet" href="/site-finish.css?v=20261027-finiture-mobile">
   <script src="/site-finish.js?v=20261027-finiture-mobile" defer></script>
+<link rel="stylesheet" href="/site-header.css">
+<script src="/site-header-copy.js" defer></script>
+<script src="/site-header.js?v=20261030-release" defer></script>
+<link rel="stylesheet" href="/site-header-approved.css?v=20261030-release">
+<script src="/site-header-approved.js?v=20261030-release" defer></script>
 </head>
 <body class="error-page">
-  <div class="tricolore-border" aria-hidden="true"></div>
-  <header class="privacy-header">
-    <a href="/" data-error-home aria-label="Pizzeria Pulcinella — Home"><img src="/logo.svg" width="170" height="64" alt="Pizzeria Pulcinella"></a>
-    <div class="home-language-switch"><span id="home-language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
+  <div class="site-tricolore" aria-hidden="true"></div>
+  <nav class="site-header" data-approved-header aria-label="Navigazione principale" data-home-path="/" data-config-path="/componi/">
+        <div class="site-header-inner">
+            <div class="site-header-row">
+                <div class="site-header-brand-wrap">
+                    <a href="#" class="site-header-brand">
+                        <img src="/logo.svg" alt="Logo Pizzeria Pulcinella" class="site-header-logo">
+                    </a>
+                </div>
+
+                <div class="site-header-actions">
+                    <!-- Nav Links -->
+                    <div class="site-header-links">
+                        <a href="#chi-siamo" data-i18n="nav_about" data-site-nav="nav_about" data-site-section="#chi-siamo" class="site-header-link">Chi Siamo</a>
+                        <a href="#menu" data-i18n="nav_menu" data-site-nav="nav_menu" data-site-section="#menu" class="site-header-link">Il Menu</a>
+                        <a href="/componi/" data-config-copy="0" data-site-nav="config" class="site-header-config">Componi la tua pizza</a>
+                        <a href="#contatti" data-i18n="nav_contact" data-site-nav="nav_contact" data-site-section="#contatti" class="site-header-link">Contatti</a>
+                        <a href="tel:+393398390660" class="home-order-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span data-i18n="nav_order" data-site-nav="nav_order">Ordina Ora</span>
+                        </a>
+                    </div>
+
+                    <!-- Language Switcher -->
+                    <div class="home-language-switch"><span id="home-language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
       <select id="lang-selector" aria-label="Seleziona la lingua">
         <option value="it">🇮🇹 Italiano</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="de">🇩🇪 Deutsch</option><option value="es">🇪🇸 Español</option><option value="pt">🇵🇹 Português</option><option value="zh">🇨🇳 中文</option><option value="sv">🇸🇪 Svenska</option><option value="nl">🇳🇱 Nederlands</option><option value="ru">🇷🇺 Русский</option>
       </select>
     </div>
-  </header>
+                </div>
+            </div>
+        </div>
+    </nav>
+<div class="site-header-space" aria-hidden="true"></div>
   <main class="error-main">
     <div class="error-code" aria-hidden="true"><span>4</span><img src="/assets/pizza-dorata-v02.webp" width="144" height="144" alt=""><span>4</span></div>
     <p class="eyebrow" data-error-copy="label">Pagina non trovata</p>

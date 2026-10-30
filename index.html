@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth site-finish" data-button-variant="fume-luce">
+<html lang="it" class="scroll-smooth site-finish official-home-controls" data-button-variant="fume-luce">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzeria Pulcinella | Forno a Legna a Patù (LE)</title>
     <meta name="description" content="Pizzeria artigianale a forno a legno nel Salento. Ingredienti 100% italiani, pizze classiche, speciali e al metro.">
-    
+
     <!-- SEO & Verifica -->
-    
-    
+
+
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    
+
     <!-- Local Tailwind CSS -->
     <link rel="stylesheet" href="output.css?v=2">
-    
+
     <style>
         body {
             background-color: #FAFAF5;
@@ -43,17 +43,38 @@
     <link rel="stylesheet" href="integration.css?v=20261026-hero">
     <link rel="stylesheet" href="componi/language-picker.css">
     <link rel="stylesheet" href="site-header.css">
+
+
+
+
+
+
     <script src="site-header-copy.js" defer></script>
-    <script src="site-header.js" defer></script>
+    <script src="site-header.js?v=20261030-release" defer></script>
     <script src="home-configurator.js" defer></script>
     <script src="home-configurator-preload.js" defer></script>
     <script src="componi/language-picker.js" defer></script>
-  <link rel="canonical" href="https://www.pulcinellapatu.it/">
-  <meta name="google-site-verification" content="L7HaUHMQe9ul26TClJr646AF2CKg_dHqX5SeZgqAgRU">
-  <link rel="stylesheet" href="site-finish.css?v=20261027-finiture-mobile">
-  <script src="site-finish.js?v=20261027-finiture-mobile" defer></script>
+
+<link rel="stylesheet" href="hero-video-preview.css?v=20261030"><script src="home-responsive.js?v=20261030-release" defer></script><script src="hero-video-preview.js?v=20261030" defer></script>
+<link rel="stylesheet" href="hero-video-studio.css?v=20261030-1"><link rel="stylesheet" href="hero-equilibrio.css?v=20261030-1">
+<link rel="stylesheet" href="firma-video-salvata-20261030.css">
+<link rel="stylesheet" href="firma-overlay-mockups.css?v=20261030-1">
+<script src="firma-overlay-mockups.js?v=20261030-1" defer></script>
+<link rel="stylesheet" href="firma-identita-refinements.css?v=20261030-4">
+<script src="firma-scroll-header.js?v=20261030-3" defer></script>
+<link rel="stylesheet" href="firma-home-balanced.css?v=20261030-release" media="(min-width:821px)">
+<link rel="stylesheet" href="firma-value-cards.css?v=20261030-5">
+<link rel="stylesheet" href="site-finish.css?v=20261027-finiture-mobile">
+<script src="site-finish.js?v=20261027-finiture-mobile" defer></script>
+<link rel="stylesheet" href="official-home-controls.css?v=20261030-2">
+<script src="official-home-controls.js?v=20261030-2" defer></script>
+<link rel="canonical" href="https://www.pulcinellapatu.it/">
+<meta name="google-site-verification" content="L7HaUHMQe9ul26TClJr646AF2CKg_dHqX5SeZgqAgRU">
+<meta name="site-release" content="20261030-responsive">
+<link rel="stylesheet" href="firma-classic-preview.css?v=20261030-release">
+<link rel="stylesheet" href="home-responsive.css?v=20261030-release">
 </head>
-<body class="font-body antialiased flex flex-col min-h-screen">
+<body class="home-responsive firma-classic-preview firma-home-balanced firma-overlay-mockup firma-overlay-wordmark font-body antialiased flex flex-col min-h-screen">
 
     <!-- Bordo Tricolore Top -->
     <div class="site-tricolore" aria-hidden="true"></div>
@@ -67,10 +88,10 @@
                         <img src="logo.svg" alt="Logo Pizzeria Pulcinella" class="site-header-logo">
                     </a>
                 </div>
-                
+
                 <div class="site-header-actions">
-                    <!-- Nav Links -->
-                    <div class="site-header-links">
+                    <button class="firma-menu-toggle" type="button" aria-controls="firma-mockup-nav" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="firma-sr-only" data-site-nav="nav_menu">Il Menu</span></button><!-- Nav Links -->
+                    <div class="site-header-links" id="firma-mockup-nav">
                         <a href="#chi-siamo" data-i18n="nav_about" data-site-nav="nav_about" data-site-section="#chi-siamo" class="site-header-link">Chi Siamo</a>
                         <a href="#menu" data-i18n="nav_menu" data-site-nav="nav_menu" data-site-section="#menu" class="site-header-link">Il Menu</a>
                         <a href="componi/" data-config-copy="0" data-site-nav="config" class="site-header-config">Componi la tua pizza</a>
@@ -80,7 +101,7 @@
                             <span data-i18n="nav_order" data-site-nav="nav_order">Ordina Ora</span>
                         </a>
                     </div>
-                    
+
                     <!-- Language Switcher -->
                     <div class="home-language-switch"><span id="home-language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
                     <select id="lang-selector" onchange="switchLanguage(this.value)" aria-label="Seleziona la lingua" class="bg-transparent text-brand-black border border-gray-300 text-xl rounded-md focus:ring-brand-green focus:border-brand-green block p-1.5 cursor-pointer outline-none shadow-sm">
@@ -101,32 +122,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="home-hero relative h-[85vh] mt-[26px] flex items-center justify-center text-center px-4 overflow-hidden bg-brand-black">
-        <picture class="absolute inset-0 w-full h-full object-cover opacity-60 z-0 pointer-events-none">
-            <source srcset="pizza-bg-mobile.webp" media="(max-width: 768px)" type="image/webp">
-            <source srcset="pizza-bg-mobile.jpg" media="(max-width: 768px)" type="image/jpeg">
-            <source srcset="pizza-bg.webp" type="image/webp">
-            <img src="pizza-bg.png" alt="Pizza Sfondo" class="w-full h-full object-cover">
-        </picture>
-        <div class="max-w-4xl mx-auto text-brand-light relative z-10 reveal active">
-            <h1 class="font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight">
-                <span class="text-brand-light">Pizzeria Pulcinella</span>
-            </h1>
-            <p data-i18n="hero_desc" class="text-lg md:text-2xl mb-10 max-w-2xl mx-auto font-body opacity-95">
-                Da vent'anni, il sapore di qualcosa di vero.
-            </p>
-            <div class="hero-configurator-actions flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="tel:+393398390660" class="bg-brand-green text-brand-light hover:bg-green-800 px-8 py-3 rounded-full font-bold text-lg transition-colors border-2 border-brand-green flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    <span data-i18n="btn_call">Chiama</span>
-                </a>
-                <a href="#menu" data-i18n="btn_menu" class="bg-brand-light text-brand-black hover:bg-gray-100 px-8 py-3 rounded-full font-bold text-lg transition-colors border-2 border-brand-light">
-                    Scopri il menù
-                </a>
-                <a href="componi/" data-config-copy="0" class="configurator-link" id="hero-configurator">Componi la tua pizza</a>
-            </div>
-        </div>
-    </header>
+    <header class="hero-video-preview home-hero vhs-hero vhb-hero vhb-firma firma-video" data-video-state="loading"><div class="vhb-inner"><div class="vhs-film"><div class="firma-video-copy"><h1><span class="vhs-prefix">Pizzeria</span> <span class="vhs-name">Pulcinella</span></h1><p class="vhs-subtitle" data-i18n="hero_desc">Da vent'anni, il sapore di qualcosa di vero.</p></div><div class="hero-video-backdrop" aria-hidden="true"><picture><source media="(max-width:820px)" srcset="assets/forno-cinemagraph/hero-video-poster.webp"><img src="assets/forno-cinemagraph/hero-fuoco-v2-poster.webp" width="1600" height="900" alt="" fetchpriority="high"></picture><video id="hero-fire-video" data-src="assets/forno-cinemagraph/hero-fuoco-v2-1080p.mp4" data-desktop-src="assets/forno-cinemagraph/hero-fuoco-v2-1080p.mp4" data-mobile-src="assets/forno-cinemagraph/hero-fuoco-flow-1080p.mp4" data-desktop-poster="assets/forno-cinemagraph/hero-fuoco-v2-poster.webp" data-mobile-poster="assets/forno-cinemagraph/hero-video-poster.webp" muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback tabindex="-1"></video></div><div class="vhs-action-base"><div class="vhs-action-inner"><div class="hero-configurator-actions vhs-actions"><a href="tel:+393398390660"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"/></svg><span data-i18n="btn_call">Chiama</span></a><a href="#menu" data-i18n="btn_menu">Scopri il menu</a><a href="componi/?lang=it" data-config-copy="0" class="configurator-link" id="hero-configurator">Componi la tua pizza</a></div></div></div></div></div></header>
 
     <!-- Chi Siamo / Valori -->
     <section id="chi-siamo" class="py-20 bg-brand-light">
@@ -134,11 +130,11 @@
             <span data-i18n="phil_label" class="text-brand-green font-bold tracking-widest uppercase text-sm mb-2 block">La nostra filosofia</span>
             <h2 data-i18n="phil_title" class="font-heading text-4xl md:text-5xl text-brand-black mb-8">Impasto, fiamma e cuore.</h2>
             <p data-i18n="phil_desc" class="text-xl text-brand-gray mb-16 leading-relaxed max-w-3xl mx-auto">
-                Tutto ha inizio nel 2006, da una semplice ma ambiziosa idea di Franco: portare nel Capo di Leuca l'asporto di qualità. Da allora, il nostro obiettivo è rimasto uno solo: offrirvi una pizza tradizionale unica e inconfondibile. Ecco come lo facciamo: 
+                Tutto ha inizio nel 2006, da una semplice ma ambiziosa idea di Franco: portare nel Capo di Leuca l'asporto di qualità. Da allora, il nostro obiettivo è rimasto uno solo: offrirvi una pizza tradizionale unica e inconfondibile. Ecco come lo facciamo:
             </p>
 
-            <div class="reveal value-relief grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
-                <div class="flex flex-col items-center">
+            <div class="reveal value-relief value-cards grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+<div class="value-card value-card-italia flex flex-col items-center">
                     <div class="value-icon w-16 h-16 bg-brand-green/10 flex items-center justify-center mb-6 text-brand-green">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
     <path d="M 16.53 19.62 L 15.96 21.27 L 16.20 21.92 L 15.87 23.00 L 14.68 22.21 L 13.89 21.98 L 11.71 20.92 L 11.93 19.84 L 13.75 20.03 L 15.34 19.81 L 16.53 19.62 Z M 6.70 13.38 L 7.63 14.87 L 7.41 17.64 L 6.70 17.51 L 6.07 18.21 L 5.48 17.65 L 5.42 15.12 L 5.06 13.92 L 5.92 14.03 L 6.70 13.38 Z M 11.63 1.73 L 13.86 2.27 L 13.69 3.30 L 14.06 4.20 L 12.82 3.89 L 11.55 4.63 L 11.64 5.67 L 11.45 6.27 L 11.96 7.34 L 13.42 8.39 L 14.20 10.13 L 15.94 11.82 L 17.16 11.80 L 17.54 12.27 L 17.10 12.68 L 18.50 13.44 L 19.64 14.08 L 20.98 15.17 L 21.14 15.56 L 20.85 16.31 L 19.98 15.33 L 18.63 14.99 L 17.97 16.34 L 19.10 17.12 L 18.91 18.21 L 18.26 18.34 L 17.43 20.14 L 16.78 20.30 L 16.79 19.66 L 17.10 18.53 L 17.44 18.09 L 16.83 16.87 L 16.36 15.81 L 15.71 15.55 L 15.25 14.65 L 14.25 14.27 L 13.58 13.42 L 12.43 13.29 L 11.21 12.34 L 9.78 10.98 L 8.72 9.77 L 8.24 7.70 L 7.46 7.45 L 6.20 6.76 L 5.48 7.05 L 4.58 8.02 L 3.93 8.17 L 4.11 7.26 L 3.26 7.00 L 2.86 5.37 L 3.40 4.74 L 2.95 3.95 L 3.01 3.36 L 3.68 3.81 L 4.43 3.71 L 5.30 3.00 L 5.57 3.33 L 6.32 3.26 L 6.65 2.42 L 7.81 2.68 L 8.49 2.32 L 8.62 1.47 L 9.56 1.76 L 9.74 1.36 L 11.28 1.00 L 11.63 1.73 Z"></path>
@@ -147,21 +143,21 @@
                     <h3 data-i18n="card1_title" class="font-heading text-2xl text-brand-black mb-3">100% Italiani</h3>
                     <p data-i18n="card1_desc" class="text-brand-gray text-base"> Selezioniamo solo materie prime autentiche, fresche e rigorosamente italiane.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="value-icon w-16 h-16 bg-brand-red/10 flex items-center justify-center mb-6 text-brand-red">
-                        <svg class="value-icon-detail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
-                    </div>
-                    <h3 data-i18n="card2_title" class="font-heading text-2xl text-brand-black mb-3">Cotta a Legna d'Ulivo</h3>
-                    <p data-i18n="card2_desc" class="text-brand-gray text-base">L'artigianalità al primo posto. Il nostro forno arde con profumato legno di ulivo, regalando alla pizza quel sapore inconfondibile.</p>
-                </div>
-                <div class="flex flex-col items-center">
+<div class="value-card value-card-lievitazione flex flex-col items-center">
                     <div class="value-icon w-16 h-16 bg-gray-200 flex items-center justify-center mb-6 text-brand-black">
                         <svg class="value-icon-detail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                     </div>
                     <h3 data-i18n="card3_title" class="font-heading text-2xl text-brand-black mb-3">48h di Lievitazione</h3>
                     <p data-i18n="card3_desc" class="text-brand-gray text-base">Una ricetta segreta che custodiamo gelosamente: un blend di 4 farine diverse e una lenta lievitazione di 48 ore per la massima digeribilità.</p>
                 </div>
-            </div>
+<div class="value-card value-card-forno flex flex-col items-center">
+                    <div class="value-icon w-16 h-16 bg-brand-red/10 flex items-center justify-center mb-6 text-brand-red">
+                        <svg class="value-icon-detail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                    </div>
+                    <h3 data-i18n="card2_title" class="font-heading text-2xl text-brand-black mb-3">Cotta a Legna d'Ulivo</h3>
+                    <p data-i18n="card2_desc" class="text-brand-gray text-base">L'artigianalità al primo posto. Il nostro forno arde con profumato legno di ulivo, regalando alla pizza quel sapore inconfondibile.</p>
+                </div>
+</div>
         </div>
     </section>
 
@@ -174,7 +170,7 @@
 
             <!-- Griglia Principale: Classiche e Speciali -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-                
+
                 <!-- PIZZE CLASSICHE -->
                 <div class="reveal">
                         <div class="flex items-center gap-4 mb-8">
@@ -182,7 +178,7 @@
                         <h3 data-i18n="menu_classic" class="font-heading text-3xl text-brand-black uppercase tracking-wider text-brand-red">Pizze Classiche</h3>
                         <div class="h-px bg-brand-green flex-1"></div>
                     </div>
-                    
+
                     <ul class="space-y-4">
                         <li class="mb-3">
                             <div class="flex justify-between items-baseline gap-2">
@@ -522,7 +518,7 @@
 
             <!-- Sezione Al Metro e Focacce (Grid) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-8">
-                
+
                 <!-- Pizze al Metro -->
                 <div class="reveal border-2 border-brand-red p-8 rounded-lg relative overflow-hidden bg-brand-light">
                     <h3 data-i18n="menu_metro" class="font-heading text-3xl text-brand-red mb-6 text-center uppercase tracking-widest">Pizze al Metro</h3>
@@ -603,7 +599,7 @@
             <!-- Extra, Sfizi e Rosticceria -->
             <div class="bg-brand-light border border-gray-200 rounded-lg p-6 lg:p-10 shadow-sm mt-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    
+
                     <div class="space-y-4">
                         <div class="flex justify-between items-center text-lg">
                             <span data-i18n="extra_half" class="font-bold text-brand-black">Mezza Pizza</span>
@@ -680,7 +676,7 @@
     <footer id="contatti" class="bg-brand-light text-brand-black pt-20 pb-10 border-t-8 border-brand-green">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left">
-                
+
                 <!-- Info Brand -->
                 <div>
                     <a href="#" class="inline-block mb-6">
@@ -727,7 +723,7 @@
                 </div>
 
             </div>
-            
+
             <div class="border-t border-gray-300 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-gray text-center md:text-left">
                 <p>&copy; 2026 Pizzeria Pulcinella &bull; P.IVA 03990050753 <br class="md:hidden mt-1"> <span data-i18n="footer_rights">Tutti i diritti riservati.</span></p>
                 <div class="mt-4 md:mt-0 space-x-4">
@@ -747,7 +743,7 @@
                 nav_order: "Ordina Ora",
                 hero_sub: "Forno a Legna · Patù",
                 hero_desc: "Da vent'anni, il sapore di qualcosa di vero.",
-                btn_menu: "Scopri il menù",
+                btn_menu: "Scopri il menu",
                 btn_call: "Chiama",
                 phil_label: "La nostra filosofia",
                 phil_title: "Impasto, fiamma e cuore.",
@@ -1794,16 +1790,16 @@
 
         function switchLanguage(lang) {
             document.documentElement.lang = lang;
-            
+
             // Loop through all elements holding a data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
                     // Using innerHTML ensures formatted strings (like span tags inside JSON) render perfectly
-                    el.innerHTML = translations[lang][key]; 
+                    el.innerHTML = translations[lang][key];
                 }
             });
-            
+
             // Save the user's preference in localStorage
             try { localStorage.setItem('preferredLanguage', lang); } catch {}
         }
@@ -1824,7 +1820,7 @@
         // Flag rendering and language updates are shared through home-configurator.js.
 
     </script>
-    
+
     <script>
         // Intersection Observer for Scroll Animations
         const observerOptions = {

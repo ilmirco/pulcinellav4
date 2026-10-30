@@ -1,0 +1,47 @@
+/* Refinements confined to the selected wordmark mockup. */
+.firma-overlay-wordmark .site-header .site-header-link,
+.firma-overlay-wordmark .site-header .site-header-config{font-size:15px;line-height:22px;transition:color 240ms ease}
+.firma-overlay-wordmark .firma-video .vhs-film:after{
+ background:linear-gradient(0deg,rgba(9,8,6,.94),rgba(9,8,6,.70) 16%,rgba(9,8,6,.23) 35%,transparent 55%),linear-gradient(180deg,rgba(0,0,0,.63),rgba(0,0,0,.30) 24%,transparent 48%);
+}
+.firma-overlay-wordmark .site-header{position:fixed;transition:background-color 240ms ease,box-shadow 240ms ease,color 240ms ease}
+.firma-overlay-wordmark .site-header.is-scrolled{background:#faf9f6;color:#333;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a}
+/* The logo fades in outside the flex flow, so the navigation never moves. */
+.firma-overlay-wordmark .site-header .site-header-brand-wrap{display:flex;position:absolute;left:var(--firma-edge);top:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 240ms ease,visibility 0s linear 240ms}
+.firma-overlay-wordmark .site-header .firma-menu-toggle{transition:color 240ms ease,background-color 240ms ease,border-color 240ms ease}
+.firma-overlay-wordmark .site-header.is-scrolled .site-header-brand-wrap{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
+.firma-overlay-wordmark .site-header.is-scrolled .site-header-link,
+.firma-overlay-wordmark .site-header.is-scrolled .site-header-config{color:#333}
+.firma-overlay-wordmark .site-header.is-scrolled .language-picker-trigger{color:#333}
+.firma-overlay-wordmark .site-header.is-scrolled a:focus-visible,
+.firma-overlay-wordmark .site-header.is-scrolled button:focus-visible{outline-color:#1a6b2a}
+.firma-overlay-wordmark .site-header.is-scrolled .firma-menu-toggle{border-color:#3333;background:transparent;color:#333}
+.firma-overlay-wordmark :is(#chi-siamo,#menu,#contatti){scroll-margin-top:104px}
+@media(hover:hover){
+ .firma-overlay-wordmark .site-header.is-scrolled .site-header-link:hover,
+ .firma-overlay-wordmark .site-header.is-scrolled .site-header-config:hover{color:#cc1515;text-decoration:none}
+}
+/* Long translations use the same compact menu, retaining every link and font size. */
+.firma-overlay-wordmark .site-header.firma-nav-compact .firma-menu-toggle{display:inline-flex}
+.firma-overlay-wordmark .site-header.firma-nav-compact .site-header-actions{gap:8px}
+.firma-overlay-wordmark .site-header.firma-nav-compact .site-header-links{display:none;position:absolute;top:calc(100% + 8px);right:var(--firma-edge);min-width:235px;max-width:calc(100vw - 40px);padding:12px;border:1px solid #ffffff2b;border-radius:14px;background:#14120ff5;box-shadow:0 12px 32px #0003}
+.firma-overlay-wordmark .site-header.is-scrolled.firma-nav-compact .site-header-links{border-color:#dedbd3;background:#faf9f6}
+.firma-overlay-wordmark .site-header.firma-nav-compact .site-header-links.is-open{display:flex;flex-direction:column;align-items:stretch;gap:0}
+.firma-overlay-wordmark .site-header.firma-nav-compact .site-header-links>a{display:flex;min-height:46px;align-items:center;padding:10px 12px}
+.firma-overlay-wordmark .site-header.firma-nav-compact .home-order-button{margin-top:8px}
+@media(max-width:1099px){
+ .firma-overlay-wordmark .site-header.is-scrolled .site-header-links{top:calc(100% + 8px);border-color:#dedbd3;background:#faf9f6}
+}
+@media(max-width:820px){
+ .firma-overlay-wordmark .site-header.is-scrolled .site-header-row{height:64px}
+ .firma-overlay-wordmark .site-header .site-header-logo{height:52px}
+ .firma-overlay-wordmark .site-header .site-header-brand{padding:6px 0}
+}
+@media(prefers-reduced-motion:reduce){.firma-overlay-wordmark .site-header,.firma-overlay-wordmark .site-header .site-header-brand-wrap,.firma-overlay-wordmark .site-header .site-header-link,.firma-overlay-wordmark .site-header .site-header-config,.firma-overlay-wordmark .site-header .firma-menu-toggle{transition:none}}
+@media(min-width:821px){
+ /* Shift the subject right, limited to the spare image width to avoid empty edges. */
+ .firma-overlay-wordmark .vhb-firma.firma-video .hero-video-backdrop img,
+ .firma-overlay-wordmark .vhb-firma.firma-video .hero-video-backdrop video{
+  object-position:calc(50% + clamp(0px,calc((100svh + 32px) * .888889 - 50vw),28px)) 100%;
+ }
+}

@@ -1,0 +1,81 @@
+/* Second local study: flour-white surfaces, dark type and balanced tricolour CTAs. */
+.vhb-hero.home-hero{background:#faf9f6;color:#242424}
+.vhb-hero .vhs-name{color:#242424}
+.vhb-hero .vhs-prefix{font-size:25px;letter-spacing:-.02em;margin-bottom:7px}
+.vhb-hero .vhs-subtitle{font-size:20px;line-height:1.5;max-width:30ch}
+.vhb-hero .vhs-action-base{padding:22px 40px 26px}
+.vhb-hero .vhs-film{border-radius:14px}
+.vhb-inner{max-width:1280px;margin:auto}
+/* 1. A generous name above a deliberately framed, unobscured film. */
+.vhb-firma .vhb-inner{padding:30px 40px 0}
+.vhb-firma .vhb-title-row{display:grid;grid-template-columns:1.45fr 1fr;gap:50px;align-items:center;margin-bottom:25px}
+.vhb-firma h1{font-size:clamp(82px,9.4vw,138px);letter-spacing:-.06em}
+.vhb-firma .vhs-subtitle{justify-self:end;max-width:27ch}
+.vhb-firma .vhs-film{height:clamp(300px,29vw,405px)}
+.vhb-firma .hero-video-backdrop img,.vhb-firma .hero-video-backdrop video{object-position:50% 40%}
+/* 2. A clean facing-page composition; photography extends to the edge. */
+.vhb-doppia .vhb-spread{display:grid;grid-template-columns:.9fr 1.1fr;min-height:500px;max-width:1440px;margin:auto}
+.vhb-doppia .vhb-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:45px 42px;min-width:0}
+.vhb-doppia h1{font-size:clamp(76px,7.8vw,116px);letter-spacing:-.055em}
+.vhb-doppia .vhs-subtitle{margin-top:30px;max-width:25ch}
+.vhb-doppia .vhs-film{border-radius:0 0 0 40px;min-height:500px}
+.vhb-doppia .hero-video-backdrop img,.vhb-doppia .hero-video-backdrop video{object-position:48% 50%}
+/* 3. A white threshold belongs to the image frame rather than floating on it. */
+.vhb-soglia .vhb-scene{height:540px;position:relative;max-width:1440px;margin:auto}
+.vhb-soglia .vhs-film{position:absolute;inset:0;border-radius:0}
+.vhb-soglia .vhb-copy{position:absolute;bottom:-1px;left:0;z-index:2;width:49%;padding:27px 42px 18px;background:#faf9f6;border-radius:0 20px 0 0}
+.vhb-soglia h1{font-size:clamp(76px,7.8vw,116px);letter-spacing:-.055em}
+.vhb-soglia .vhs-subtitle{font-size:19px;max-width:29ch;margin-top:22px}
+.vhb-soglia .hero-video-backdrop img,.vhb-soglia .hero-video-backdrop video{object-position:50% 35%}
+/* 4. An oval cut follows the food, with clear space for the restaurant name. */
+.vhb-ovale .vhb-inner{display:grid;grid-template-columns:.9fr 1.15fr;gap:34px;align-items:center;padding:30px 40px 10px;min-height:510px}
+.vhb-ovale .vhb-copy{min-width:0}
+.vhb-ovale h1{font-size:clamp(76px,7.8vw,116px);letter-spacing:-.055em}
+.vhb-ovale .vhs-subtitle{margin-top:28px;max-width:23ch}
+.vhb-ovale .vhs-film{height:450px;border-radius:50%}
+.vhb-ovale .hero-video-toggle{right:16%;bottom:20%}
+.vhb-ovale .hero-video-backdrop img,.vhb-ovale .hero-video-backdrop video{object-position:48% 50%}
+/* 5. The moving photograph opens first; the brand sits in a quiet lower band. */
+.vhb-panorama .vhs-film{height:360px;border-radius:0}
+.vhb-panorama .hero-video-backdrop img,.vhb-panorama .hero-video-backdrop video{object-position:50% 28%}
+.vhb-panorama .vhb-title-row{display:grid;grid-template-columns:1.35fr 1fr;gap:50px;align-items:center;padding:26px 40px 5px;max-width:1280px;margin:auto}
+.vhb-panorama h1{font-size:clamp(76px,8.4vw,122px);letter-spacing:-.055em}
+.vhb-panorama .vhs-subtitle{justify-self:end;max-width:27ch}
+@media(min-width:821px) and (max-width:1100px){
+ .vhb-firma h1{font-size:86px}.vhb-doppia h1,.vhb-ovale h1,.vhb-soglia h1{font-size:72px}
+ .vhb-doppia .vhb-copy{padding:28px}.vhb-soglia .vhb-copy{width:53%;padding:25px 28px 18px}
+ .vhb-ovale .vhb-inner{gap:22px;padding-inline:28px}.vhb-ovale .vhs-film{height:390px}
+}
+@media(max-width:820px){
+ .vhb-hero .vhs-prefix{font-size:21px;margin-bottom:5px}
+ .vhb-hero .vhs-subtitle{font-size:17px;line-height:1.45;max-width:30ch}
+ .vhb-hero .vhs-action-base{padding:18px 20px 22px}
+ .vhb-firma .vhb-inner{padding:22px 20px 0}
+ .vhb-firma .vhb-title-row{display:block;margin-bottom:20px}
+ .vhb-firma h1,.vhb-doppia h1,.vhb-soglia h1,.vhb-ovale h1,.vhb-panorama h1{font-size:clamp(53px,14.5vw,94px);letter-spacing:-.055em}
+ .vhb-firma .vhs-subtitle{margin-top:14px;max-width:28ch}
+ .vhb-firma .vhs-film{height:225px}
+ .vhb-firma .hero-video-backdrop img,.vhb-firma .hero-video-backdrop video{object-position:45% 50%}
+ .vhb-doppia .vhb-spread{display:flex;flex-direction:column;min-height:0}
+ .vhb-doppia .vhb-copy{padding:23px 22px 20px;order:0}
+ .vhb-doppia .vhs-subtitle{margin-top:14px;max-width:29ch}
+ .vhb-doppia .vhs-film{height:245px;min-height:0;border-radius:0 0 0 34px;order:1;margin-left:20px}
+ .vhb-doppia .hero-video-backdrop img,.vhb-doppia .hero-video-backdrop video{object-position:48% 50%}
+ .vhb-soglia .vhb-scene{height:auto;padding-top:240px}
+ .vhb-soglia .vhs-film{height:280px;bottom:auto}
+ .vhb-soglia .vhb-copy{position:relative;bottom:auto;width:calc(100% - 20px);padding:22px 22px 4px;border-radius:0 20px 0 0}
+ .vhb-soglia .vhs-subtitle{font-size:17px;margin-top:14px;max-width:28ch}
+ .vhb-soglia .hero-video-backdrop img,.vhb-soglia .hero-video-backdrop video{object-position:40% 45%}
+ .vhb-soglia .hero-video-toggle{top:14px;bottom:auto}
+ .vhb-ovale .vhb-inner{display:flex;flex-direction:column;gap:22px;align-items:stretch;padding:22px 20px 0;min-height:0}
+ .vhb-ovale .vhb-copy{text-align:center}
+ .vhb-ovale .vhs-subtitle{margin:15px auto 0;max-width:28ch}
+ .vhb-ovale .vhs-film{height:240px;width:100%;max-width:500px;margin:auto}
+ .vhb-ovale .hero-video-backdrop img,.vhb-ovale .hero-video-backdrop video{object-position:38% 50%}
+ .vhb-ovale .hero-video-toggle{right:16%;bottom:20%}
+ .vhb-panorama .vhs-film{height:250px}
+ .vhb-panorama .vhb-title-row{display:block;padding:21px 22px 0}
+ .vhb-panorama .vhs-subtitle{margin-top:14px;max-width:29ch}
+ .vhb-panorama .hero-video-backdrop img,.vhb-panorama .hero-video-backdrop video{object-position:42% 50%}
+}
+@media(max-width:359px){.vhb-firma h1,.vhb-doppia h1,.vhb-soglia h1,.vhb-ovale h1,.vhb-panorama h1{font-size:48px}.vhb-doppia .vhb-copy,.vhb-panorama .vhb-title-row,.vhb-soglia .vhb-copy{padding-inline:20px}}

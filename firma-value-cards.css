@@ -1,0 +1,23 @@
+/* Flour-white panels with green, light-grey and red outlines and matching icons. */
+:is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards{gap:24px;align-items:stretch}
+:is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards>.value-card{
+ width:100%;max-width:none;margin:0;padding:34px clamp(24px,2.5vw,40px);
+ border:1px solid var(--value-border);border-radius:14px;
+ background:var(--value-background);color:var(--value-ink);
+ box-shadow:0 4px 14px #00000006;
+}
+.value-card-italia{--value-background:#faf9f6;--value-border:#1a6b2a;--value-ink:#333;--value-icon:#1a6b2a}
+.value-card-lievitazione{--value-background:#faf9f6;--value-border:#a8a8a8;--value-ink:#333;--value-icon:#a8a8a8}
+.value-card-forno{--value-background:#faf9f6;--value-border:#cc1515;--value-ink:#333;--value-icon:#cc1515}
+:is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-card .value-icon{background:none;color:var(--value-icon);box-shadow:none;outline:none;border:0;margin-bottom:24px}
+:is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-card h3{color:var(--value-ink)}
+:is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-card p{color:#50504b;max-width:34ch}
+@media(max-width:820px) and (min-width:640px){
+ :is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards{gap:14px}
+ :is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards>.value-card{padding:26px 16px}
+ :is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-card h3{font-size:23px}
+}
+@media(max-width:639px){
+ :is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards{gap:20px}
+ :is(.firma-home-balanced,.firma-classic-preview) #chi-siamo .value-cards>.value-card{padding:28px 24px}
+}

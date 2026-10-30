@@ -1,0 +1,49 @@
+/* Two local alternatives; the frozen approved hero remains unchanged. */
+.firma-overlay-mockup{--firma-edge:clamp(28px,3vw,48px)}
+.firma-overlay-mockup .site-header{position:absolute;top:6px;background:transparent;color:#fff;box-shadow:none}
+.firma-overlay-mockup .site-header .site-header-inner{max-width:none;padding-inline:var(--firma-edge)}
+.firma-overlay-mockup .site-header .site-header-row{justify-content:flex-end}
+.firma-overlay-mockup .site-header-brand-wrap{display:none}
+.firma-overlay-mockup .site-header .site-header-link,.firma-overlay-mockup .site-header .site-header-config{color:#fff;font-size:13px}
+.firma-overlay-mockup .site-header .site-header-links{gap:22px}
+.firma-overlay-mockup .site-header .site-header-actions{gap:22px}
+.firma-overlay-mockup .site-header .home-order-button{padding-inline:18px}
+.firma-overlay-mockup .site-header .language-picker-trigger{color:#fff}
+.firma-overlay-mockup .site-header a:focus-visible,.firma-overlay-mockup .site-header button:focus-visible{outline-color:#fff}
+.firma-overlay-mockup .site-header .language-picker-options [role=option]:focus-visible{outline-color:#1a6b2a}
+.firma-overlay-mockup .firma-video.home-hero{margin-top:0}
+.firma-overlay-mockup .vhb-firma.firma-video .vhs-film{display:block;height:100svh;min-height:0}
+.firma-overlay-mockup .firma-video .hero-video-backdrop{height:100%;bottom:0}
+.firma-overlay-mockup .firma-video .vhs-film:after{height:100%;bottom:0;background:linear-gradient(0deg,rgba(9,8,6,.90),rgba(9,8,6,.62) 16%,rgba(9,8,6,.17) 35%,transparent 55%),linear-gradient(180deg,rgba(0,0,0,.63),rgba(0,0,0,.30) 24%,transparent 48%)}
+.firma-overlay-mockup .firma-video-copy{top:24px;left:var(--firma-edge);right:var(--firma-edge);text-align:left;justify-items:start}
+.firma-overlay-mockup .firma-video .vhs-action-base{position:absolute;inset:auto 0 18px;background:transparent;backdrop-filter:none;box-shadow:none}
+.firma-overlay-mockup .vhs-actions>a:focus-visible{outline-color:#fff}
+.firma-hero-logo{position:absolute;z-index:2;top:24px;left:var(--firma-edge);width:clamp(240px,24vw,350px)}
+.firma-hero-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 3px 12px #0003)}
+.firma-menu-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;padding:10px;border:1px solid #ffffff60;border-radius:14px;background:#00000024;color:#fff;cursor:pointer}
+.firma-menu-toggle svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.firma-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(hover:hover){.firma-overlay-mockup .site-header .site-header-link:hover,.firma-overlay-mockup .site-header .site-header-config:hover{color:#fff;text-decoration:underline;text-underline-offset:5px}}
+@media(max-width:1099px){
+ .firma-menu-toggle{display:inline-flex}
+ .firma-overlay-mockup .site-header .site-header-actions{gap:8px}
+ .firma-overlay-mockup .site-header .site-header-links{display:none;position:absolute;top:78px;right:var(--firma-edge);min-width:235px;max-width:calc(100vw - 40px);padding:12px;border:1px solid #ffffff2b;border-radius:14px;background:#14120ff5;box-shadow:0 12px 32px #0004}
+ .firma-overlay-mockup .site-header .site-header-links.is-open{display:flex;flex-direction:column;align-items:stretch;gap:0}
+ .firma-overlay-mockup .site-header .site-header-links>a{display:flex;min-height:46px;align-items:center;padding:10px 12px}
+ .firma-overlay-mockup .site-header .site-header-config{display:flex}
+ .firma-overlay-mockup .site-header .home-order-button{margin-top:8px}
+}
+@media(max-width:820px){
+ .firma-overlay-mockup{--firma-edge:22px}
+ .firma-overlay-mockup .site-header .site-header-row{height:64px}
+ .firma-overlay-mockup .site-header .site-header-links{top:68px}
+ .firma-overlay-mockup .firma-video-copy{top:24px;gap:14px}
+ .firma-overlay-mockup .firma-video .vhs-action-base{bottom:8px;padding:18px 20px 22px}
+ .firma-overlay-mockup .vhb-firma.firma-video .hero-video-backdrop img,.firma-overlay-mockup .vhb-firma.firma-video .hero-video-backdrop video{height:100%;object-position:32% 50%}
+ .firma-hero-logo{top:22px;width:clamp(150px,52vw,210px)}
+}
+@media(max-width:359px){.firma-overlay-mockup{--firma-edge:17px}.firma-overlay-mockup .site-header .site-header-actions{gap:2px}}
+@media(max-height:600px) and (min-width:821px){
+ .firma-overlay-mockup .firma-video-copy{gap:10px}
+ .firma-overlay-mockup .vhb-firma.firma-video h1{font-size:clamp(64px,6.2vw,92px)}
+}
