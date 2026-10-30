@@ -9,7 +9,7 @@
  .home-responsive .site-header .site-header-links,.home-responsive .site-header .site-header-links.is-open,.home-responsive .site-header .firma-menu-toggle{display:none}
  .home-responsive .site-header .language-picker-trigger{color:#333}
  .home-responsive .vhb-firma.firma-video.home-hero{margin-top:70px;height:auto;min-height:0;background:#faf9f6}
- .home-responsive .vhb-firma.firma-video .vhb-inner{display:grid;grid-template-rows:auto minmax(min-content,1fr) auto;min-height:calc(100svh - 70px);min-height:calc(100dvh - 70px);padding:22px 20px max(16px,env(safe-area-inset-bottom));box-sizing:border-box}
+ .home-responsive .vhb-firma.firma-video .vhb-inner{display:grid;grid-template-rows:auto minmax(min-content,1fr) auto;min-height:calc(var(--mobile-hero-height,100svh) - 70px);padding:22px 20px max(16px,env(safe-area-inset-bottom));box-sizing:border-box}
  .home-responsive .vhb-firma.firma-video .vhs-film{display:contents;height:auto;min-height:0}
  .home-responsive .firma-video .vhs-film:after{display:none}
  .home-responsive .firma-video .firma-video-copy{position:static;inset:auto;display:block;grid-row:1;margin-bottom:20px;text-align:left}
@@ -17,7 +17,7 @@
  .home-responsive .vhb-firma.firma-video .vhs-prefix{font-size:21px;margin-bottom:5px;color:#242424}
  .home-responsive .vhb-firma.firma-video .vhs-name{color:#242424}
  .home-responsive .vhb-firma.firma-video .vhs-subtitle{margin-top:14px;max-width:28ch;color:#242424;font-size:17px;line-height:1.45}
- .home-responsive .firma-video .hero-video-backdrop{position:relative;inset:auto;grid-row:2;align-self:center;height:clamp(190px,30svh,300px);border-radius:14px;overflow:hidden;background:#30271e;opacity:1}
+ .home-responsive .firma-video .hero-video-backdrop{position:relative;inset:auto;grid-row:2;align-self:center;height:clamp(190px,calc(var(--mobile-hero-height,100svh) * .3),300px);border-radius:14px;overflow:hidden;background:#30271e;opacity:1}
  .home-responsive .vhb-firma.firma-video .hero-video-backdrop img,.home-responsive .vhb-firma.firma-video .hero-video-backdrop video{height:100%;object-position:45% 50%}
  .home-responsive .firma-video .vhs-action-base{position:static;inset:auto;grid-row:3;padding:18px 0 0;background:transparent;backdrop-filter:none;box-shadow:none}
  .home-responsive .firma-video .vhs-action-inner{width:100%;max-width:none}
@@ -26,14 +26,14 @@
  .home-responsive .vhs-hero .vhs-actions>a:focus-visible{outline-color:#1a6b2a}
 }
 @media(max-width:359px){.home-responsive .vhb-firma.firma-video h1{font-size:48px}}
-@media(max-width:820px) and (max-height:620px){
- .home-responsive .vhb-firma.firma-video .vhb-inner{padding-top:12px;padding-bottom:max(12px,env(safe-area-inset-bottom))}
- .home-responsive .firma-video .firma-video-copy{margin-bottom:12px}
- .home-responsive .vhb-firma.firma-video h1{font-size:clamp(40px,12vw,64px)}
- .home-responsive .vhb-firma.firma-video .vhs-prefix{font-size:18px;margin-bottom:3px}
- .home-responsive .vhb-firma.firma-video .vhs-subtitle{font-size:15px;line-height:1.35;margin-top:8px}
- .home-responsive .firma-video .hero-video-backdrop{height:clamp(110px,24svh,148px)}
- .home-responsive .firma-video .vhs-action-base{padding-top:12px}
- .home-responsive .vhs-hero .vhs-actions{gap:8px}
- .home-responsive .vhs-hero .vhs-actions>a{min-height:48px;padding:10px 12px;font-size:15px;line-height:1.2}
+@media(max-width:820px){
+ .home-responsive.mobile-hero-compact .vhb-firma.firma-video .vhb-inner{padding-top:12px;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+ .home-responsive.mobile-hero-compact .firma-video .firma-video-copy{margin-bottom:12px}
+ .home-responsive.mobile-hero-compact .vhb-firma.firma-video h1{font-size:clamp(40px,12vw,64px)}
+ .home-responsive.mobile-hero-compact .vhb-firma.firma-video .vhs-prefix{font-size:18px;margin-bottom:3px}
+ .home-responsive.mobile-hero-compact .vhb-firma.firma-video .vhs-subtitle{font-size:15px;line-height:1.35;margin-top:8px}
+ .home-responsive.mobile-hero-compact .firma-video .hero-video-backdrop{height:clamp(110px,calc(var(--mobile-hero-height,100svh) * .24),148px)}
+ .home-responsive.mobile-hero-compact .firma-video .vhs-action-base{padding-top:12px}
+ .home-responsive.mobile-hero-compact .vhs-hero .vhs-actions{gap:8px}
+ .home-responsive.mobile-hero-compact .vhs-hero .vhs-actions>a{min-height:48px;padding:10px 12px;font-size:15px;line-height:1.2}
 }
