@@ -1,0 +1,35 @@
+/* Approved vertical hero, confined to mobile screens. */
+@media(max-width:820px){
+ .mobile-hero-video.home-responsive .site-header{background:transparent;box-shadow:none;transition:background-color 240ms ease,box-shadow 240ms ease,color 240ms ease}
+ .mobile-hero-video.home-responsive .site-header .site-header-brand-wrap{opacity:0;visibility:hidden;pointer-events:none;transition:opacity 240ms ease,visibility 0s linear 240ms}
+ .mobile-hero-video.home-responsive .site-header.is-scrolled{background:#faf9f6;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a}
+ .mobile-hero-video.home-responsive .site-header.is-scrolled .site-header-brand-wrap{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
+ .mobile-hero-video.home-responsive .site-header:not(.is-scrolled) :is(a,button):focus-visible{outline-color:#fff}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video.home-hero{margin-top:0;padding:18px 12px 12px;background:#fff}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .vhb-inner{display:block;min-height:0;height:calc(var(--mobile-hero-height,100svh) - 30px);padding:0}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .vhs-film{display:block;position:relative;height:100%;min-height:0;border-radius:14px;overflow:hidden;background:#20170f;isolation:isolate}
+ .mobile-hero-video.home-responsive .firma-video .hero-video-backdrop{position:absolute;inset:0;align-self:auto;height:100%;border-radius:0;background:#20170f}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop img,
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop video{height:100%;width:100%;object-fit:cover;object-position:50% 50%}
+ .mobile-hero-video.home-responsive .firma-video .vhs-film:after{display:block;content:'';position:absolute;inset:0;height:100%;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.62),rgba(0,0,0,.25) 22%,transparent 42%,transparent 60%,rgba(0,0,0,.28) 76%,rgba(0,0,0,.75));pointer-events:none}
+ .mobile-hero-video.home-responsive .firma-video .firma-video-copy{position:absolute;inset:24px 22px auto;display:block;margin:0;z-index:2;text-align:left}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video :is(.vhs-name,.vhs-prefix,.vhs-subtitle){color:#fff}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video h1{text-shadow:0 2px 14px #0003}
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .vhs-subtitle{margin-top:14px;max-width:28ch;text-shadow:0 1px 12px #0005}
+ .mobile-hero-video.home-responsive .firma-video .vhs-action-base{position:absolute;inset:auto 18px 18px;grid-row:auto;padding:0;background:transparent;z-index:3}
+ .mobile-hero-video.home-responsive .firma-video .vhs-action-inner{width:100%}
+ .mobile-hero-video.home-responsive .vhs-hero .vhs-actions{width:100%;max-width:none;gap:10px}
+ .mobile-hero-video.home-responsive .vhs-hero .vhs-actions>a:focus-visible{outline-color:#fff}
+}
+@media(max-width:820px) and (prefers-reduced-motion:reduce){
+ .mobile-hero-video.home-responsive .site-header,
+ .mobile-hero-video.home-responsive .site-header .site-header-brand-wrap{transition:none}
+}
+@media(max-width:820px){
+ .mobile-hero-compact .mobile-hero-video.home-responsive .vhb-firma.firma-video .vhs-film{min-height:0}
+ .mobile-hero-compact .mobile-hero-video.home-responsive .firma-video .firma-video-copy{inset:18px 18px auto;margin:0}
+ .mobile-hero-compact .mobile-hero-video.home-responsive .vhb-firma.firma-video .vhs-subtitle{margin-top:8px}
+ .mobile-hero-compact .mobile-hero-video.home-responsive .firma-video .vhs-action-base{inset:auto 16px 16px;padding:0}
+ .mobile-hero-compact .mobile-hero-video.home-responsive .vhs-hero .vhs-actions{gap:8px}
+ .mobile-hero-compact .mobile-hero-video.home-responsive .vhs-hero .vhs-actions>a{min-height:44px;padding:9px 12px;font-size:15px;line-height:1.2}
+}
