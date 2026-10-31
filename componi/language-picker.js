@@ -38,7 +38,8 @@
     document.addEventListener('pointerdown',event=>{if(!wrapper.contains(event.target))close();});
     document.addEventListener('focusin',event=>{if(!wrapper.contains(event.target))close();});
     window.addEventListener('resize',()=>{if(!list.hidden)fit();});
-    select.addEventListener('change',update);window.addEventListener('pizza-language-change',update);window.addEventListener('pageshow',()=>{update();close();});
+    // A first pageshow can follow an early tap; only reset a restored BFCache page.
+    select.addEventListener('change',update);window.addEventListener('pizza-language-change',update);window.addEventListener('pageshow',event=>{update();if(event.persisted)close();});
     new MutationObserver(update).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
     new MutationObserver(update).observe(select,{attributes:true,attributeFilter:['aria-label']});
     wrapper.append(trigger,list);wrapper.classList.add('language-picker');select.hidden=true;update();
