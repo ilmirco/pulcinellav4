@@ -1,10 +1,11 @@
 (() => {
   'use strict';
   function mount(select){
-    const wrapper=select.parentElement;if(wrapper.classList.contains('language-picker'))return;
+    const wrapper=select.parentElement;if(wrapper.querySelector('.language-picker-options'))return;
     const label=option=>option.textContent.replace(/[\u{1F1E6}-\u{1F1FF}]/gu,'').trim();
-    const trigger=document.createElement('button'),name=document.createElement('span'),list=document.createElement('ul'),flag=wrapper.querySelector('.language-flag');
-    const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg'),path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    // Adopt the configurator's first-paint markup instead of replacing a native select.
+    const trigger=wrapper.querySelector('.language-picker-trigger')||document.createElement('button'),name=trigger.querySelector('.language-picker-name')||document.createElement('span'),list=document.createElement('ul'),flag=wrapper.querySelector('.language-flag');
+    const arrow=trigger.querySelector('svg')||document.createElementNS('http://www.w3.org/2000/svg','svg'),path=arrow.querySelector('path')||document.createElementNS('http://www.w3.org/2000/svg','path');
     trigger.type='button';trigger.className='language-picker-trigger';trigger.id=select.id+'-trigger';trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');trigger.setAttribute('data-no-translate','');
     name.className='language-picker-name';arrow.setAttribute('viewBox','0 0 20 20');arrow.setAttribute('aria-hidden','true');path.setAttribute('d','m5 8 5 5 5-5');arrow.append(path);
     list.className='language-picker-options';list.id=select.id+'-options';list.setAttribute('role','listbox');list.setAttribute('data-no-translate','');list.hidden=true;

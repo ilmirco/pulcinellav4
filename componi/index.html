@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#FAF9F6">
+  <meta name="site-release" content="20261031-composer-stable-startup">
   <meta name="description" content="Componi le tue pizze Pulcinella, aggiungi focacce e sfizi dal menu e prepara il tuo ordine con un riepilogo PDF.">
   <title>Componi la tua pizza · Pizzeria Pulcinella, Patù</title>
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="refinements.css?v=20261027-pizza-mobile-grande">
+  <link rel="preload" href="assets/dm-sans-variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="refinements.css?v=20261031-stable-startup">
   <link rel="stylesheet" href="language-picker.css">
   <script src="asset-files.js?v=20261027-finiture-mobile" defer></script>
   <script src="recipe-previews.js?v=20261027-finiture-mobile" defer></script>
   <script src="ingredient-icons.js" defer></script>
   <script src="i18n-catalog.js?v=20261027-note-messaggio" defer></script>
   <script src="i18n.js" defer></script>
+  <script src="language-picker.js?v=20261031-stable-startup" defer></script>
   <script src="pizza.js?v=20261027-finiture-mobile" defer></script>
   <script src="formats.js" defer></script>
   <script src="preview-engine.js" defer></script>
@@ -34,7 +37,6 @@
   <script src="pizza-picker-ui.js" defer></script>
   <script src="experience-ui.js?v=20261027-condivisione" defer></script>
   <script src="app.js?v=20261027-finiture-mobile" defer></script>
-  <script src="language-picker.js" defer></script>
   <link rel="stylesheet" href="../site-header.css">
   <script src="../site-header-copy.js" defer></script>
   <script src="../site-header.js?v=20261030-release" defer></script>
@@ -45,7 +47,12 @@
 <script src="../site-header-approved.js?v=20261030-release" defer></script>
 <link rel="stylesheet" href="../mobile-header.css?v=20261031-unified-picker">
 </head>
-<body>
+<body data-composer-view="ingredients" data-composer-expanded="false">
+  <!-- Keep the first paint in the same responsive mode as mobile-ui.js. -->
+  <script>
+    if(matchMedia('(max-width:820px) and (orientation:portrait), (max-width:500px)').matches)document.body.classList.add('mobile-composer');
+    try{const codes=['it','en','fr','de','es','pt','zh','sv','nl','ru'],requested=new URL(location.href).searchParams.get('lang'),saved=localStorage.getItem('preferredLanguage');document.documentElement.lang=codes.includes(requested)?requested:codes.includes(saved)?saved:'it';}catch{}
+  </script>
   <a class="skip-link" href="#ingredienti">Vai agli ingredienti</a>
   <div class="site-tricolore" aria-hidden="true"></div>
 <nav class="site-header" data-approved-header data-mobile-simple-header aria-label="Navigazione principale" data-home-path="../" data-config-path="./" data-no-translate>
@@ -71,8 +78,10 @@
                     </div>
 
                     <!-- Language Switcher -->
-                    <div class="home-language-switch"><span id="language-flag" class="language-flag" data-language="it" aria-hidden="true"></span>
-                    <select id="config-language" aria-label="Seleziona la lingua" class="bg-transparent text-brand-black border border-gray-300 text-xl rounded-md focus:ring-brand-green focus:border-brand-green block p-1.5 cursor-pointer outline-none shadow-sm"></select></div>
+                    <div class="home-language-switch language-picker">
+                    <button type="button" id="config-language-trigger" class="language-picker-trigger" aria-label="Seleziona la lingua: Italiano" aria-haspopup="listbox" aria-expanded="false" aria-controls="config-language-options" data-no-translate><span id="language-flag" class="language-flag" data-language="it" aria-hidden="true"></span><span class="language-picker-name">Italiano</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg></button>
+                    <select id="config-language" aria-label="Seleziona la lingua" hidden></select></div>
+                    <script>document.getElementById('language-flag').dataset.language=document.documentElement.lang;</script>
                 </div>
             </div>
         </div>
