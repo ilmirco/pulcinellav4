@@ -11,6 +11,9 @@
 .home-responsive.firma-home-balanced #chi-siamo [data-i18n=phil_title]{font-size:var(--home-story-title);line-height:1.2;letter-spacing:-.02em;margin:0 0 var(--home-story-title-gap)}
 .home-responsive.firma-home-balanced #chi-siamo [data-i18n=phil_desc]{max-width:60ch;margin:0 auto;font-size:var(--home-story-copy);line-height:1.65}
 .home-responsive.firma-home-balanced #chi-siamo .value-cards{margin-top:var(--home-story-group-gap)}
+/* Group labels; long translations can wrap inside the group, never before its bullet. */
+#rosticceria .whitespace-nowrap{white-space:nowrap}
+#rosticceria .rosticceria-item{max-width:100%}
 @media(min-width:821px){
  .home-responsive{
   --home-story-title:2.5rem;
