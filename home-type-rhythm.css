@@ -1,0 +1,22 @@
+/* Story section: align the introductory copy with the homepage's body scale. */
+.home-responsive{
+ --home-story-title:2rem;
+ --home-story-copy:1rem;
+ --home-story-space:3.5rem;
+ --home-story-title-gap:1rem;
+ --home-story-group-gap:2rem;
+}
+.home-responsive.firma-home-balanced #chi-siamo{padding-block:var(--home-story-space)}
+.home-responsive.firma-home-balanced #chi-siamo [data-i18n=phil_label]{margin:0 0 .5rem;font-size:.8125rem;line-height:1.5;letter-spacing:.1em}
+.home-responsive.firma-home-balanced #chi-siamo [data-i18n=phil_title]{font-size:var(--home-story-title);line-height:1.2;letter-spacing:-.02em;margin:0 0 var(--home-story-title-gap)}
+.home-responsive.firma-home-balanced #chi-siamo [data-i18n=phil_desc]{max-width:60ch;margin:0 auto;font-size:var(--home-story-copy);line-height:1.65}
+.home-responsive.firma-home-balanced #chi-siamo .value-cards{margin-top:var(--home-story-group-gap)}
+@media(min-width:821px){
+ .home-responsive{
+  --home-story-title:2.5rem;
+  --home-story-copy:1.125rem;
+  --home-story-space:4.5rem;
+  --home-story-title-gap:1.5rem;
+  --home-story-group-gap:3rem;
+ }
+}
