@@ -26,7 +26,8 @@
     if(!video.getAttribute('src')){video.src=video.dataset.src;video.load();}
     if(video.paused&&!pending){
       pending=true;
-      video.play().catch(()=>{if(wanted()){userPaused=true;}}).finally(()=>{pending=false;if(!wanted())video.pause();syncLabel();});
+      const requestedSource=video.src;
+      video.play().catch(()=>{if(video.src===requestedSource&&wanted()){userPaused=true;}}).finally(()=>{pending=false;if(!wanted())video.pause();syncLabel();});
     }
   }
   function syncLabel(){
