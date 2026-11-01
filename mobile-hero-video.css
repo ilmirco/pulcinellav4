@@ -14,6 +14,9 @@
  .mobile-hero-video.home-responsive .firma-video .hero-video-backdrop{position:absolute;inset:0;align-self:auto;height:100%;border-radius:0;background:#20170f}
  .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop img,
  .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop video{height:100%;width:100%;object-fit:cover;object-position:50% 50%}
+ /* Keep video and startup poster equally vivid on mobile. */
+ .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop :is(img,video){filter:saturate(1.14) contrast(1.04)}
+ html[data-hero-color=original] .mobile-hero-video.home-responsive .vhb-firma.firma-video .hero-video-backdrop :is(img,video){filter:none}
  .mobile-hero-video.home-responsive .firma-video .vhs-film:after{display:block;content:'';position:absolute;inset:0;height:100%;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.28) 18%,transparent 34%,transparent 58%,rgba(0,0,0,.46) 65%,rgba(0,0,0,.68) 82%,rgba(0,0,0,.78));pointer-events:none}
  .mobile-hero-video.home-responsive .firma-video .firma-video-copy{position:absolute;inset:24px 22px auto;display:block;margin:0;z-index:2;text-align:left}
  .mobile-hero-video.home-responsive .vhb-firma.firma-video :is(.vhs-name,.vhs-prefix,.vhs-subtitle){color:#fff}
@@ -38,4 +41,34 @@
  .mobile-hero-compact .mobile-hero-video.home-responsive .firma-video .vhs-action-base{inset:auto 16px 23px;padding:0}
  .mobile-hero-compact .mobile-hero-video.home-responsive .vhs-hero .vhs-actions{gap:8px}
  .mobile-hero-compact .mobile-hero-video.home-responsive .vhs-hero .vhs-actions>a{min-height:44px;padding:9px 12px;font-size:15px;line-height:1.2}
+}
+
+/* Approved two-stage entry: 200ms for the name, 300ms for the hero. */
+@media(max-width:820px){
+ html[data-hero-entrance]{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)}
+ html[data-hero-entrance=playing] .mobile-hero-video .vhs-actions>a{animation:hero-action-arrive 180ms var(--ease-out) both}
+ html[data-hero-entrance=preparing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-film{opacity:0;clip-path:inset(50% round 0)}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-film{animation:hero-title-first 200ms var(--ease-out) both,hero-title-expand 300ms var(--ease-in-out) 200ms forwards}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .firma-video-copy{animation:none;opacity:1;transform:none}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-subtitle{animation:hero-title-caption 120ms var(--ease-out) 350ms both}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-actions>a{animation-duration:180ms}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-actions>a:nth-child(1){animation-delay:220ms}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-actions>a:nth-child(2){animation-delay:270ms}
+ html[data-hero-entrance=playing][data-hero-entrance-variant=title] .mobile-hero-video .vhs-actions>a:nth-child(3){animation-delay:320ms}
+ @keyframes hero-title-first{
+  from{clip-path:inset(var(--title-origin-y) calc(100% - var(--title-origin-x)) calc(100% - var(--title-origin-y)) var(--title-origin-x) round 0);opacity:0}
+  18%{opacity:1}
+  to{clip-path:inset(var(--title-inset-top) var(--title-inset-right) var(--title-inset-bottom) var(--title-inset-left) round 12px);opacity:1}
+ }
+ @keyframes hero-title-expand{
+  from{clip-path:inset(var(--title-inset-top) var(--title-inset-right) var(--title-inset-bottom) var(--title-inset-left) round 12px)}
+  to{clip-path:inset(calc(var(--title-inset-top) - var(--title-expand-distance)) calc(var(--title-inset-right) - var(--title-expand-distance)) calc(var(--title-inset-bottom) - var(--title-expand-distance)) calc(var(--title-inset-left) - var(--title-expand-distance)) round 14px)}
+ }
+ @keyframes hero-title-caption{from{opacity:0}to{opacity:1}}
+ @keyframes hero-action-arrive{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+ @keyframes hero-entry-fade{from{opacity:.65}to{opacity:1}}
+}
+@media(max-width:820px) and (prefers-reduced-motion:reduce){
+ html[data-hero-entrance=playing] .mobile-hero-video :is(.vhs-film,.firma-video-copy,.vhs-actions>a){animation:none}
+ html[data-hero-entrance=reduced] .mobile-hero-video .hero-video-backdrop{animation:hero-entry-fade 180ms var(--ease-out) both}
 }
