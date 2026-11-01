@@ -3,6 +3,16 @@
   function create({P,M,Q,assets,drawPiece}){
     const bases=new Map(),sources=new Map(),surfaces=new Map(),buffers=new Map();
     function layer(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
+    function slimMetreRim(image){
+      const w=image.width,h=image.height,result=layer(w,h),ctx=result.getContext('2d');
+      // Compress only the photographed edge bands; the centre fills the released
+      // space. Keeping the canvas size preserves the 100 x 35 cm footprint.
+      const sx=[0,Math.round(w*.07),Math.round(w*.93),w],sy=[0,Math.round(h*.18),Math.round(h*.82),h];
+      const dx=[0,Math.round(sx[1]*.6),w-Math.round((w-sx[2])*.6),w],dy=[0,Math.round(sy[1]*.6),h-Math.round((h-sy[2])*.6),h];
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+      for(let row=0;row<3;row++)for(let col=0;col<3;col++)ctx.drawImage(image,sx[col],sy[row],sx[col+1]-sx[col],sy[row+1]-sy[row],dx[col],dy[row],dx[col+1]-dx[col],dy[row+1]-dy[row]);
+      return result;
+    }
     function source(format,index){
           const key=format+':'+index;if(sources.has(key))return sources.get(key);
           const file=format==='half'?Q.halfFiles.flat()[index]:Q.atlasFiles[Math.floor(index/3)],image=assets[file];
@@ -21,7 +31,7 @@
           const key=format+':'+index;if(bases.has(key)){const cached=bases.get(key);bases.delete(key);bases.set(key,cached);continue;}
           const plan=P.baseLayers({tomato:Math.floor(index/3),fior:index%3}),extra=n=>n===null?null:source(format,n);
           const result=plan.rim===undefined?root.PizzaBaseSurface.compose(source(format,plan.foundation),extra(plan.tomato),extra(plan.fior),'rectangle'):root.PizzaBaseSurface.composeDough(source(format,plan.foundation),source(format,plan.rim),'rectangle');
-          bases.set(key,result);if(bases.size>6)bases.delete(bases.keys().next().value);
+          bases.set(key,format==='meter'?slimMetreRim(result):result);if(bases.size>6)bases.delete(bases.keys().next().value);
       }
     }
     function photo(ctx,index,format,w,h){const img=bases.get(format+':'+index),g=Q.geometry(format);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(img,g.left/g.width*w,g.top/g.height*h,(g.right-g.left)/g.width*w,(g.bottom-g.top)/g.height*h);}
@@ -52,6 +62,7 @@
       edge.globalCompositeOperation='source-in';edge.drawImage(base.cheese,0,0);ctx.save();ctx.globalAlpha=.85;ctx.drawImage(work.edge,0,0);ctx.restore();ctx.drawImage(work.fresh,0,0);
       for(const key of ['base','servings','oliveGarnish','surfaceBlend','pieceCount','ovenCount','finishCount','foundation'])delete target.dataset[key];
       target.dataset.baseMode='ingredient-layers-v33';
+      if(design.format==='meter')target.dataset.crustProfile='slim-metre-v1';else delete target.dataset.crustProfile;
       target.dataset.format=design.format;target.dataset.sections=JSON.stringify(parts);target.dataset.activeSection=String(design.active);target.dataset.toppingCount=String(all.length);target.dataset.sectionCounts=JSON.stringify(parts.map((_,i)=>all.filter(p=>p.section===i).length));target.dataset.coBakedCount=String(all.filter(p=>p.coBaked).length);target.dataset.dimensions=`${Q.formats[design.format].length}x35`;target.dataset.baseIndices=JSON.stringify(parts.map(p=>(p.tomato||0)*3+P.visualFior(p)));target.dataset.integration='rectangular-co-baked-v19';target.dataset.meltedCount=String(all.filter(p=>M.profile(p.type).melted).length);target.dataset.bufalaStyle='melted-white-islands';
       const counts={};for(const p of all)counts[p.type]=(counts[p.type]||0)+1;target.dataset.ingredientCounts=JSON.stringify(counts);target.dataset.visualFior=JSON.stringify(parts.map(p=>P.visualFior(p)));
       target.dataset.basePhotoSource=design.format==='half'?'dedicated-half-v21':'native-metre-v21';target.dataset.basePhotoFiles=JSON.stringify(Q.photoFiles(design));target.dataset.basePhotoSizes=JSON.stringify(parts.map(p=>{const img=bases.get(design.format+':'+((p.tomato||0)*3+P.visualFior(p)));return{width:img.width,height:img.height};}));

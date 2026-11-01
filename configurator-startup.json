@@ -1,5 +1,5 @@
 {
-  "version": "4.12-bordo-solo-impasto",
+  "version": "4.13-bordo-metro-sottile",
   "resources": [
     "componi/assets/base-rossa-fior-v26.webp",
     "componi/assets/forno-carni-v15.webp",
@@ -26,7 +26,7 @@
     "componi/materials.js",
     "componi/ingredient-assets.js",
     "componi/base-surface.js?v=20261027-finiture-mobile",
-    "componi/long-renderer.js?v=20261027-finiture-mobile",
+    "componi/long-renderer.js?v=20261101-metro-bordo-sottile",
     "componi/vendor/pdf-lib.min.js",
     "componi/order.js",
     "componi/pizza-personal.js",
