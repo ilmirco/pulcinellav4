@@ -1,6 +1,6 @@
 (function(root){
   'use strict';
-  function create({getComposition,getOrder,isReady,restore,startNewPizza,openOrder,renderThumbnail,makePizzaFile,makeOrderFile,announce}){
+  function create({getComposition,getOrder,isReady,restore,startNewPizza,openOrder,renderThumbnail,makePizzaFile,makeOrderFile,announce,orderShareAsImage=false}){
     const F=root.PizzaPersonal,Q=root.PizzaFormats,O=root.PizzaOrder,I=root.PizzaI18n,$=s=>document.querySelector(s),storage='pulcinella-favorites-v1';
     let favorites=F.create(),revision=0,favoriteKeys=new Map(),favoritesView=false,favoritesRenderKey='',variationKey='',shareGeneration=0,shareURL=null,shareFile=null,shareText='';
     const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
@@ -83,15 +83,18 @@
     if(root.ResizeObserver&&noticeBar)new ResizeObserver(positionNotice).observe(noticeBar);
     root.addEventListener('resize',positionNotice,{passive:true});positionNotice();
     function clearShare(){shareGeneration++;shareFile=null;if(shareURL){URL.revokeObjectURL(shareURL);shareURL=null;}$('#share-download').removeAttribute('href');}
-    async function openShare(value,orderMode=false){
+    async function openShare(value,orderMode=false,autoDownload=false){
       clearShare();const generation=shareGeneration,dialog=$('#share-dialog'),download=$('#share-download'),native=$('#share-native');
-      shareText=orderMode?F.orderText(value):['Pizzeria Pulcinella · Patù',F.pizzaText(value),'pulcinellapatu.it'].join('\n');$('#share-title').textContent=I.text(orderMode?'Condividi l’ordine':'Condividi la pizza');
+      shareText=orderMode?F.orderText(value):['Pizzeria Pulcinella · Patù',F.pizzaText(value),'pulcinellapatu.it'].join('\n');
+      if(orderMode&&orderShareAsImage){const contact=I.text('Per ordinare, chiama 339 8390660');if(shareText.endsWith(contact))shareText=shareText.slice(0,-contact.length).trimEnd();shareText+='\npulcinellapatu.it';}
+      $('#share-title').textContent=I.text(orderMode?'Condividi l’ordine':'Condividi la pizza');
       const description=$('#share-description');description.setAttribute('data-no-translate','');description.textContent=shareText;
       $('#share-status').textContent=I.text('Prepariamo la condivisione…');$('#share-manual-copy').hidden=true;download.hidden=true;native.disabled=true;native.hidden=typeof navigator.share!=='function';
       $('#share-thumbnail').hidden=orderMode;if(!orderMode)renderThumbnail($('#share-thumbnail'),value.design);dialog.showModal();
       try{
         const file=await(orderMode?makeOrderFile(value):makePizzaFile(value));if(generation!==shareGeneration||!dialog.open)return;
-        shareFile=file;shareURL=URL.createObjectURL(file);download.href=shareURL;download.download=file.name;download.textContent=I.text(orderMode?'Scarica PDF':'Scarica immagine');download.hidden=false;native.disabled=false;$('#share-status').textContent='';
+        shareFile=file;shareURL=URL.createObjectURL(file);download.href=shareURL;download.download=file.name;download.textContent=I.text(file.type.startsWith('image/')?'Scarica immagine':'Scarica PDF');download.hidden=false;native.disabled=false;$('#share-status').textContent='';
+        if(autoDownload)download.click();
       }catch{if(generation===shareGeneration){$('#share-status').textContent=I.text('Impossibile preparare il file. Puoi copiare il riepilogo.');native.disabled=false;}}
     }
     $('#share-pizza').addEventListener('click',()=>{if(isReady())openShare(current());});
@@ -109,7 +112,7 @@
     root.addEventListener('storage',event=>{if(event.key===storage){readFavorites();sync();}});
     root.addEventListener('pizza-panel-change',event=>{if(event.detail.panel==='menu')renderFavorites();});
     function refreshLanguage(){dismissNotice();favoritesRenderKey=variationKey='';sync();$('#favorites-toggle').setAttribute('aria-label',I.text(favoritesView?'Mostra le pizze del menu':'Mostra le pizze preferite'));if($('#share-dialog').open)$('#share-dialog').close();}
-    readFavorites();sync();return{sync,confirm,refreshLanguage};
+    readFavorites();sync();return{sync,confirm,refreshLanguage,sharePizza:value=>openShare(value),downloadPizza:value=>openShare(value,false,true)};
   }
   root.PizzaExperienceUI={create};
 })(window);

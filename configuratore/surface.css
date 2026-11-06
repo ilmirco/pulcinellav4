@@ -1,4 +1,4 @@
-/* Quiet stone only on the worktop; solid flour-white navigation and pantry. */
+/* Flour-white worktop, shared home header geometry and mobile pizza controls. */
 .banco-vivo .screen,.banco-vivo .screen.is-expanded{grid-template-rows:calc(56px + env(safe-area-inset-top,0px)) var(--scene-height,360px) minmax(0,1fr) calc(68px + env(safe-area-inset-bottom,0px));background:#f6f6f2}
 .banco-vivo .bench-heading{grid-template-columns:minmax(0,1fr) 56px;padding-top:calc(5px + env(safe-area-inset-top,0px));padding-bottom:5px}
 .banco-vivo .bench-heading{background:#fff;border-bottom:1px solid #e2e4df}
@@ -64,3 +64,21 @@
 .banco-vivo .scene .entry-lid .cover-inside{transform:rotateX(180deg);background:#f8f9f4;border-bottom-width:2px}
 @media(prefers-reduced-motion:reduce){.banco-vivo .screen.box-awaiting .scene .entry-lid,.banco-vivo .screen.box-opening .scene .entry-lid{display:none}.banco-vivo .screen.box-awaiting .scene .pizza{visibility:visible}.banco-vivo .screen.sheet-settling .worktop-backdrop{transition:none}}
 @media(max-width:359px){.banco-vivo .bench-heading{grid-template-columns:minmax(0,1fr) auto 52px}.banco-vivo .bench-brand{width:104px}.banco-vivo .pizza-context{padding-left:8px;padding-right:8px}.banco-vivo .pizza-context .pizza-name{font-size:14px}.banco-vivo .pizza-context .format{padding-left:6px;padding-right:6px}.banco-vivo .pizza-context .format-line{font-size:10px}.banco-vivo .ingredients-drawer .portion-step{grid-template-columns:28px minmax(0,1fr) 28px}.banco-vivo .ingredients-drawer .portion-step button{width:28px}.banco-vivo .ingredients-drawer .portion-step button:before{width:24px;height:24px}.banco-vivo .ingredients-drawer .portion-label{font-size:10px}}
+
+/* Same 6 px tricolour + 64 px row, 52 px logo and 72 x 44 picker as home. */
+.banco-vivo .screen{--workspace-header-height:calc(70px + env(safe-area-inset-top,0px))}
+.banco-vivo .screen,.banco-vivo .screen.is-expanded{grid-template-rows:var(--workspace-header-height) var(--scene-height,360px) minmax(0,1fr) calc(68px + env(safe-area-inset-bottom,0px))}
+.banco-vivo .bench-heading{position:relative;grid-template-columns:minmax(0,1fr) 72px;gap:0;padding:calc(6px + env(safe-area-inset-top,0px)) 16px 0;border:0;background:#faf9f6;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a;z-index:8}
+.banco-vivo .bench-heading:before{content:'';position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;height:6px;background:linear-gradient(to right,#1a6b2a 33.33%,#fff 33.33%,#fff 66.66%,#cc1515 66.66%)}
+.banco-vivo .bench-brand{width:calc(52px * 1688 / 621);height:52px;max-width:none;padding:0}
+.banco-vivo .bench-brand img{display:block;width:auto;height:52px;max-width:none}
+.banco-vivo .bench-heading .language{display:flex;align-items:center;justify-content:center;width:72px;min-width:72px;height:44px;min-height:44px;padding:8px 10px;gap:8px;transform:translateX(-2px);border:1px solid #e4e0d8;border-radius:8px;background:#fff;color:#333;box-shadow:0 1px 4px #0000001a}
+.banco-vivo .bench-heading .language>svg{display:block;width:12px;height:12px;flex:none;stroke-width:1.8}
+.banco-vivo .bench-heading .flag,.banco-vivo .bench-heading .flag:before{width:30px;height:21px;flex:none}
+.banco-vivo .worktop-backdrop{top:var(--workspace-header-height)}
+.banco-vivo .scene{display:grid;grid-template-columns:var(--pack-width,300px) 44px;column-gap:6px;grid-template-rows:minmax(0,1fr);align-items:center;justify-items:center;justify-content:center;align-content:center;padding:4px 8px;min-height:0;overflow:hidden}
+.banco-vivo .scene>.pack{grid-column:1;grid-row:1}
+.banco-vivo .workspace-tools{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.banco-vivo .workspace-tools button{width:44px;min-width:44px;height:44px;min-height:44px;padding:11px;border:1px solid #deddd5;border-radius:50%;background:#fff;box-shadow:0 2px 4px #20202012}
+.banco-vivo .screen.is-expanded .workspace-tools{visibility:hidden;pointer-events:none}
+@media(max-width:820px){body.refined-banco{padding:0}.refined-banco .studies{width:100%;max-width:none}.refined-banco .screen{width:100%;height:100dvh!important;border-radius:0;box-shadow:none}.refined-banco .phone-shell{border-radius:0}}

@@ -7,3 +7,4 @@ html.studio-order-host body>dialog[open]{visibility:visible}
 .studio-order-host .studio-options-dialog .pizza-note{margin:12px 0 20px}
 .studio-order-host .studio-options-dialog .pizza-options{margin-bottom:20px}
 .studio-order-host .studio-options-dialog .studio-options-done{width:100%;min-height:48px}
+.studio-order-host .zoom-dialog :is(.studio-share-pizza,.studio-download-pizza){width:100%;min-height:48px;margin:8px 0;background:#fff;color:#242424;border:1px solid #deddd5;border-radius:14px}

@@ -50,8 +50,8 @@
  const t=(m,key)=>copies[m.lang][key]||key;
  const toolLabels={it:['Annulla','Riparti dalla Margherita','La tua pizza da vicino'],en:['Undo','Start again with Margherita','Your pizza up close'],fr:['Annuler','Repartir de la Margherita','Votre pizza de près'],de:['Rückgängig','Mit Margherita neu beginnen','Deine Pizza aus der Nähe'],es:['Deshacer','Volver a la Margherita','Tu pizza de cerca'],pt:['Desfazer','Recomeçar com Margherita','A sua pizza de perto'],zh:['撤销','重新制作玛格丽特','近距离查看披萨'],sv:['Ångra','Börja om med Margherita','Din pizza på nära håll'],nl:['Ongedaan maken','Opnieuw beginnen met Margherita','Je pizza van dichtbij'],ru:['Отменить','Начать с Маргариты','Ваша пицца крупным планом']};
  const toolIcons=['<path d="M9 5 4 10l5 5M4 10h9a6 6 0 0 1 0 12"/>','<path d="M4 10a8 8 0 1 1 1 9M4 4v6h6"/>','<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6M10 7v6"/>'];
- for(const m of models){m.history=[];const tools=document.createElement('div');tools.className='workspace-tools';tools.innerHTML=['undo','reset','zoom'].map((action,n)=>`<button type="button" data-action="${action}" disabled${action==='zoom'?' aria-haspopup="dialog"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${toolIcons[n]}</svg></button>`).join('');m.screen.querySelector('.bench-heading').insertBefore(tools,m.screen.querySelector('.language'));}
- function syncTools(m){const labels=toolLabels[m.lang]||toolLabels.it;for(const [index,action]of ['undo','reset','zoom'].entries()){const button=m.screen.querySelector(`[data-action="${action}"]`);button.title=labels[index];button.setAttribute('aria-label',labels[index]);button.disabled=!api||(action==='undo'&&!m.history.length)||(action==='zoom'&&!m.previewReady);}}
+ for(const m of models){m.history=[];const tools=document.createElement('div');tools.className='workspace-tools';tools.setAttribute('role','group');tools.setAttribute('aria-label','Comandi della pizza');tools.innerHTML=['undo','reset','zoom'].map((action,n)=>`<button type="button" data-action="${action}" disabled${action==='zoom'?' aria-haspopup="dialog"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${toolIcons[n]}</svg></button>`).join('');m.screen.querySelector('.scene').append(tools);}
+ function syncTools(m){m.screen.querySelector('.workspace-tools').setAttribute('aria-label',phrase(m,'Componi la tua pizza'));const labels=toolLabels[m.lang]||toolLabels.it;for(const [index,action]of ['undo','reset','zoom'].entries()){const button=m.screen.querySelector(`[data-action="${action}"]`);button.title=labels[index];button.setAttribute('aria-label',labels[index]);button.disabled=!api||(action==='undo'&&!m.history.length)||(action==='zoom'&&!m.previewReady);}}
  function rememberChange(m){if(!Q||!m.design)return;m.history.push(Q.normalize(m.design));if(m.history.length>50)m.history.shift();}
  function restoreDesign(m,design){m.design=Q.normalize(design);syncDesign(m);renderShelf(m);copy(m);measure(m);requestPreview(m);}
  const label=(m,item)=>{if(item.id==='tomato')return{it:'Salsa di pomodoro',en:'Tomato sauce',es:'Salsa de tomate'}[m.lang]||t(m,'tomato');try{return frame.contentWindow.PizzaI18n.catalog[item.originalName||item.name]?.[m.lang]||item.name;}catch{return item.name;}};
@@ -76,7 +76,9 @@
   const state=m.screen.querySelector('.order-edit-state');state.hidden=!m.editingId;state.querySelector('span').textContent=t(m,'editing');state.querySelector('button').textContent=t(m,'cancelEdit');
   if(wasEditing!==!!m.editingId)measure(m);
  }
- function syncDesign(m){if(!Q||!m.design)return;m.servings=Q.current(m.design);m.format=m.design.format;m.aspect=Q.geometry(m.format).aspect;m.screen.dataset.format=m.format;}
+ function pizzaView(format){const g=Q.geometry(format);return format==='round'?{left:0,top:0,right:1,bottom:1,width:1,height:1,aspect:1}:{...g,left:g.left-1,top:g.top-1,right:g.right+1,bottom:g.bottom+1,aspect:(g.right-g.left+2)/(g.bottom-g.top+2)};}
+ function pizzaHit(m,x,y){const r=m.screen.querySelector('.pizza').getBoundingClientRect(),v=pizzaView(m.format);return Q.hit(m.design,(v.left+(x-r.left)/r.width*(v.right-v.left))/v.width,(v.top+(y-r.top)/r.height*(v.bottom-v.top))/v.height);}
+ function syncDesign(m){if(!Q||!m.design)return;m.servings=Q.current(m.design);m.format=m.design.format;m.aspect=pizzaView(m.format).aspect;m.screen.dataset.format=m.format;}
  function renderFlavors(m){
   const strip=m.screen.querySelector('.flavor-strip');strip.hidden=m.format==='round'||!m.design;
   if(strip.hidden){strip.replaceChildren();return;}
@@ -103,6 +105,8 @@
   }else{
    m.shelf.innerHTML=ingredients.filter(item=>m.servings[item.id]).map(item=>{const n=m.servings[item.id],name=esc(label(m,item));return`<div class="recipe-line"><div class="recipe-ingredient-name"><strong>${name}</strong><small>${t(m,n===2?'doubleLong':'standardLong')}</small></div><div class="recipe-quantity"><button class="recipe-minus" type="button" data-action="minus" data-id="${item.id}" aria-label="${t(m,'reduce')} ${name}">−</button><span class="recipe-quantity-value">${t(m,n===1?'single':'double').toLowerCase()}</span><button class="recipe-plus" type="button" data-action="plus" data-id="${item.id}" aria-label="${t(m,'add')} ${name}" ${n===2?'disabled':''}>+</button></div></div>`;}).join('')||`<p class="empty-note">Si parte dall’impasto.</p>`;
    m.shelf.insertAdjacentHTML('beforeend',`<button class="recipe-options" type="button" data-action="pizza-options">${t(m,'options')} <span aria-hidden="true">↗</span></button>`);
+   m.shelf.insertAdjacentHTML('beforeend',`<button class="recipe-options" type="button" data-action="share-pizza" aria-haspopup="dialog">${phrase(m,'Condividi la pizza')} <span aria-hidden="true">↗</span></button>`);
+   m.shelf.insertAdjacentHTML('beforeend',`<button class="recipe-options" type="button" data-action="download-pizza" aria-haspopup="dialog">${phrase(m,'Scarica immagine')} <span aria-hidden="true">↓</span></button>`);
   }
   m.shelf.scrollTop=m.scroll[m.panel]||0;m.renderedPanel=m.panel;
   m.shelf.setAttribute('aria-labelledby',m.screen.querySelector(`[data-panel="${m.panel}"]`).id);
@@ -122,7 +126,7 @@
   if(!api)return;
   queue=queue.catch(()=>{}).then(async()=>{
    if(version!==m.version)return;
-   try{const result=await api.previewDesign(snapshot);if(version!==m.version)return;const photo=m.screen.querySelector('.pizza');photo.src=result.url;photo.alt=result.title;await photo.decode().catch(()=>{});if(version!==m.version)return;m.previewReady=true;m.name=result.name;m.title=result.title;m.parts=result.parts;m.price=result.total===null?translated(m,'Da confermare'):frame.contentWindow.Pulcinella.money(result.total+(api.order?.quote(snapshot,composition(m).options)||0));m.aspect=result.aspect;m.warning=result.valid?'':result.message;m.screen.querySelector('.pizza-name').textContent=translated(m,result.name);m.screen.querySelector('.format').setAttribute('aria-label',translated(m,result.name)+' · '+t(m,'format'));m.screen.querySelector('.price').textContent=result.total===null?'':m.price;m.screen.querySelector('.price').hidden=result.total===null;m.screen.querySelector('.add-order').disabled=!result.valid;copy(m);measure(m);openCarton(m);}
+   try{const result=await api.previewDesign(snapshot,{carton:true});if(version!==m.version)return;const photo=m.screen.querySelector('.pizza');photo.src=result.url;photo.alt=result.title;await photo.decode().catch(()=>{});if(version!==m.version)return;m.previewReady=true;m.name=result.name;m.title=result.title;m.parts=result.parts;m.price=result.total===null?translated(m,'Da confermare'):frame.contentWindow.Pulcinella.money(result.total+(api.order?.quote(snapshot,composition(m).options)||0));m.aspect=result.aspect;m.warning=result.valid?'':result.message;m.screen.querySelector('.pizza-name').textContent=translated(m,result.name);m.screen.querySelector('.format').setAttribute('aria-label',translated(m,result.name)+' · '+t(m,'format'));m.screen.querySelector('.price').textContent=result.total===null?'':m.price;m.screen.querySelector('.price').hidden=result.total===null;m.screen.querySelector('.add-order').disabled=!result.valid;copy(m);measure(m);openCarton(m);}
    catch{notice(m,'Anteprima non disponibile.');}
   });
  }
@@ -134,9 +138,9 @@
   const w=m.screen.clientWidth,h=m.screen.clientHeight,lid=0;
   m.screen.classList.toggle('compact',h<650);
   const fixed=['.bench-heading','.checkout','.pizza-context','.work-tabs','.flavor-strip'].reduce((sum,selector)=>sum+m.screen.querySelector(selector).getBoundingClientRect().height,0);
-  const maxScene=Math.max(48,h-fixed-(h<650?146:180));
-  const scene=Math.min(maxScene,(w-18)/m.aspect+12);
-  const pack=Math.min(w-18,Math.max(90,(scene-12)*m.aspect));
+  const available=Math.max(90,w-66),maxScene=Math.max(156,h-fixed-(h<650?146:180));
+  const scene=Math.min(maxScene,Math.max(156,available/m.aspect+8));
+  const pack=Math.min(available,Math.max(90,(scene-8)*m.aspect));
   m.collapsedScene=scene;m.expandedScene=14;m.screen.style.setProperty('--worktop-height',(scene+18)+'px');
   if(!m.gesture)m.screen.style.setProperty('--scene-height',(m.expanded?m.expandedScene:scene)+'px');m.screen.style.setProperty('--pack-width',pack+'px');m.screen.style.setProperty('--pack-height',pack/m.aspect+'px');m.screen.style.setProperty('--lid-height',lid+'px');
   const topWidth=Math.min(pack*.58,Math.max(178,pack*.46)),bottomWidth=topWidth*.935,tl=(pack-topWidth)/2,bl=(pack-bottomWidth)/2,top=56*.25,bottom=56*.85,g=topWidth/bottomWidth-1;
@@ -170,7 +174,7 @@
  function flyIngredient(m,id,source){
   if(reduced.matches||source.width===0||source.top<m.screen.querySelector('.shelf,.choose-list').getBoundingClientRect().top-10)return;
   const pizza=m.screen.querySelector('.pizza').getBoundingClientRect(),img=new Image();
-  const region=m.format!=='round'&&Q&&m.design?Q.zones(m.design)[m.design.active]:null,targetX=region?(region.left+region.right)/2/Q.geometry(m.format).width:.5;
+  const region=m.format!=='round'&&Q&&m.design?Q.zones(m.design)[m.design.active]:null,v=pizzaView(m.format),targetX=region?((region.left+region.right)/2-v.left)/(v.right-v.left):.5;
   img.src=image(id);img.alt='';img.className='ingredient-flight';img.style.cssText=`left:${source.left}px;top:${source.top}px;width:${source.width}px;height:${source.height}px`;
   document.body.append(img);
   const animation=img.animate([{transform:'translate(0,0) scale(1)',opacity:.95},{transform:`translate(${pizza.left+pizza.width*targetX-source.left-source.width*.5}px,${pizza.top+pizza.height*.5-source.top-source.height*.5}px) scale(.55)`,opacity:0}],{duration:280,easing:'cubic-bezier(.23,1,.32,1)'});
@@ -180,7 +184,7 @@
   // Additional taps still add to the list, without restarting a carton mid-flight.
   m.opened=true;finishOpening(m);
   if(reduced.matches||m.packing)return;m.packing=true;
-  if(m.expanded){setWorkspaceExpanded(m,false);await new Promise(resolve=>setTimeout(resolve,250));}
+  if(m.expanded){setWorkspaceExpanded(m,false,false);await new Promise(resolve=>requestAnimationFrame(resolve));}
   if(!m.packing||reduced.matches){m.packing=false;return;}
   const pack=m.screen.querySelector('.pack'),source=pack.getBoundingClientRect(),lid=56,r={left:source.left,top:source.top-lid,width:source.width,height:source.height+lid},target=m.screen.querySelector('.cart').getBoundingClientRect(),flight=document.createElement('div');
   const move=getComputedStyle(document.documentElement).getPropertyValue('--ease-move').trim(),out=getComputedStyle(document.documentElement).getPropertyValue('--ease').trim();
@@ -194,15 +198,16 @@
    dressLid(cover);
   document.body.append(flight);m.flight=flight;pack.classList.add('is-packing-source');
   const animations=[];
-  const play=(node,frames,options)=>{const animation=node.animate(frames,{fill:'forwards',...options});animation.finished.catch(()=>{});animations.push(animation);return animation;};
+  const packingDuration=1500,time=ms=>Math.round(ms*packingDuration/2250);
+  const play=(node,frames,options)=>{const animation=node.animate(frames,{fill:'forwards',...options,duration:time(options.duration),delay:time(options.delay||0)});animation.finished.catch(()=>{});animations.push(animation);return animation;};
   play(rear,[{opacity:1},{opacity:0}],{duration:180,easing:out});
   for(const flap of flight.querySelectorAll('.packing-flap'))play(flap,[{transform:`perspective(700px) rotateY(${flap.classList.contains('left')?-68:68}deg)`,opacity:0},{transform:'perspective(700px) rotateY(0deg)',opacity:1}],{duration:350,easing:out});
   play(cover,[{transform:'perspective(6000px) rotateX(102deg)',opacity:0,offset:0},{transform:'perspective(6000px) rotateX(101deg)',opacity:1,offset:.08},{transform:'perspective(6000px) rotateX(0deg)',opacity:1,offset:1}],{duration:950,delay:80,easing:move});
   play(shadow,[{transform:'translateY(0) scale(1)',opacity:.18},{transform:'translateY(10px) scale(.9)',opacity:.08}],{duration:300,delay:1000,easing:out});
   flight.dataset.phase='closing';
-  const phases=[setTimeout(()=>{if(flight.isConnected)flight.dataset.phase='sealed';},1030),setTimeout(()=>{
+  const phases=[setTimeout(()=>{if(flight.isConnected)flight.dataset.phase='sealed';},time(1030)),setTimeout(()=>{
    if(!flight.isConnected)return;flight.dataset.phase='travelling';pack.classList.remove('is-packing-source');if(!reduced.matches)pack.animate([{opacity:0},{opacity:1}],{duration:250,easing:out});
-  },1395)];
+  },time(1395))];
   m.packingCancel=()=>{phases.forEach(clearTimeout);animations.forEach(animation=>animation.cancel());flight.remove();pack.classList.remove('is-packing-source');m.flight=null;m.packing=false;};
   try{
    const travel=play(flight,[
@@ -223,7 +228,7 @@
   m.screen.addEventListener('pointerdown',()=>{m.suppressTabs=0;if(m.screen.matches('.box-awaiting,.box-opening')){m.opened=true;finishOpening(m);}},{capture:true,passive:true});
   m.screen.addEventListener('click',event=>{
    const button=event.target.closest('button');
-   if(!button&&event.target.closest('.scene .pack')&&Q&&m.design&&m.format!=='round'){const r=m.screen.querySelector('.pizza').getBoundingClientRect(),part=Q.hit(m.design,(event.clientX-r.left)/r.width,(event.clientY-r.top)/r.height);if(part!==null)selectPart(m,part);return;}
+   if(!button&&event.target.closest('.scene .pack')&&Q&&m.design&&m.format!=='round'){const part=pizzaHit(m,event.clientX,event.clientY);if(part!==null)selectPart(m,part);return;}
    if(!button||button.disabled)return;
    if(button.dataset.part!==undefined){selectPart(m,Number(button.dataset.part));return;}
    if(button.dataset.panel){if(event.detail>0&&performance.now()<(m.suppressTabs||0))return;m.panel=button.dataset.panel;copy(m);renderShelf(m);return;}
@@ -241,6 +246,8 @@
     case'basket':orderSurface(m,true);api.order.open(composition(m));break;
     case'cancel-order-edit':api.order.cancel();break;
     case'pizza-options':orderSurface(m,true);api.order.options(composition(m));break;
+    case'share-pizza':if(m.warning){notice(m,translated(m,m.warning));break;}orderSurface(m,true);api.order.share(composition(m));break;
+    case'download-pizza':if(m.warning){notice(m,translated(m,m.warning));break;}orderSurface(m,true);api.order.download(composition(m));break;
     case'close':m.dialog.close();break;
    }
    if(button.dataset.filter){m.filter=button.dataset.filter;m.panel='extras';copy(m);renderShelf(m);m.dialog.close();}
@@ -297,7 +304,7 @@
   if(!drag.moved&&Math.hypot(event.clientX-drag.x,event.clientY-drag.y)>7){drag.moved=true;if(drag.m.expanded)setWorkspaceExpanded(drag.m,false,false);drag.m.screen.querySelector('.scene').classList.add('is-drop-target');const img=new Image();img.src=image(drag.id);img.className='drag-copy';img.alt='';document.body.append(img);drag.ghost=img;}
   if(drag.ghost){drag.ghost.style.left=event.clientX+'px';drag.ghost.style.top=event.clientY+'px';event.preventDefault();}
  },{passive:false});
- function endDrag(event,cancel=false){if(!drag||event.pointerId!==drag.pointer)return;const d=drag;drag=null;d.hand.classList.remove('is-grabbed');d.m.screen.querySelector('.scene').classList.remove('is-drop-target');d.ghost?.remove();if(d.hand.hasPointerCapture(d.pointer))d.hand.releasePointerCapture(d.pointer);if(d.moved&&!cancel&&Q){const r=d.m.screen.querySelector('.pizza').getBoundingClientRect(),part=Q.hit(d.m.design,(event.clientX-r.left)/r.width,(event.clientY-r.top)/r.height);if(part!==null){d.m.design=Q.select(d.m.design,part);syncDesign(d.m);change(d.m,d.id,(d.m.servings[d.id]||0)+1,true);}}}
+ function endDrag(event,cancel=false){if(!drag||event.pointerId!==drag.pointer)return;const d=drag;drag=null;d.hand.classList.remove('is-grabbed');d.m.screen.querySelector('.scene').classList.remove('is-drop-target');d.ghost?.remove();if(d.hand.hasPointerCapture(d.pointer))d.hand.releasePointerCapture(d.pointer);if(d.moved&&!cancel&&Q){const part=pizzaHit(d.m,event.clientX,event.clientY);if(part!==null){d.m.design=Q.select(d.m.design,part);syncDesign(d.m);change(d.m,d.id,(d.m.servings[d.id]||0)+1,true);}}}
  document.addEventListener('pointerup',event=>endDrag(event));document.addEventListener('pointercancel',event=>endDrag(event,true));
  function choose(id){for(const m of models)m.section.classList.toggle('is-current',m.id===id);document.querySelectorAll('[data-studio]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.studio===id)));requestAnimationFrame(()=>models.forEach(measure));}
  document.querySelectorAll('[data-studio]').forEach(button=>button.addEventListener('click',()=>choose(button.dataset.studio)));

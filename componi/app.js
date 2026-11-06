@@ -358,6 +358,46 @@
     const baseY=out.height-140;ctx.fillStyle='#1a6b2a';ctx.font='bold 23px "DM Sans",Lato,sans-serif';ctx.fillText(I.text(total!==null?`Prezzo: ${P.money(total)}`:'Prezzo personalizzato da confermare con la pizzeria'),80,baseY);ctx.font='20px "DM Sans",Lato,sans-serif';if(long)ctx.fillText(I.text(`Base ${P.money(quote.base)} · Supplemento unico ${P.money(quote.supplement)}`),80,baseY+31);ctx.fillStyle='#6a6d60';ctx.font='20px "DM Sans",Lato,sans-serif';ctx.fillText('Patù · Via Giuseppe Garibaldi, 24 · 339 8390660 · pulcinellapatu.it',80,baseY+70);
     return new Promise((resolve,reject)=>out.toBlob(blob=>blob?resolve(blob):reject(new Error('Esportazione non disponibile.')),'image/png'));
   }
+  async function exportOrderImage(raw){
+    await assetsReady;await document.fonts.ready;
+    const O=window.PizzaOrder,order=O.normalize(raw),total=O.totals(order),width=1200;
+    if(!assets.logo)try{assets.logo=await loadImage(assetURL('logo.svg'));}catch{}
+    const out=document.createElement('canvas'),measure=document.createElement('canvas').getContext('2d');
+    const textLines=(text,font,max)=>{measure.font=font;return String(text||'').split('\n').flatMap(line=>wrap(measure,line,max));};
+    let cursor=180;
+    const rows=order.lines.map(line=>{
+      const d=O.describe(line),pizza=line.kind==='pizza',x=pizza?390:80,max=1120-x;
+      const title=textLines(line.quantity+' × '+d.title,'600 34px "DM Sans",sans-serif',max);
+      const subtitle=textLines(d.subtitle,'22px "DM Sans",sans-serif',max);
+      const details=textLines([d.detail,d.variations?I.text('Variazioni')+': '+d.variations:'',d.note?I.text('Note pizza')+': '+d.note:''].filter(Boolean).join('\n'),'24px "DM Sans",sans-serif',max);
+      const photoHeight=pizza?280/Q.geometry(line.design.format).aspect:0;
+      const height=Math.max(photoHeight+48,title.length*42+subtitle.length*30+details.length*32+90);
+      const row={line,d,pizza,x,title,subtitle,details,top:cursor,height,photoHeight};cursor+=height;return row;
+    });
+    const notes=order.note.trim()?textLines(I.text('Le tue note')+': '+order.note,'24px "DM Sans",sans-serif',1040):[];
+    const height=cursor+180+notes.length*32+(total.pending?40:0);
+    // Keep large lists within phone canvas limits without omitting any lines.
+    const scale=Math.min(1,12000/height,Math.sqrt(14000000/(width*height)));
+    out.width=Math.max(1,Math.ceil(width*scale));out.height=Math.max(1,Math.ceil(height*scale));
+    const ctx=out.getContext('2d');ctx.scale(scale,scale);ctx.fillStyle='#fafaf5';ctx.fillRect(0,0,width,height);
+    for(const [color,x]of [['#1a6b2a',0],['#fff',400],['#cc1515',800]]){ctx.fillStyle=color;ctx.fillRect(x,0,400,8);}
+    if(assets.logo)ctx.drawImage(assets.logo,80,36,280,103);
+    ctx.fillStyle='#242424';ctx.font='600 30px "DM Sans",sans-serif';ctx.textAlign='right';ctx.fillText(I.text('Il tuo ordine'),1120,94);ctx.textAlign='left';
+    for(const row of rows){
+      if(row.pizza){await ensureDesignAssets(row.line.design);const photo=document.createElement('canvas');photo.width=360;drawDesign(photo,row.line.design);ctx.drawImage(photo,80,row.top+20,280,row.photoHeight);}
+      let y=row.top+42;ctx.fillStyle='#252525';ctx.font='600 34px "DM Sans",sans-serif';for(const line of row.title){ctx.fillText(line,row.x,y);y+=42;}
+      ctx.fillStyle='#66665e';ctx.font='22px "DM Sans",sans-serif';for(const line of row.subtitle){ctx.fillText(line,row.x,y);y+=30;}
+      y+=6;ctx.fillStyle='#3c3c36';ctx.font='24px "DM Sans",sans-serif';for(const line of row.details){ctx.fillText(line,row.x,y);y+=32;}
+      ctx.fillStyle='#1a6b2a';ctx.font='600 25px "DM Sans",sans-serif';ctx.fillText(row.d.unit===null?I.text('Prezzo da confermare'):P.money(row.d.unit*row.line.quantity),row.x,row.top+row.height-22);
+      ctx.strokeStyle='#deded5';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,row.top+row.height);ctx.lineTo(1120,row.top+row.height);ctx.stroke();
+      await new Promise(resolve=>setTimeout(resolve,0));
+    }
+    let y=cursor+56;ctx.fillStyle='#252525';ctx.font='600 30px "DM Sans",sans-serif';ctx.fillText(I.text(total.pending?'Totale voci con prezzo':'Totale ordine')+': '+P.money(total.known),80,y);y+=42;
+    ctx.font='24px "DM Sans",sans-serif';if(total.pending){ctx.fillText(I.text('Prezzi da confermare con la pizzeria.'),80,y);y+=40;}
+    for(const line of notes){ctx.fillText(line,80,y);y+=32;}
+    ctx.fillStyle='#66665e';ctx.font='22px "DM Sans",sans-serif';ctx.fillText('pulcinellapatu.it',80,height-35);
+    return new Promise((resolve,reject)=>out.toBlob(blob=>blob?resolve(blob):reject(new Error('Esportazione non disponibile.')),'image/png'));
+  }
   let imageGeneration=0;
   async function showResult(){const generation=++imageGeneration;if(!ready||previewBusy||!Q.validate(design).valid)return;const snapshot=Q.normalize(design);drawDesign($('#result-canvas'),snapshot);$('#result-dialog').classList.toggle('is-long',snapshot.format!=='round');$('#result-summary').textContent=Q.title(snapshot)+'\n'+Q.summary(snapshot);const link=$('#download');link.download='pulcinella-pizza-'+I.language+'.png';link.removeAttribute('href');link.textContent='Prepariamo la tua immagine…';link.setAttribute('aria-disabled','true');$('#result-dialog').showModal();
     try{const blob=await exportImage(snapshot);if(generation!==imageGeneration)return;if(downloadUrl)URL.revokeObjectURL(downloadUrl);downloadUrl=URL.createObjectURL(blob);link.href=downloadUrl;link.innerHTML='Scarica pizza e ricetta <span aria-hidden="true">↓</span>';link.removeAttribute('aria-disabled');}catch{link.textContent='Immagine non disponibile';announce('Non è stato possibile creare il PNG. Riprova a salvare.');}}
@@ -395,7 +435,21 @@
   // Local design studies can reuse this renderer without changing this composer's state.
   if(studioMode)window.PulcinellaStudioRenderer={
     ingredients:P.ingredients,menu:P.menu,categories:P.categories,
-    async previewDesign(raw){const snapshot=Q.normalize(raw);await assetsReady;await ensureDesignAssets(snapshot);const target=document.createElement('canvas');target.width=1100;target.height=Math.round(1100/Q.geometry(snapshot.format).aspect);drawDesign(target,snapshot);const quote=Q.quote(snapshot),validation=Q.validate(snapshot);return{url:target.toDataURL('image/webp',.94),name:Q.sectionName(snapshot),title:Q.title(snapshot),parts:Q.sections(snapshot).map((part,n)=>({name:Q.sectionName(snapshot,n),label:Q.partLabel(snapshot,n),servings:{...part}})),aspect:Q.geometry(snapshot.format).aspect,price:quote.total===null?'Da confermare':P.money(quote.total),total:quote.total,valid:validation.valid,message:validation.message};},
+    async previewDesign(raw,{carton=false}={}){
+      const snapshot=Q.normalize(raw);await assetsReady;await ensureDesignAssets(snapshot);
+      const target=document.createElement('canvas'),g=Q.geometry(snapshot.format);target.width=1100;target.height=Math.round(1100/g.aspect);drawDesign(target,snapshot);
+      let photo=target,aspect=g.aspect;
+      if(carton&&snapshot.format!=='round'){
+        // Remove transparent renderer padding only. Keep the entire crust and a
+        // one-unit safety margin; food is drawn once and encoded once.
+        const left=g.left-1,top=g.top-1,width=g.right-g.left+2,height=g.bottom-g.top+2;
+        photo=document.createElement('canvas');photo.width=Math.ceil(target.width*width/g.width);photo.height=Math.ceil(target.height*height/g.height);
+        photo.getContext('2d').drawImage(target,target.width*left/g.width,target.height*top/g.height,target.width*width/g.width,target.height*height/g.height,0,0,photo.width,photo.height);
+        aspect=width/height;
+      }
+      const quote=Q.quote(snapshot),validation=Q.validate(snapshot);
+      return{url:photo.toDataURL('image/webp',.94),name:Q.sectionName(snapshot),title:Q.title(snapshot),parts:Q.sections(snapshot).map((part,n)=>({name:Q.sectionName(snapshot,n),label:Q.partLabel(snapshot,n),servings:{...part}})),aspect,price:quote.total===null?'Da confermare':P.money(quote.total),total:quote.total,valid:validation.valid,message:validation.message};
+    },
     async preview(servings,format='round'){await assetsReady;let snapshot=Q.create(servings);const name=Q.title(snapshot);if(format!=='round'&&Object.hasOwn(Q.formats,format)){snapshot=Q.setFormat(snapshot,format);snapshot.drafts[format]=snapshot.drafts[format].map(()=>({...servings}));snapshot.recipes[format]=snapshot.drafts[format].map(()=>P.match(servings)?.id||null);}await ensureDesignAssets(snapshot);const target=document.createElement('canvas');target.width=900;target.height=Math.round(900/Q.geometry(snapshot.format).aspect);drawDesign(target,snapshot);const price=Q.quote(snapshot).total;return{url:target.toDataURL('image/webp',.94),name,aspect:Q.geometry(snapshot.format).aspect,price:price===null?'Da definire':P.money(price)};}
   };
   const studioComposition=()=>({design:Q.normalize(design),options:orderUI.options(),note:orderUI.note()});
@@ -404,12 +458,17 @@
   const orderUI=window.PizzaOrderUI.create({getDesign:()=>Q.normalize(design),setDesign:next=>commitDesign(next),isReady:()=>ready&&!previewBusy,announce,focusComposer:returnToStudio,renderThumbnail,storageKey:'pulcinella-order-v1',onPizzaAdded:(value,meta)=>{experienceUI?.confirm(value,meta);window.dispatchEvent(new CustomEvent('pizza-carton-added',{detail:{value,meta}}));},onDraftChange:()=>{experienceUI?.sync();if(studioMode)queueMicrotask(emitStudioState);}});
   mobileUI=window.PizzaMobileUI.create({getDesign:()=>Q.normalize(design),isReady:()=>ready,choose,empty:()=>$('#empty').click(),undo:()=>$('#undo').click(),reset:()=>$('#reset').click(),onLayout:render,createRecipePreviews});
   pizzaPickerUI=window.PizzaPickerUI.create({getDesign:()=>Q.normalize(design),isReady:()=>ready,choose,empty:()=>$('#empty').click(),select:selectActive,createRecipePreviews});
-  experienceUI=window.PizzaExperienceUI.create({getComposition:()=>({design:Q.normalize(design),options:orderUI.options(),note:orderUI.note()}),getOrder:orderUI.snapshot,isReady:()=>ready&&!previewBusy,restore:value=>orderUI.restore(value,{panel:mobileUI.matches?'menu':'recipe'}),startNewPizza:orderUI.startNewPizza,openOrder:orderUI.open,renderThumbnail,announce,makePizzaFile:async value=>new File([await exportImage(value.design,value)],'pulcinella-pizza-'+I.language+'.png',{type:'image/png'}),makeOrderFile:async order=>new File([await window.PizzaOrderPDF.generate(order)],'pulcinella-ordine-'+I.language+'.pdf',{type:'application/pdf'})});
+  experienceUI=window.PizzaExperienceUI.create({getComposition:()=>({design:Q.normalize(design),options:orderUI.options(),note:orderUI.note()}),getOrder:orderUI.snapshot,isReady:()=>ready&&!previewBusy,restore:value=>orderUI.restore(value,{panel:mobileUI.matches?'menu':'recipe'}),startNewPizza:orderUI.startNewPizza,openOrder:orderUI.open,renderThumbnail,announce,orderShareAsImage:studioMode,makePizzaFile:async value=>new File([await exportImage(value.design,value)],'pulcinella-pizza-'+I.language+'.png',{type:'image/png'}),makeOrderFile:async order=>studioMode?new File([await exportOrderImage(order)],'pulcinella-ordine-'+I.language+'.png',{type:'image/png'}):new File([await window.PizzaOrderPDF.generate(order)],'pulcinella-ordine-'+I.language+'.pdf',{type:'application/pdf'})});
   if(studioMode){
-    const style=document.createElement('link');style.rel='stylesheet';style.href='studio-order-surface.css';document.head.append(style);document.documentElement.classList.add('studio-order-host');
+    const style=document.createElement('link');style.rel='stylesheet';style.href='studio-order-surface.css?v=20261106-barra-condivisione';document.head.append(style);document.documentElement.classList.add('studio-order-host');
     const optionsDialog=document.createElement('dialog');optionsDialog.id='studio-options-dialog';optionsDialog.className='dialog studio-options-dialog';optionsDialog.setAttribute('aria-labelledby','studio-options-title');
     optionsDialog.innerHTML='<button class="close-dialog" type="button" aria-label="Chiudi">×</button><h2 id="studio-options-title">Note per questa pizza</h2><div class="studio-options-content"></div><button class="primary-button studio-options-done" type="button">Torna alla pizza</button>';
     document.body.append(optionsDialog);optionsDialog.querySelector('.studio-options-content').append($('#pizza-note-details'),$('#pizza-options'));for(const b of optionsDialog.querySelectorAll('button'))b.addEventListener('click',()=>optionsDialog.close());
+    const shareZoom=document.createElement('button');shareZoom.type='button';shareZoom.className='quiet-action studio-share-pizza';shareZoom.textContent=I.text('Condividi la pizza');
+    $('#zoom-dialog').insertBefore(shareZoom,$('#zoom-dialog [data-close="zoom-dialog"]:last-child'));
+    shareZoom.addEventListener('click',()=>{$('#zoom-dialog').close();experienceUI.sharePizza(studioComposition());});
+    const downloadZoom=document.createElement('button');downloadZoom.type='button';downloadZoom.className='quiet-action studio-download-pizza';downloadZoom.textContent=I.text('Scarica immagine');shareZoom.after(downloadZoom);
+    downloadZoom.addEventListener('click',()=>{$('#zoom-dialog').close();experienceUI.downloadPizza(studioComposition());});
     optionsDialog.addEventListener('close',()=>window.dispatchEvent(new CustomEvent('pizza-studio-draft',{detail:studioComposition()})));
     const visibility=()=>window.dispatchEvent(new CustomEvent('pizza-studio-order-visibility',{detail:{visible:!!document.querySelector('#order-dialog[open],#share-dialog[open],#studio-options-dialog[open],#zoom-dialog[open]')}}));
     new MutationObserver(visibility).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
@@ -421,7 +480,9 @@
       save(value){orderUI.synchronizeDraft(value);return orderUI.saveComposition(value,{feedback:false});},
       cancel(){orderUI.cancelEdit();returnToStudio('recipe');},
       options(value){orderUI.synchronizeDraft(value);$('#pizza-note-details').open=true;optionsDialog.showModal();},
-      async zoom(value){await assetsReady;await ensureDesignAssets(Q.normalize(value.design));orderUI.synchronizeDraft(value);$('#zoom-dialog').classList.remove('detail-zoom');$('#zoom-detail').setAttribute('aria-pressed','false');$('#zoom-detail').textContent='Vedi i dettagli +';refreshZoom();$('#zoom-dialog').showModal();$('.zoom-frame').scrollLeft=0;},
+      share(value){orderUI.synchronizeDraft(value);return experienceUI.sharePizza(value);},
+      download(value){orderUI.synchronizeDraft(value);return experienceUI.downloadPizza(value);},
+      async zoom(value){await assetsReady;await ensureDesignAssets(Q.normalize(value.design));orderUI.synchronizeDraft(value);shareZoom.textContent=I.text('Condividi la pizza');downloadZoom.textContent=I.text('Scarica immagine');shareZoom.disabled=downloadZoom.disabled=!Q.validate(value.design).valid;$('#zoom-dialog').classList.remove('detail-zoom');$('#zoom-detail').setAttribute('aria-pressed','false');$('#zoom-detail').textContent='Vedi i dettagli +';refreshZoom();$('#zoom-dialog').showModal();$('.zoom-frame').scrollLeft=0;},
       quote:(raw,options)=>window.PizzaOrder.dietQuote(raw,options).supplement,
       totals:()=>window.PizzaOrder.totals(orderUI.snapshot())
     };
