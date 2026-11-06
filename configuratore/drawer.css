@@ -1,0 +1,40 @@
+/* Local revision: open white carton, photographed stone material and a compact drawer. */
+.banco-vivo .screen,.banco-vivo .screen.is-expanded{grid-template-rows:calc(64px + env(safe-area-inset-top,0px)) var(--scene-height,360px) var(--flavor-height) minmax(0,1fr) calc(76px + env(safe-area-inset-bottom,0px));background:#b9b7ad none center top/cover no-repeat}
+.banco-vivo .scene{align-items:start;justify-items:center}
+.banco-vivo .scene>.pack{filter:drop-shadow(0 4px 3px #1f201a3d)}
+.banco-vivo .carton-tray{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.banco-vivo .scene .pizza{left:4%;top:2%;width:92%;height:92%;object-fit:contain;filter:drop-shadow(0 2px 2px #33281725)}
+.banco-vivo .scene.is-drop-target .carton-tray{outline:2px solid var(--green);outline-offset:-2px;border-radius:4px}
+.banco-vivo .ingredients-drawer{grid-row:4;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:#faf9f6;border:1px solid #deded5;border-bottom:0;border-radius:17px 17px 0 0;box-shadow:0 -4px 12px #20271b17;isolation:isolate;position:relative;z-index:4}
+.banco-vivo .ingredients-drawer .work-tabs{flex:none;grid-row:auto;height:54px;min-height:54px;margin:0;padding:5px 7px 4px;border:0;border-bottom:1px solid #e3e4dc;border-radius:16px 16px 0 0;background:#fff;box-shadow:none;touch-action:none}
+.banco-vivo .ingredients-drawer .work-tabs [role=tab]{min-height:44px;font-size:12px}
+.banco-vivo .ingredients-drawer .filter-button{height:44px;min-height:44px;width:44px;flex-basis:44px;touch-action:manipulation}
+.banco-vivo .ingredients-drawer .pantry,.banco-vivo .ingredients-drawer .pantry[data-view=extras],.banco-vivo .ingredients-drawer .pantry:not([data-view=extras]){flex:1;grid-row:auto;padding:9px 8px 0;background:#f5f5f0;min-height:0;border:0;box-shadow:none}
+.banco-vivo .ingredients-drawer .shelf,.banco-vivo .ingredients-drawer .screen.compact .shelf{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:144px;gap:8px;padding:1px 1px 9px;scrollbar-color:#b6bfb0 transparent;mask-image:linear-gradient(#000 0 calc(100% - 6px),transparent);touch-action:pan-y}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .ingredient,.banco-vivo .ingredients-drawer .pantry[data-view=extras] .ingredient.selected{grid-template-rows:64px 30px 48px;height:144px;min-height:144px;background:#fff;border:1px solid #dedfd6;border-radius:11px;overflow:hidden;box-shadow:0 2px 0 #dedfd4}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .ingredient.selected{border-color:var(--green);box-shadow:0 2px 0 #aebfa3,inset 0 0 0 1px #1a6b2a0c}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .ingredient:before{display:none}
+.banco-vivo .ingredients-drawer .ingredient-image{width:78px;height:54px;margin:0 0 3px;align-self:end;object-fit:contain;filter:drop-shadow(0 2px 2px #332b1e20)}
+.banco-vivo .ingredients-drawer .ingredient-title{height:30px;min-height:30px;margin:0 5px;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;font-size:12px;line-height:1.1;font-weight:650;color:#2b2f27}
+.banco-vivo .ingredients-drawer .hand{right:0;top:0;width:44px;height:44px;min-height:44px;padding:12px;color:#242820}
+.banco-vivo .ingredients-drawer .hand:before{inset:7px;border-color:#e2e5da;box-shadow:0 1px 0 #e3e7db;background:#fff}
+.banco-vivo .ingredients-drawer .remove-ingredient{left:0;top:0;width:35px;height:40px;text-shadow:none}
+.banco-vivo .ingredients-drawer .portion{height:48px;min-height:48px;padding:2px 5px 4px}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .portion-add{min-height:42px;background:#fff;border-color:#d8ded0;box-shadow:0 1px 0 #e7eadf;font-size:11px}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .portion-add.is-chosen{border-color:#a2b598;box-shadow:0 1px 0 #d8e0d0}
+.banco-vivo .ingredients-drawer .pantry[data-view=extras] .pantry-tip{align-self:stretch;flex:none;min-height:24px;margin:0;padding:5px 0;background:#f5f5f0;border:0;border-top:1px solid #e3e6dc;border-radius:0;box-shadow:none;font-size:10px;line-height:1.3;color:#6d7565;touch-action:none;user-select:none}
+.banco-vivo .ingredients-drawer .pizza-grid{padding:1px 1px 9px}
+.banco-vivo .ingredients-drawer .recipe-choice{background:#fff;border-color:#e0e3d8;box-shadow:0 1px 0 #e7e9df}
+.banco-vivo .ingredients-drawer .recipe-list{gap:0;padding:0 4px 9px}
+.banco-vivo .ingredients-drawer .recipe-line{border:0;border-bottom:1px solid #e0e3d8;border-radius:0;background:transparent;box-shadow:none;padding:5px 0}
+.banco-vivo .checkout{grid-row:5;background:#faf9f6;border-top:1px solid #e0e3d7}
+.banco-vivo .banco-flight .carton-tray{display:none}
+.banco-vivo .screen.sheet-settling{transition:grid-template-rows 240ms var(--ease)}
+.banco-vivo .screen.sheet-dragging{transition:none}
+.banco-vivo .screen.compact .ingredients-drawer .shelf{grid-auto-rows:122px}
+.banco-vivo .screen.compact .ingredients-drawer .pantry[data-view=extras] .ingredient{grid-template-rows:44px 28px 48px;min-height:122px;height:122px}
+.banco-vivo .screen.compact .ingredients-drawer .ingredient-image{width:62px;height:36px;margin-bottom:1px}
+.banco-vivo .screen.compact .ingredients-drawer .ingredient-title{height:28px;min-height:28px}
+.banco-vivo .screen.compact .ingredients-drawer .portion{height:48px;min-height:48px}
+@media(max-width:359px){.banco-vivo .ingredients-drawer .ingredient-title{font-size:11px}.banco-vivo .ingredients-drawer .pantry[data-view=extras] .portion-add{font-size:10px}.banco-vivo .ingredients-drawer .work-tabs [role=tab]{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.banco-vivo .screen.sheet-settling{transition:none}}

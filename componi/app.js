@@ -2,6 +2,7 @@
   'use strict';
   const P=window.Pulcinella, M=window.PizzaMaterials, Q=window.PizzaFormats, $=s=>document.querySelector(s);
   const I=window.PizzaI18n,V=window.PizzaPreviewEngine,T=window.PizzaIngredientAssets;
+  const studioMode=new URLSearchParams(location.search).has('studioRenderer');
   let mobileUI,experienceUI,pizzaPickerUI,lastPreviewKey='';
   const canvas=$('#pizza-canvas');
   let releaseAssets;const assetsReady=new Promise(resolve=>{releaseAssets=resolve;});
@@ -391,10 +392,40 @@
     const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){observer.unobserve(entry.target);enqueue(entry.target);}},{root:container,rootMargin:'100px'}):null;
     return{reset(){generation++;queue=[];observer?.disconnect();},watch(host,id){const recipe=P.menu.find(item=>item.id===id),snapshot=Q.create(recipe?.servings||{});host.dataset.previewRecipe=id;snapshots.set(host,snapshot);if(observer)observer.observe(host);else enqueue(host);}};
   }
-  const orderUI=window.PizzaOrderUI.create({getDesign:()=>Q.normalize(design),setDesign:next=>commitDesign(next),isReady:()=>ready&&!previewBusy,announce,focusComposer,renderThumbnail,onPizzaAdded:(value,meta)=>experienceUI?.confirm(value,meta),onDraftChange:()=>experienceUI?.sync()});
+  // Local design studies can reuse this renderer without changing this composer's state.
+  if(studioMode)window.PulcinellaStudioRenderer={
+    ingredients:P.ingredients,menu:P.menu,categories:P.categories,
+    async previewDesign(raw){const snapshot=Q.normalize(raw);await assetsReady;await ensureDesignAssets(snapshot);const target=document.createElement('canvas');target.width=1100;target.height=Math.round(1100/Q.geometry(snapshot.format).aspect);drawDesign(target,snapshot);const quote=Q.quote(snapshot),validation=Q.validate(snapshot);return{url:target.toDataURL('image/webp',.94),name:Q.sectionName(snapshot),title:Q.title(snapshot),parts:Q.sections(snapshot).map((part,n)=>({name:Q.sectionName(snapshot,n),label:Q.partLabel(snapshot,n),servings:{...part}})),aspect:Q.geometry(snapshot.format).aspect,price:quote.total===null?'Da confermare':P.money(quote.total),total:quote.total,valid:validation.valid,message:validation.message};},
+    async preview(servings,format='round'){await assetsReady;let snapshot=Q.create(servings);const name=Q.title(snapshot);if(format!=='round'&&Object.hasOwn(Q.formats,format)){snapshot=Q.setFormat(snapshot,format);snapshot.drafts[format]=snapshot.drafts[format].map(()=>({...servings}));snapshot.recipes[format]=snapshot.drafts[format].map(()=>P.match(servings)?.id||null);}await ensureDesignAssets(snapshot);const target=document.createElement('canvas');target.width=900;target.height=Math.round(900/Q.geometry(snapshot.format).aspect);drawDesign(target,snapshot);const price=Q.quote(snapshot).total;return{url:target.toDataURL('image/webp',.94),name,aspect:Q.geometry(snapshot.format).aspect,price:price===null?'Da definire':P.money(price)};}
+  };
+  const studioComposition=()=>({design:Q.normalize(design),options:orderUI.options(),note:orderUI.note()});
+  function emitStudioState(){if(studioMode)window.dispatchEvent(new CustomEvent('pizza-studio-order-state',{detail:{order:orderUI.snapshot(),editingId:orderUI.editing()}}));}
+  function returnToStudio(panel){if(!studioMode){focusComposer(panel);return;}window.dispatchEvent(new CustomEvent('pizza-studio-compose',{detail:{...studioComposition(),panel,editingId:orderUI.editing()}}));}
+  const orderUI=window.PizzaOrderUI.create({getDesign:()=>Q.normalize(design),setDesign:next=>commitDesign(next),isReady:()=>ready&&!previewBusy,announce,focusComposer:returnToStudio,renderThumbnail,storageKey:'pulcinella-order-v1',onPizzaAdded:(value,meta)=>{experienceUI?.confirm(value,meta);window.dispatchEvent(new CustomEvent('pizza-carton-added',{detail:{value,meta}}));},onDraftChange:()=>{experienceUI?.sync();if(studioMode)queueMicrotask(emitStudioState);}});
   mobileUI=window.PizzaMobileUI.create({getDesign:()=>Q.normalize(design),isReady:()=>ready,choose,empty:()=>$('#empty').click(),undo:()=>$('#undo').click(),reset:()=>$('#reset').click(),onLayout:render,createRecipePreviews});
   pizzaPickerUI=window.PizzaPickerUI.create({getDesign:()=>Q.normalize(design),isReady:()=>ready,choose,empty:()=>$('#empty').click(),select:selectActive,createRecipePreviews});
   experienceUI=window.PizzaExperienceUI.create({getComposition:()=>({design:Q.normalize(design),options:orderUI.options(),note:orderUI.note()}),getOrder:orderUI.snapshot,isReady:()=>ready&&!previewBusy,restore:value=>orderUI.restore(value,{panel:mobileUI.matches?'menu':'recipe'}),startNewPizza:orderUI.startNewPizza,openOrder:orderUI.open,renderThumbnail,announce,makePizzaFile:async value=>new File([await exportImage(value.design,value)],'pulcinella-pizza-'+I.language+'.png',{type:'image/png'}),makeOrderFile:async order=>new File([await window.PizzaOrderPDF.generate(order)],'pulcinella-ordine-'+I.language+'.pdf',{type:'application/pdf'})});
+  if(studioMode){
+    const style=document.createElement('link');style.rel='stylesheet';style.href='studio-order-surface.css';document.head.append(style);document.documentElement.classList.add('studio-order-host');
+    const optionsDialog=document.createElement('dialog');optionsDialog.id='studio-options-dialog';optionsDialog.className='dialog studio-options-dialog';optionsDialog.setAttribute('aria-labelledby','studio-options-title');
+    optionsDialog.innerHTML='<button class="close-dialog" type="button" aria-label="Chiudi">×</button><h2 id="studio-options-title">Note per questa pizza</h2><div class="studio-options-content"></div><button class="primary-button studio-options-done" type="button">Torna alla pizza</button>';
+    document.body.append(optionsDialog);optionsDialog.querySelector('.studio-options-content').append($('#pizza-note-details'),$('#pizza-options'));for(const b of optionsDialog.querySelectorAll('button'))b.addEventListener('click',()=>optionsDialog.close());
+    optionsDialog.addEventListener('close',()=>window.dispatchEvent(new CustomEvent('pizza-studio-draft',{detail:studioComposition()})));
+    const visibility=()=>window.dispatchEvent(new CustomEvent('pizza-studio-order-visibility',{detail:{visible:!!document.querySelector('#order-dialog[open],#share-dialog[open],#studio-options-dialog[open],#zoom-dialog[open]')}}));
+    new MutationObserver(visibility).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
+    $('#order-dialog .order-menu-source').target='_top';
+    window.PulcinellaStudioRenderer.order={
+      snapshot:orderUI.snapshot,editing:orderUI.editing,
+      setLanguage:language=>I.setLanguage(language),
+      open(value){orderUI.synchronizeDraft(value);orderUI.open();},
+      save(value){orderUI.synchronizeDraft(value);return orderUI.saveComposition(value,{feedback:false});},
+      cancel(){orderUI.cancelEdit();returnToStudio('recipe');},
+      options(value){orderUI.synchronizeDraft(value);$('#pizza-note-details').open=true;optionsDialog.showModal();},
+      async zoom(value){await assetsReady;await ensureDesignAssets(Q.normalize(value.design));orderUI.synchronizeDraft(value);$('#zoom-dialog').classList.remove('detail-zoom');$('#zoom-detail').setAttribute('aria-pressed','false');$('#zoom-detail').textContent='Vedi i dettagli +';refreshZoom();$('#zoom-dialog').showModal();$('.zoom-frame').scrollLeft=0;},
+      quote:(raw,options)=>window.PizzaOrder.dietQuote(raw,options).supplement,
+      totals:()=>window.PizzaOrder.totals(orderUI.snapshot())
+    };
+  }
   $('#preview-retry').addEventListener('click',()=>{if(ready)renderPreview();else loadAssets().catch(previewError);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>syncPreviewResolution());},{passive:true});
   window.addEventListener('pizza-language-change',()=>{

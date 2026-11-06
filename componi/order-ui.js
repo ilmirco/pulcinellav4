@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
-  function create({getDesign,setDesign,isReady,announce,focusComposer,renderThumbnail,onPizzaAdded,onDraftChange}){
-    const O=root.PizzaOrder,P=root.Pulcinella,Q=root.PizzaFormats,I=root.PizzaI18n,$=s=>document.querySelector(s),storage='pulcinella-order-v1';
+  function create({getDesign,setDesign,isReady,announce,focusComposer,renderThumbnail,onPizzaAdded,onDraftChange,storageKey='pulcinella-order-v1'}){
+    const O=root.PizzaOrder,P=root.Pulcinella,Q=root.PizzaFormats,I=root.PizzaI18n,$=s=>document.querySelector(s),storage=storageKey;
     let order=O.create(),editingId=null,beforeEdit=null,category='sfizi',pdfURL=null,pdfGeneration=0,pdfTimer;
     const variants=new Map(),dietDrafts=new Map(),noteDrafts=new Map();let dietFormat=null;
     try{order=O.normalize(JSON.parse(localStorage.getItem(storage)));}catch{}
@@ -97,20 +97,27 @@
         const add=el('button','order-product-add','Aggiungi +');add.type='button';add.setAttribute('aria-label',`Aggiungi ${product.name}`);add.dataset.product=product.id;controls.append(add);card.append(controls);area.append(card);
       }
     }
-    function apply(next,message){const before=JSON.stringify(order);order=O.normalize(next);if(JSON.stringify(order)===before){notify('Hai raggiunto il limite di quantità per questa voce.');return false;}persist();render();if(message)notify(message);return true;}
-    function addPizza(){
-      if(!isReady()||!O.canAddPizza(getDesign()))return;
-      const value={design:getDesign(),options:opts(),note:note()},updated=!!editingId,next=editingId?O.updatePizza(order,editingId,value.design,value.options,value.note):O.addPizza(order,value.design,value.options,value.note);
-      if((editingId&&JSON.stringify(next)===JSON.stringify(order))||apply(next)){editingId=null;beforeEdit=null;sync();if(onPizzaAdded)onPizzaAdded(value,{updated});else open();}
+    function apply(next,message){const before=JSON.stringify(order);order=O.normalize(next);if(JSON.stringify(order)===before){notify('Hai raggiunto il limite di quantità per questa voce.');return false;}const removedEditing=editingId&&!order.lines.some(line=>line.id===editingId);if(removedEditing){editingId=null;beforeEdit=null;}persist();render();if(removedEditing)sync();if(message)notify(message);return true;}
+    function saveComposition(value,{feedback=true}={}){
+      if(!O.canAddPizza(value.design))return null;
+      const updated=!!editingId,next=editingId?O.updatePizza(order,editingId,value.design,value.options,value.note):O.addPizza(order,value.design,value.options,value.note);
+      if((editingId&&JSON.stringify(next)===JSON.stringify(order))||apply(next)){
+        editingId=null;beforeEdit=null;sync();if(feedback){if(onPizzaAdded)onPizzaAdded(value,{updated});else open();}
+        return{updated,order:O.normalize(order)};
+      }
+      return null;
     }
+    function addPizza(){if(isReady())saveComposition({design:getDesign(),options:opts(),note:note()});}
     $('#add-order').addEventListener('click',addPizza);$('#mobile-add-order').addEventListener('click',addPizza);
     $('#order-open').addEventListener('click',open);$('#mobile-order-open').addEventListener('click',open);
     $('#order-menu-jump').addEventListener('click',()=>{setView('menu');$('#order-menu-title').focus({preventScroll:true});});
     for(const b of document.querySelectorAll('[data-order-view]'))b.addEventListener('click',()=>setView(b.dataset.orderView));
-    $('#cancel-order-edit').addEventListener('click',()=>{const previous=beforeEdit;editingId=null;beforeEdit=null;setOpts();setNote();if(previous){setOpts(previous.options,previous.design);setNote(previous.note,previous.design);setDesign(previous.design);}sync();announce('Modifica annullata. La pizza nell’ordine resta uguale.');});
+    function cancelEdit(){const previous=beforeEdit;editingId=null;beforeEdit=null;setOpts();setNote();if(previous){setOpts(previous.options,previous.design);setNote(previous.note,previous.design);setDesign(previous.design);}sync();announce('Modifica annullata. La pizza nell’ordine resta uguale.');}
+    $('#cancel-order-edit').addEventListener('click',cancelEdit);
     function startNewPizza(){editingId=null;beforeEdit=null;for(const id of ['search','pizza-search']){const input=$('#'+id);input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));}root.dispatchEvent(new Event('pizza-new-composition'));const next=Q.chooseRecipe(Q.setFormat(getDesign(),'round'),'margherita');setOpts({},next);setNote('',next);setDesign(next);sync();if($('#order-dialog').open)$('#order-dialog').close();focusComposer('menu');announce('Componi la prossima pizza e aggiungila all’ordine.');}
     $('#order-new-pizza').addEventListener('click',startNewPizza);
     function restore(value,{panel='recipe'}={}){setOpts(value.options,value.design);setNote(value.note,value.design);setDesign(value.design);sync();focusComposer(panel);}
+    function synchronizeDraft(value){setOpts(value.options,value.design);setNote(value.note,value.design);setDesign(value.design);sync();}
     $('#order-lines').addEventListener('click',e=>{
       const b=e.target.closest('[data-order-action]');if(!b)return;const entry=order.lines.find(l=>l.id===b.dataset.line);if(!entry)return;
       const action=b.dataset.orderAction;
@@ -132,7 +139,7 @@
     });
     window.addEventListener('pagehide',()=>{if(pdfURL)URL.revokeObjectURL(pdfURL);});
     function refreshLanguage(){renderCatalog();render();sync();$('#order-live').textContent='';}
-    renderCatalog();render();sync();return{sync,refreshLanguage,open,startNewPizza,restore,options:opts,note,snapshot:()=>O.normalize(order)};
+    renderCatalog();render();sync();return{sync,refreshLanguage,open,startNewPizza,restore,synchronizeDraft,saveComposition,cancelEdit,editing:()=>editingId,options:opts,note,snapshot:()=>O.normalize(order)};
   }
   root.PizzaOrderUI={create};
 })(window);

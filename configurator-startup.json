@@ -1,5 +1,5 @@
 {
-  "version": "4.13-bordo-metro-sottile",
+  "version": "20261106-farina-hq",
   "resources": [
     "componi/assets/base-rossa-fior-v26.webp",
     "componi/assets/forno-carni-v15.webp",
@@ -32,12 +32,12 @@
     "componi/pizza-personal.js",
     "componi/pdf-unicode.js",
     "componi/order-pdf.js",
-    "componi/order-ui.js",
+    "componi/order-ui.js?v=20261106-farina-hq",
     "componi/mobile-sheet.js?v=20261027-pizza-mobile-grande",
     "componi/mobile-ui.js?v=20261027-presa-istruzioni",
     "componi/pizza-picker-ui.js",
     "componi/experience-ui.js?v=20261027-condivisione",
-    "componi/app.js?v=20261027-finiture-mobile",
+    "componi/app.js?v=20261106-farina-hq",
     "componi/language-picker.js?v=20261031-stable-startup-2",
     "componi/assets/logo.svg",
     "componi/assets/dm-sans-variable.ttf",
@@ -46,6 +46,19 @@
     "site-header-copy.js",
     "site-header.js",
     "site-finish.css?v=20261027-finiture-mobile",
-    "site-finish.js?v=20261027-finiture-mobile"
+    "site-finish.js?v=20261027-finiture-mobile",
+    "componi/studio-order-surface.css",
+    "componi/mobile.html",
+    "componi/renderer.html?studioRenderer=1",
+    "componi/studio-order-surface.css",
+    "configuratore/base.css?v=20261106-farina-hq",
+    "configuratore/cartone.css?v=20261106-farina-hq",
+    "configuratore/banco.css?v=20261106-farina-hq",
+    "configuratore/drawer.css?v=20261106-farina-hq",
+    "configuratore/surface.css?v=20261106-farina-hq",
+    "configuratore/app.js?v=20261106-farina-hq",
+    "configuratore/cartone-aperto-v2.svg",
+    "configuratore/cartone-bianco.svg",
+    "configuratore/margherita.webp"
   ]
 }

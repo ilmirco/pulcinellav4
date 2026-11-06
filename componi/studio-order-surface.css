@@ -1,0 +1,9 @@
+/* Only loaded by the local studioRenderer bridge. Native order/share UI stays intact. */
+html.studio-order-host,html.studio-order-host body{background:transparent!important}
+html.studio-order-host body>:not(dialog){visibility:hidden!important}
+html.studio-order-host body>dialog[open]{visibility:visible}
+.studio-order-host .studio-options-dialog{max-height:calc(100dvh - 24px);overflow:auto;text-align:left}
+.studio-order-host .studio-options-dialog h2{margin-right:30px}
+.studio-order-host .studio-options-dialog .pizza-note{margin:12px 0 20px}
+.studio-order-host .studio-options-dialog .pizza-options{margin-bottom:20px}
+.studio-order-host .studio-options-dialog .studio-options-done{width:100%;min-height:48px}
