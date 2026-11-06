@@ -42,16 +42,17 @@
    <div class="checkout"><button class="add-order" type="button" data-action="order" disabled><span>Aggiungi all’ordine</span><strong class="price">5,50 €</strong></button><button class="cart" type="button" data-action="basket" aria-label="Consulta ordine" aria-haspopup="dialog" disabled>${icons.cart}<span class="cart-count">0</span></button></div>
    <div class="studio-notice" role="status" aria-live="polite"></div><dialog class="studio-dialog" aria-labelledby="dialog-title-${index}"><button class="dialog-close" type="button" data-action="close" aria-label="Chiudi">×</button><h3 id="dialog-title-${index}"></h3><div class="dialog-body"></div></dialog>
   </div></div><p class="study-caption">${m.caption}</p>`;
-  root.append(section);m.section=section;m.screen=section.querySelector('.screen');m.shelf=section.querySelector('.shelf');m.dialog=section.querySelector('dialog');m.scroll={};m.renderedPanel=m.panel;
+  root.append(section);m.section=section;m.screen=section.querySelector('.screen');m.screen.dataset.format=m.format;m.shelf=section.querySelector('.shelf');m.dialog=section.querySelector('dialog');m.scroll={};m.renderedPanel=m.panel;
   const entryLid=m.screen.querySelector('.box-cover');entryLid.classList.add('entry-lid');dressLid(entryLid);
   const drawer=document.createElement('section');drawer.className='ingredients-drawer';drawer.setAttribute('aria-label','Scelta e modifica della pizza');const pantry=m.screen.querySelector('.pantry'),navigation=m.screen.querySelector('.work-tabs'),context=m.screen.querySelector('.pizza-context'),flavors=m.screen.querySelector('.flavor-strip');m.screen.insertBefore(drawer,context);drawer.append(context,flavors,navigation,pantry);
   return m;
  });
  const t=(m,key)=>copies[m.lang][key]||key;
  const toolLabels={it:['Annulla','Riparti dalla Margherita','La tua pizza da vicino'],en:['Undo','Start again with Margherita','Your pizza up close'],fr:['Annuler','Repartir de la Margherita','Votre pizza de près'],de:['Rückgängig','Mit Margherita neu beginnen','Deine Pizza aus der Nähe'],es:['Deshacer','Volver a la Margherita','Tu pizza de cerca'],pt:['Desfazer','Recomeçar com Margherita','A sua pizza de perto'],zh:['撤销','重新制作玛格丽特','近距离查看披萨'],sv:['Ångra','Börja om med Margherita','Din pizza på nära håll'],nl:['Ongedaan maken','Opnieuw beginnen met Margherita','Je pizza van dichtbij'],ru:['Отменить','Начать с Маргариты','Ваша пицца крупным планом']};
- const toolIcons=['<path d="M9 5 4 10l5 5M4 10h9a6 6 0 0 1 0 12"/>','<path d="M4 10a8 8 0 1 1 1 9M4 4v6h6"/>','<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6M10 7v6"/>'];
- for(const m of models){m.history=[];const tools=document.createElement('div');tools.className='workspace-tools';tools.setAttribute('role','group');tools.setAttribute('aria-label','Comandi della pizza');tools.innerHTML=['undo','reset','zoom'].map((action,n)=>`<button type="button" data-action="${action}" disabled${action==='zoom'?' aria-haspopup="dialog"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${toolIcons[n]}</svg></button>`).join('');m.screen.querySelector('.scene').append(tools);}
- function syncTools(m){m.screen.querySelector('.workspace-tools').setAttribute('aria-label',phrase(m,'Componi la tua pizza'));const labels=toolLabels[m.lang]||toolLabels.it;for(const [index,action]of ['undo','reset','zoom'].entries()){const button=m.screen.querySelector(`[data-action="${action}"]`);button.title=labels[index];button.setAttribute('aria-label',labels[index]);button.disabled=!api||(action==='undo'&&!m.history.length)||(action==='zoom'&&!m.previewReady);}}
+ const toolIcons=['<path d="M9 5 4 10l5 5M4 10h9a6 6 0 0 1 0 12"/>','<path d="M4 10a8 8 0 1 1 1 9M4 4v6h6"/>','<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6M10 7v6"/>','<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.4 6.6-3.8M8.7 13.6l6.6 3.8"/>'];
+ const toolActions=['undo','reset','zoom','share-pizza'];
+ for(const m of models){m.history=[];const tools=document.createElement('div');tools.className='workspace-tools';tools.setAttribute('role','group');tools.setAttribute('aria-label','Comandi della pizza');tools.innerHTML=toolActions.map((action,n)=>`<button type="button" data-action="${action}" disabled${action==='zoom'||action==='share-pizza'?' aria-haspopup="dialog"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${toolIcons[n]}</svg></button>`).join('');m.screen.querySelector('.scene').append(tools);}
+ function syncTools(m){const tools=m.screen.querySelector('.workspace-tools');tools.setAttribute('aria-label',phrase(m,'Componi la tua pizza'));const labels=[...(toolLabels[m.lang]||toolLabels.it),phrase(m,'Condividi la pizza')];for(const [index,action]of toolActions.entries()){const button=tools.querySelector(`[data-action="${action}"]`);button.title=labels[index];button.setAttribute('aria-label',labels[index]);button.disabled=!api||(action==='undo'&&!m.history.length)||(['zoom','share-pizza'].includes(action)&&!m.previewReady);}}
  function rememberChange(m){if(!Q||!m.design)return;m.history.push(Q.normalize(m.design));if(m.history.length>50)m.history.shift();}
  function restoreDesign(m,design){m.design=Q.normalize(design);syncDesign(m);renderShelf(m);copy(m);measure(m);requestPreview(m);}
  const label=(m,item)=>{if(item.id==='tomato')return{it:'Salsa di pomodoro',en:'Tomato sauce',es:'Salsa de tomate'}[m.lang]||t(m,'tomato');try{return frame.contentWindow.PizzaI18n.catalog[item.originalName||item.name]?.[m.lang]||item.name;}catch{return item.name;}};
@@ -138,9 +139,26 @@
   const w=m.screen.clientWidth,h=m.screen.clientHeight,lid=0;
   m.screen.classList.toggle('compact',h<650);
   const fixed=['.bench-heading','.checkout','.pizza-context','.work-tabs','.flavor-strip'].reduce((sum,selector)=>sum+m.screen.querySelector(selector).getBoundingClientRect().height,0);
-  const available=Math.max(90,w-66),maxScene=Math.max(156,h-fixed-(h<650?146:180));
-  const scene=Math.min(maxScene,Math.max(156,available/m.aspect+8));
-  const pack=Math.min(available,Math.max(90,(scene-8)*m.aspect));
+  const maxScene=Math.max(156,h-fixed-(h<650?146:180));
+  let pack,scene;
+  if(m.format==='round'){
+   // Both pairs use the empty lower corners; their touch targets stay clear of the food.
+   const available=Math.max(90,w-16),outerOffset=w/2-30;
+   const controlsTop=width=>Math.max(width-106,width*.48+Math.sqrt(Math.max(0,(width*.46+26)**2-outerOffset**2))-22);
+   const extent=width=>Math.max(width,controlsTop(width)+96)+8;
+   let low=0,high=Math.min(available,maxScene-8);
+   for(let step=0;step<20;step++){const middle=(low+high)/2;if(extent(middle)<=maxScene)low=middle;else high=middle;}
+   pack=low;scene=extent(pack);m.screen.style.setProperty('--round-tools-top',(controlsTop(pack)+4)+'px');
+  }else if(m.format==='half'){
+   // Keep the existing lateral layout and its slight offset, with room for four controls.
+   const available=Math.max(90,w-66);
+   scene=Math.max(208,Math.min(maxScene,Math.max(208,available/m.aspect+8)));
+   pack=Math.min(available,Math.max(90,(scene-8)*m.aspect));
+  }else{
+   // The metre uses the screen width; controls have a dedicated row below the carton.
+   pack=Math.max(90,w-16);
+   scene=Math.max(156,pack/m.aspect+60);
+  }
   m.collapsedScene=scene;m.expandedScene=14;m.screen.style.setProperty('--worktop-height',(scene+18)+'px');
   if(!m.gesture)m.screen.style.setProperty('--scene-height',(m.expanded?m.expandedScene:scene)+'px');m.screen.style.setProperty('--pack-width',pack+'px');m.screen.style.setProperty('--pack-height',pack/m.aspect+'px');m.screen.style.setProperty('--lid-height',lid+'px');
   const topWidth=Math.min(pack*.58,Math.max(178,pack*.46)),bottomWidth=topWidth*.935,tl=(pack-topWidth)/2,bl=(pack-bottomWidth)/2,top=56*.25,bottom=56*.85,g=topWidth/bottomWidth-1;

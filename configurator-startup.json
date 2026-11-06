@@ -1,5 +1,5 @@
 {
-  "version": "20261106-barra-condivisione",
+  "version": "20261106-controlli-formato-320",
   "resources": [
     "componi/assets/base-rossa-fior-v26.webp",
     "componi/assets/forno-carni-v15.webp",
@@ -51,12 +51,12 @@
     "componi/mobile.html",
     "componi/renderer.html?studioRenderer=1",
     "componi/studio-order-surface.css",
-    "configuratore/base.css?v=20261106-barra-condivisione",
-    "configuratore/cartone.css?v=20261106-barra-condivisione",
-    "configuratore/banco.css?v=20261106-barra-condivisione",
-    "configuratore/drawer.css?v=20261106-barra-condivisione",
-    "configuratore/surface.css?v=20261106-barra-condivisione",
-    "configuratore/app.js?v=20261106-barra-condivisione",
+    "configuratore/base.css?v=20261106-controlli-formato-320",
+    "configuratore/cartone.css?v=20261106-controlli-formato-320",
+    "configuratore/banco.css?v=20261106-controlli-formato-320",
+    "configuratore/drawer.css?v=20261106-controlli-formato-320",
+    "configuratore/surface.css?v=20261106-controlli-formato-320",
+    "configuratore/app.js?v=20261106-controlli-formato-320",
     "configuratore/cartone-aperto-v2.svg",
     "configuratore/cartone-bianco.svg",
     "configuratore/margherita.webp"
